@@ -27,5 +27,12 @@ const randomEvent = () => {
 
   set.value = true
   PLAYER.turn.acc--
+
+  if(result.supply) PLAYER.fortress.supply.acc += result.supply
+  if(result.resources) PLAYER.fortress.resources.acc += result.resources
+  if(result.ammunition) PLAYER.fortress.ammunition.acc += result.ammunition
+  if(result.units) PLAYER.fortress.units.act += result.units
+
+  PLAYER.fortress.level++
 }
 </script>
