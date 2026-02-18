@@ -12,15 +12,18 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Button: typeof import('./src/components/utils/Button.vue')['default']
+    copy: typeof import('./src/components/main/structures/Fortress copy.vue')['default']
     Fortress: typeof import('./src/components/main/structures/Fortress.vue')['default']
     GameBar: typeof import('./src/components/GameBar.vue')['default']
     GameMain: typeof import('./src/components/GameMain.vue')['default']
     GameMainbutton: typeof import('./src/components/main/GameMainbutton.vue')['default']
     GameMainButton: typeof import('./src/components/main/GameMainButton.vue')['default']
+    Hospital: typeof import('./src/components/main/structures/Hospital.vue')['default']
     IconMedal: typeof import('./src/components/main/icons/IconMedal.vue')['default']
     IconMedalo: typeof import('./src/components/main/icons/IconMedalo.vue')['default']
     IconWall: typeof import('./src/components/main/icons/IconWall.vue')['default']
     Modal: typeof import('./src/components/utils/Modal.vue')['default']
     StructureModal: typeof import('./src/components/utils/StructureModal.vue')['default']
+    StructureResult: typeof import('./src/components/utils/StructureResult.vue')['default']
   }
 }

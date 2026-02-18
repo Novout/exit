@@ -41,6 +41,7 @@ export const useCycle = () => {
     attack()
 
     CYCLE.value += 1
+    PLAYER.turn.acc = PLAYER.turn.max
   }
 
   const save = () => {

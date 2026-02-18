@@ -1,8 +1,9 @@
 <template>
   <div class="w-full">
     <div class="flex flex-col gap-5">
-      <p class="absolute left-204 top-105 text-black">Vida {{ PLAYER.fortress.life }} / 50</p>
-      <p class="absolute left-204 top-110 text-black">Nível {{ PLAYER.fortress.level }} / 5</p>
+      <p class="absolute left-204 top-100 text-black">Vida {{ PLAYER.fortress.life }} / 50</p>
+      <p class="absolute left-204 top-105 text-black">Nível {{ PLAYER.fortress.level }} / 5</p>
+      <p class="absolute left-204 top-110 text-black">Jogadas {{ PLAYER.turn.acc }} / {{ PLAYER.turn.max }}</p>
       <GameMainButton @click="STRUCTURE.fortress.modal = true" class="absolute left-200 top-120 bg-emerald">
         Fortaleza
       </GameMainButton>
@@ -28,6 +29,7 @@
   </div>
   <Modal>
     <Fortress v-if="STRUCTURE.fortress.modal" />
+    <Hospital v-if="STRUCTURE.hospital.modal" />
   </Modal>
   <div class="absolute bottom-15 right-15">
     <button @click="next()" class="p-4">Novo Turno</button>
