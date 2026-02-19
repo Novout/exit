@@ -4,4 +4,5 @@ export interface Event {
   ammunition?: number,
   resources?: number,
   units?: number
+  rep?: boolean
 }

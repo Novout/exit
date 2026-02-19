@@ -29,7 +29,8 @@
   </div>
   <Modal>
     <Fortress v-if="STRUCTURE.fortress.modal" />
-    <Hospital v-if="STRUCTURE.hospital.modal" />
+    <Hospital v-else-if="STRUCTURE.hospital.modal" />
+    <Void v-else-if="STRUCTURE.void.modal" />
   </Modal>
   <div class="absolute bottom-15 right-15">
     <button @click="next()" class="p-4">Novo Turno</button>

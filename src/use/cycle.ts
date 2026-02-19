@@ -1,11 +1,13 @@
 import { zombieNightAttack } from "../defines/zombie-attacks"
 import { useCycleStore } from "../store/cycle"
 import { usePlayerStore } from "../store/player"
+import { useStructureStore } from "../store/structure"
 import { random } from "../utils"
 
 export const useCycle = () => {
   const PLAYER = usePlayerStore()
   const CYCLE = useCycleStore()
+  const STRUCTURE = useStructureStore()
 
   const preload = async () => {
     def()
@@ -32,6 +34,10 @@ export const useCycle = () => {
 
     if(PLAYER.fortress.life <= 0) {
       alert('voce perdeu!')
+
+      PLAYER.$reset()
+      CYCLE.$reset()
+      STRUCTURE.$reset()
     }
   }
 

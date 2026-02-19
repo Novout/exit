@@ -3,7 +3,7 @@ import { defineStore } from "pinia"
 export const usePlayerStore = defineStore('player', {
   state: () => ({ 
     turn: {
-      acc: 1,
+      acc: 2,
       max: 2
     },
     fortress: {

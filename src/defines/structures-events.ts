@@ -28,3 +28,23 @@ export const hospitalEvents = (): Event[] => {
     },
   ]
 }
+
+export const voidEvents = (): Event[] => {
+  return [
+    {
+     "message": "Foi encontrado apenas destroços sem usar esforço...",
+     "resources": 10,
+     "rep": true
+    },
+    {
+     "message": "Foi encontrado um sobrevivente saudável!",
+     "units": 1
+    },
+    {
+     "message": "Recursos espalhados foram recuperados!",
+     "resources": 20,
+     "supply": 10,
+     "ammunition": 10
+    }
+  ]
+}

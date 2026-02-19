@@ -12,7 +12,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Button: typeof import('./src/components/utils/Button.vue')['default']
-    copy: typeof import('./src/components/main/structures/Fortress copy.vue')['default']
+    copy: typeof import('./src/components/main/structures/Hospital copy.vue')['default']
     Fortress: typeof import('./src/components/main/structures/Fortress.vue')['default']
     GameBar: typeof import('./src/components/GameBar.vue')['default']
     GameMain: typeof import('./src/components/GameMain.vue')['default']
@@ -25,5 +25,6 @@ declare module 'vue' {
     Modal: typeof import('./src/components/utils/Modal.vue')['default']
     StructureModal: typeof import('./src/components/utils/StructureModal.vue')['default']
     StructureResult: typeof import('./src/components/utils/StructureResult.vue')['default']
+    Void: typeof import('./src/components/main/structures/Void.vue')['default']
   }
 }
