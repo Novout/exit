@@ -48,3 +48,17 @@ export const voidEvents = (): Event[] => {
     }
   ]
 }
+
+export const militaryEvents = (): Event[] => {
+  return [
+    {
+     "message": "Perdemos a ofensiva! Tinha outros vivos no local...",
+     "units": -1,
+    },
+    {
+     "message": "Conseguimos entrar no local e conseguimos pegar!",
+     "resources": 10,
+     "ammunition": 40
+    }
+  ]
+}
