@@ -1,20 +1,36 @@
 <template>
-  <div class="p-5 font-poppins flex items-center w-full text-lg">
-    <div class="flex items-center w-full">
-     Turno {{  CYCLE.value }}
+  <div class="flex w-full items-center justify-between">
+    <div class="font-poppins flex items-center text-lg w-600">
+    <div class="flex flex-col w-30">
+      <button class="p-5 flex items-center gap-5"><IconNavy class="w-6 h-6" /> {{ PLAYER.activeCity.navy.length }}</button>
+      <button class="p-5 flex items-center gap-5"><IconGold class="w-6 h-6" /> {{ PLAYER.data.gold }}</button>
     </div>
-    <div class="flex items-center w-full">
-      Suprimentos {{ PLAYER.fortress.supply.acc }} / {{ PLAYER.fortress.supply.maxAcc }}
+    <div class="flex items-center flex-col pl-5">
+      <select id="city-select" class="flex items-center flex-col pl-5" v-model="PLAYER.activeCityName">
+        <option v-for="(city, index) in PLAYER.data.cities" :value="city" :key="index">
+          {{ city.cityhall.name }}
+        </option>
+      </select>
+      <p class="text-sm">População {{ PLAYER.activeCity.cityhall.population.acc }} / {{ PLAYER.activeCity.cityhall.population.maxAcc }}</p>
+      <div class="flex items-center justify-between gap-5 text-sm">
+        <p class="flex items-center"><IconWood class="w-6 h-6" />{{ PLAYER.activeCity.cityhall.wood.acc }} / {{ PLAYER.activeCity.cityhall.wood.maxAcc }}</p>
+        <p class="flex items-center"><IconStone class="w-6 h-6" />{{ PLAYER.activeCity.cityhall.stone.acc }} / {{ PLAYER.activeCity.cityhall.stone.maxAcc }}</p>
+        <p class="flex items-center"><IconWine class="w-6 h-6" />{{ PLAYER.activeCity.cityhall.wine.acc }} / {{ PLAYER.activeCity.cityhall.wine.maxAcc }}</p>
+        <p class="flex items-center"><IconCrystal class="w-6 h-6" />{{ PLAYER.activeCity.cityhall.crystal.acc }} / {{ PLAYER.activeCity.cityhall.crystal.maxAcc }}</p>
+        <p class="flex items-center"><IconSulfur class="w-6 h-6" />{{ PLAYER.activeCity.cityhall.sulfur.acc }} / {{ PLAYER.activeCity.cityhall.sulfur.maxAcc }}</p>
+      </div>
     </div>
-    <div class="flex items-center w-full">
-      Munição {{ PLAYER.fortress.ammunition.acc }} / {{ PLAYER.fortress.ammunition.maxAcc }}
+    <div class="pl-5">
+      <button class="p-10">World</button>
+      <button class="p-10">Island</button>
+      <button class="p-10">City</button>
     </div>
-    <div class="flex items-center w-full">
-      Recursos {{ PLAYER.fortress.resources.acc }} / {{ PLAYER.fortress.resources.maxAcc }}
-    </div>
-    <div class="flex items-center w-full">
-      Unidades {{ PLAYER.fortress.units.act }} / {{ PLAYER.fortress.units.maxUnits }}
-    </div>
+  </div>
+  <div class="w-full">
+    <button class="p-10">Events</button>
+    <button class="p-10">Military</button>
+    <button class="p-10">Search</button>
+  </div>
   </div>
 </template>
 

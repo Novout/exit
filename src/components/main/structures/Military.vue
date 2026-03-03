@@ -1,34 +1,33 @@
 <template>
-  <StructureModal name="area Militar">
-    <div v-if="!set" class="flex gap-2 w-full">
-      <Button @click="randomEvent">Explorar</Button>
+  <StructureModal name="area militar">
+    <div class="flex flex-col gap-2 w-full">
+      <div class="flex w-full justify-between"><Button @click="onUpgrade">Upgrade</Button></div>
     </div>
-    <StructureResult v-if="set" :event="event" />
   </StructureModal>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { random } from '../../../utils';
-import { militaryEvents } from '../../../defines/structures-events';
-import type { Event } from '../../../types';
-import { usePlayerStore } from '../../../store/player';
-import { useResults } from '../../../use/results';
+import { MilitaryUpgrade } from '../../../defines/upgrades'
+import { usePlayerStore } from '../../../store/player'
+import { useStructureStore } from '../../../store/structure'
 
 const PLAYER = usePlayerStore()
+const STRUCTURE = useStructureStore()
 
-const results = useResults()
-const set = ref(false)
-const event = ref<Event | null>(null)
+const onUpgrade = () => {
+  const levelTarget = PLAYER.activeCity.cityhall.level + 1
 
-const randomEvent = () => {
-  if(PLAYER.turn.acc === 0) return
+  const upg = MilitaryUpgrade(levelTarget)
 
-  const result = random(militaryEvents()) as Event
-  event.value = result 
+  if(upg) {
+    const dmgWood = upg.wood
+    const dmgStone = upg.stone 
 
-  set.value = true
-
-  results.exploreSet(result)
+    if(PLAYER.activeCity.cityhall.wood.acc >= dmgWood && PLAYER.activeCity.cityhall.stone.acc >= dmgStone) {
+      PLAYER.activeCity.cityhall.wood.acc -= upg.wood
+      PLAYER.activeCity.cityhall.stone.acc -= upg.stone
+      PLAYER.activeCity.cityhall.level++
+    }
+  }
 }
 </script>

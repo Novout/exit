@@ -1,6 +1,6 @@
 {
   "name": "exit",
-  "description": "exit is a apocalyptical scenario",
+  "description": "exit is a ikariam web game implementation (WIP)",
   "private": true,
   "version": "0.0.0",
   "type": "module",
