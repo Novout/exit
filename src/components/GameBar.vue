@@ -21,15 +21,15 @@
       </div>
     </div>
     <div class="pl-5">
-      <button class="p-10">World</button>
-      <button class="p-10">Island</button>
-      <button class="p-10">City</button>
+      <button class="p-2"><IconWorld class="h-20 w-20"/></button>
+      <button class="p-2"><IconIsland class="h-20 w-20"/></button>
+      <button class="p-2"><IconCityHall class="h-20 w-20"/></button>
     </div>
   </div>
   <div class="w-full">
-    <button class="p-10">Events</button>
-    <button class="p-10">Military</button>
-    <button class="p-10">Search</button>
+    <button class="p-2"><IconEvents class="h-20 w-20"/></button>
+    <button class="p-2"><IconMilitary class="h-20 w-20"/></button>
+    <button class="p-2"><IconScience class="h-20 w-20"/></button>
   </div>
   </div>
 </template>
