@@ -1,6 +1,6 @@
 <template>
-  <div class="flex gap-5 w-full">
-    <p>Cost</p>
+  <div class="flex flex-wrap gap-2 w-full">
+    <p>{{ props.description || 'Cost' }}</p>
     <p class="flex items-center"><IconWood class="w-6 h-6" />{{ props.resources.wood }}</p>
     <p class="flex items-center"><IconStone class="w-6 h-6" />{{ props.resources.stone }}</p>
     <p class="flex items-center"><IconWine class="w-6 h-6" />{{ props.resources.wine }}</p>
@@ -14,5 +14,6 @@ import type { Resources } from '../../types';
 
 const props = defineProps<{
   resources: Resources
+  description?: string
 }>()
 </script>

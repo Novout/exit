@@ -2,7 +2,7 @@
   <GameEnter v-if="!CYCLE.started" />
   <div v-else>
     <GameBar />
-    <GameIsland v-if="CYCLE.type === 'island'" />
+    <GameCity v-if="CYCLE.type === 'city'" />
   </div>
 </template>
 

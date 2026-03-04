@@ -10,7 +10,7 @@ export const useStructureStore = defineStore('structure', {
       level: 1,
       modal: false
     },
-    store: {
+    storage: {
       level: 1,
       modal: false
     },

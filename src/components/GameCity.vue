@@ -1,18 +1,19 @@
 <template>
   <div class="w-full">
     <GameMainButton @click="STRUCTURE.cityhall.modal = true" class="absolute left-200 top-120 bg-emerald">
-      Prefeitura
+      City Hall
     </GameMainButton>
-    <GameMainButton @click="STRUCTURE.store.modal = true" class="absolute left-300 top-150 bg-cyan">
-      Armazen
+    <GameMainButton @click="STRUCTURE.storage.modal = true" class="absolute left-300 top-150 bg-cyan">
+      Storage
     </GameMainButton>
      <GameMainButton @click="STRUCTURE.military.modal = true" class="absolute left-110 top-120 bg-gradient-from-lime">
-      Área Militar
+      Military
     </GameMainButton>
   </div>
   <Modal>
     <CityHall v-if="STRUCTURE.cityhall.modal" />
     <Military v-else-if="STRUCTURE.military.modal" />
+    <Storage v-else-if="STRUCTURE.storage.modal" />
   </Modal>
 </template>
 

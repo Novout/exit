@@ -16,12 +16,13 @@ const STRUCTURE = useStructureStore()
 
 const props = defineProps<{
   name: string
-  target: 'cityhall' | 'military'
+  target: 'cityhall' | 'military' | 'storage'
 }>()
 const section = useTemplateRef('main')
 
 onClickOutside(section, () => {
   STRUCTURE.cityhall.modal = false
   STRUCTURE.military.modal = false
+  STRUCTURE.storage.modal = false
 })
 </script>

@@ -12,6 +12,9 @@ export interface Player {
 export interface City {
   navy: [],
   soldiers: [],
+  storage: {
+    level: number
+  }
   cityhall: {
     name: string,
     level: number,

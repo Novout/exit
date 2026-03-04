@@ -13,6 +13,9 @@ export const getNewCity = (): City => {
   return { 
     navy: [],
     soldiers: [],
+    storage: {
+      level: 1
+    },
     cityhall: {
       name: '',
       level: 1,
