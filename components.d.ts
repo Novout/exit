@@ -13,7 +13,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Button: typeof import('./src/components/utils/Button.vue')['default']
     CityHall: typeof import('./src/components/main/structures/CityHall.vue')['default']
-    copy: typeof import('./src/components/main/structures/Void copy.vue')['default']
+    copy: typeof import('./src/components/main/structures/Science copy.vue')['default']
     Fortress: typeof import('./src/components/main/structures/Fortress.vue')['default']
     GameBar: typeof import('./src/components/GameBar.vue')['default']
     GameCity: typeof import('./src/components/GameCity.vue')['default']
@@ -44,9 +44,11 @@ declare module 'vue' {
     Military: typeof import('./src/components/main/structures/Military.vue')['default']
     Modal: typeof import('./src/components/utils/Modal.vue')['default']
     ResourcesBar: typeof import('./src/components/utils/ResourcesBar.vue')['default']
+    Science: typeof import('./src/components/main/structures/Science.vue')['default']
     Storage: typeof import('./src/components/main/structures/Storage.vue')['default']
     StructureModal: typeof import('./src/components/utils/StructureModal.vue')['default']
     StructureResult: typeof import('./src/components/utils/StructureResult.vue')['default']
+    Tavern: typeof import('./src/components/main/structures/Tavern.vue')['default']
     Void: typeof import('./src/components/main/structures/Void.vue')['default']
   }
 }

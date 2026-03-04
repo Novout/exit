@@ -1,5 +1,5 @@
 <template>
-  <StructureModal name="area militar">
+  <StructureModal name="Military Base">
     <div class="flex flex-col gap-2 w-full">
       <div class="flex w-full justify-between"><Button @click="onUpgrade">Upgrade</Button></div>
     </div>
@@ -9,10 +9,8 @@
 <script setup lang="ts">
 import { MilitaryUpgrade } from '../../../defines/upgrades'
 import { usePlayerStore } from '../../../store/player'
-import { useStructureStore } from '../../../store/structure'
 
 const PLAYER = usePlayerStore()
-const STRUCTURE = useStructureStore()
 
 const onUpgrade = () => {
   const levelTarget = PLAYER.activeCity.cityhall.level + 1

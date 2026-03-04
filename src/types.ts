@@ -14,6 +14,12 @@ export interface City {
   soldiers: [],
   storage: {
     level: number
+  },
+  tavern: {
+    level: number
+  },
+  science: {
+    level: number
   }
   cityhall: {
     name: string,

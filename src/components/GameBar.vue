@@ -35,9 +35,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useCycleStore } from '../store/cycle';
 import { usePlayerStore } from '../store/player';
 
 const PLAYER = usePlayerStore()
-const CYCLE =  useCycleStore()
 </script>

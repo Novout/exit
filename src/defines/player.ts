@@ -16,6 +16,12 @@ export const getNewCity = (): City => {
     storage: {
       level: 1
     },
+    tavern: {
+      level: 1
+    },
+    science: {
+      level: 1
+    },
     cityhall: {
       name: '',
       level: 1,

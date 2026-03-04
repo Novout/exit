@@ -3,15 +3,18 @@ import { defineStore } from "pinia"
 export const useStructureStore = defineStore('structure', {
   state: () => ({ 
     cityhall: {
-      level: 1,
       modal: false
     },
     military: {
-      level: 1,
       modal: false
     },
     storage: {
-      level: 1,
+      modal: false
+    },
+    tavern: {
+      modal: false
+    },
+    science: {
       modal: false
     },
   }),

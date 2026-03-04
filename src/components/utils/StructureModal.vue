@@ -24,5 +24,7 @@ onClickOutside(section, () => {
   STRUCTURE.cityhall.modal = false
   STRUCTURE.military.modal = false
   STRUCTURE.storage.modal = false
+  STRUCTURE.science.modal = false
+  STRUCTURE.tavern.modal = false
 })
 </script>
