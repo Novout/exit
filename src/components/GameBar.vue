@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full items-center justify-between">
+  <div class="flex w-full items-center justify-between p-2 bg-bar">
     <div class="font-poppins flex items-center text-lg w-600">
     <div class="flex flex-col w-30">
       <button class="p-5 flex items-center gap-5"><IconNavy class="w-6 h-6" /> {{ PLAYER.activeCity.navy.length }}</button>
@@ -42,3 +42,9 @@ const PLAYER = usePlayerStore()
 
 const workers = computed(() => Number(PLAYER.activeCity.tavern.workers) + Number(PLAYER.activeCity.science.workers))
 </script>
+
+<style lang="css">
+.bg-bar {
+  background-color: rgb(255, 255, 183);
+}
+</style>

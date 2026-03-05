@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full">
+  <div class="w-full bg-1 h-100vh">
     <GameMainButton @click="STRUCTURE.cityhall.modal = true" class="absolute left-200 top-120 bg-emerald">
       City Hall
     </GameMainButton>
@@ -30,3 +30,10 @@ import { useStructureStore } from '../store/structure';
 
 const STRUCTURE = useStructureStore()
 </script>
+
+<style lang="css">
+.bg-1 {
+  background: #bd9960;
+  background: linear-gradient(180deg, rgb(231, 187, 116) 0%, rgb(206, 168, 112) 49%, rgba(166, 156, 83, 1) 62%, rgba(91, 125, 144, 1) 76%, rgba(55, 65, 81, 1) 100%);
+}
+</style>
