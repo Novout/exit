@@ -17,5 +17,8 @@ export const useStructureStore = defineStore('structure', {
     science: {
       modal: false
     },
+    navy: {
+      modal: false
+    },
   }),
 })

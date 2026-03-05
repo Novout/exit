@@ -9,11 +9,14 @@
      <GameMainButton @click="STRUCTURE.military.modal = true" class="absolute left-110 top-120 bg-gradient-from-lime">
       Military
     </GameMainButton>
-    <GameMainButton @click="STRUCTURE.science.modal = true" class="absolute left-140 top-70 bg-blue">
+    <GameMainButton @click="STRUCTURE.science.modal = true" class="absolute left-140 top-70 bg-amber">
       Science
     </GameMainButton>
      <GameMainButton @click="STRUCTURE.tavern.modal = true" class="absolute left-80 top-150 bg-pink">
       Tavern
+    </GameMainButton>
+    <GameMainButton @click="STRUCTURE.navy.modal = true" class="absolute left-200 top-200 bg-blue">
+      Shipyard
     </GameMainButton>
   </div>
   <Modal>
@@ -22,6 +25,7 @@
     <Storage v-else-if="STRUCTURE.storage.modal" />
     <Science v-else-if="STRUCTURE.science.modal" />
     <Tavern v-else-if="STRUCTURE.tavern.modal" />
+    <Navy v-else-if="STRUCTURE.navy.modal" />
   </Modal>
 </template>
 
