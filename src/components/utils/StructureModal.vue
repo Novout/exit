@@ -16,7 +16,6 @@ const STRUCTURE = useStructureStore()
 
 const props = defineProps<{
   name: string
-  target: 'cityhall' | 'military' | 'storage'
 }>()
 const section = useTemplateRef('main')
 

@@ -3,7 +3,7 @@
     <p>Name of Capital</p>
     <input class="p-2" v-model="data.name" type="text" />
     <p>Map Size</p>
-    <select class="p-2" name="size" v-model="data.size" type="list">
+    <select class="p-2" name="size" v-model="data.size">
       <option>small</option>
       <option>default</option>
       <option>large</option>
@@ -43,12 +43,36 @@ const onStart = () => {
   }
 
   let _population = PLAYER.activeCity.cityhall.population.time / 1000
+  let _gold = 3
 
   setInterval(() => {
     _population--
+    _gold--
+
+    if(_gold < 0) {
+      const cities = PLAYER.data.cities.filter((city) => city.cityhall.name !== PLAYER.activeCity.cityhall.name)
+      const citiesPopGold = [...cities, PLAYER.activeCity].reduce((acc, current) => {
+        return acc + (current.cityhall.population.acc - (Number(current.science.workers) + Number(current.tavern.workers)))
+      }, 0)
+
+      PLAYER.data.gold += citiesPopGold
+      _gold = 3
+    }
 
     if(_population < 0) {
-      if(PLAYER.activeCity.cityhall.population.acc <= PLAYER.activeCity.cityhall.population.maxAcc) PLAYER.activeCity.cityhall.population.acc++
+      if(PLAYER.activeCity.cityhall.population.acc <= PLAYER.activeCity.cityhall.population.maxAcc) {
+        PLAYER.activeCity.cityhall.population.acc++
+      }
+
+      PLAYER.data.cities = PLAYER.data.cities.map(city => {
+        if(city.cityhall.population.acc <= city.cityhall.population.maxAcc) {
+          if(city.cityhall.name === PLAYER.activeCity.cityhall.name) return city
+
+          city.cityhall.population.acc++
+        }
+
+        return city
+      })
       _population = PLAYER.activeCity.cityhall.population.time / 1000
     }
   }, 1000)
