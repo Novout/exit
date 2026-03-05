@@ -17,6 +17,7 @@ import { reactive } from 'vue';
 import { useCycleStore } from '../store/cycle';
 import { usePlayerStore } from '../store/player';
 import { getNewCity, getNewPlayerData } from '../defines/player';
+import _default from 'unplugin-vue-components';
 
 const CYCLE = useCycleStore()
 const PLAYER = usePlayerStore()
@@ -39,24 +40,38 @@ const onStart = () => {
       type: 'default'
     },
     ...getNewPlayerData(),
-    cities: [PLAYER.activeCity]
+    cities: []
   }
 
   let _population = PLAYER.activeCity.cityhall.population.time / 1000
-  let _gold = 3
+  let _gold = 5
+  let _science = 5
 
   setInterval(() => {
     _population--
     _gold--
+    _science--
 
     if(_gold < 0) {
-      const cities = PLAYER.data.cities.filter((city) => city.cityhall.name !== PLAYER.activeCity.cityhall.name)
+      const cities = PLAYER.data.cities
       const citiesPopGold = [...cities, PLAYER.activeCity].reduce((acc, current) => {
+        if((current.tavern.workers * 24) + 50 < current.cityhall.population.acc) return acc
+
         return acc + (current.cityhall.population.acc - (Number(current.science.workers) + Number(current.tavern.workers)))
       }, 0)
 
       PLAYER.data.gold += citiesPopGold
-      _gold = 3
+      _gold = 5
+    }
+
+    if(_science < 0) {
+      const cities = PLAYER.data.cities
+      const citiesPopScience = [...cities, PLAYER.activeCity].reduce((acc, current) => {
+        return acc + current.science.workers
+      }, 0)
+
+      PLAYER.data.science.points += citiesPopScience
+      _science = 5
     }
 
     if(_population < 0) {
