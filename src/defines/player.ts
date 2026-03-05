@@ -2,7 +2,10 @@ import type { City } from "../types"
 
 export const getNewPlayerData = () => {
   return {
-    gold: 100,
+    gold: {
+      acc: 100,
+      set: 0
+    },
     science: {
       points: 0
     }
@@ -23,6 +26,9 @@ export const getNewCity = (): City => {
     science: {
       level: 1,
       workers: 0
+    },
+    market: {
+      level: 1,
     },
     cityhall: {
       name: '',

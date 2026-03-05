@@ -3,7 +3,7 @@
     <div class="font-poppins flex items-center text-lg w-600">
     <div class="flex flex-col w-30">
       <button class="p-5 flex items-center gap-5"><IconNavy class="w-6 h-6" /> {{ PLAYER.activeCity.navy.length }}</button>
-      <button class="p-5 flex items-center gap-5"><IconGold class="w-6 h-6" /> {{ PLAYER.data.gold }}</button>
+      <button class="p-5 flex items-center gap-5 justify-center"><IconGold class="w-6 h-6" /> {{ PLAYER.data.gold.acc }} {{ PLAYER.data.gold.set }}</button>
     </div>
     <div class="flex items-center flex-col pl-5">
       <select id="city-select" class="flex items-center flex-col pl-5" v-model="PLAYER.activeCityName">
@@ -45,6 +45,6 @@ const workers = computed(() => Number(PLAYER.activeCity.tavern.workers) + Number
 
 <style lang="css">
 .bg-bar {
-  background-color: rgb(255, 255, 183);
+  background: rgb(231, 187, 116);
 }
 </style>

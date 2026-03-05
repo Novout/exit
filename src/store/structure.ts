@@ -20,5 +20,8 @@ export const useStructureStore = defineStore('structure', {
     navy: {
       modal: false
     },
+    market: {
+      modal: false
+    }
   }),
 })

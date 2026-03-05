@@ -2,7 +2,10 @@ export interface Player {
   map: {
     type: string
   }
-  gold: number,
+  gold: {
+    acc: number,
+    set: number
+  },
   science: {
     points: number
   },
@@ -22,6 +25,9 @@ export interface City {
   science: {
     level: number
     workers: number
+  },
+  market: {
+    level: number
   }
   cityhall: {
     name: string,

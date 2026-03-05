@@ -21,7 +21,7 @@ const resources = ref(StorageUpgrade(PLAYER.activeCity.storage.level))
 const onUpgrade = () => {
   const levelTarget = PLAYER.activeCity.storage.level + 1
 
-  const upg = StorageUpgrade(levelTarget)
+  const upg = StorageCost(levelTarget)
 
   if(upg) {
     const dmgWood = upg.wood
@@ -31,6 +31,16 @@ const onUpgrade = () => {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
       PLAYER.activeCity.storage.level++
+
+      const stg = StorageUpgrade(PLAYER.activeCity.storage.level)
+
+      if(stg) {
+        PLAYER.activeCity.cityhall.stone.maxAcc = stg.stone
+        PLAYER.activeCity.cityhall.wood.maxAcc = stg.wood
+        PLAYER.activeCity.cityhall.sulfur.maxAcc = stg.sulfur
+        PLAYER.activeCity.cityhall.wine.maxAcc = stg.wine
+        PLAYER.activeCity.cityhall.crystal.maxAcc = stg.crystal
+      }
     }
   }
 }

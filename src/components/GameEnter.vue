@@ -60,7 +60,8 @@ const onStart = () => {
         return acc + (current.cityhall.population.acc - (Number(current.science.workers) + Number(current.tavern.workers)))
       }, 0)
 
-      PLAYER.data.gold += citiesPopGold
+      PLAYER.data.gold.acc += citiesPopGold
+      PLAYER.data.gold.set = citiesPopGold
       _gold = 5
     }
 

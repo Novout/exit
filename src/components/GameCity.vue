@@ -6,6 +6,9 @@
     <GameMainButton @click="STRUCTURE.storage.modal = true" class="absolute left-300 top-150 bg-cyan">
       Storage
     </GameMainButton>
+    <GameMainButton @click="STRUCTURE.market.modal = true" class="absolute left-270 top-70 bg-red">
+      Market
+    </GameMainButton>
      <GameMainButton @click="STRUCTURE.military.modal = true" class="absolute left-110 top-120 bg-gradient-from-lime">
       Military
     </GameMainButton>
@@ -26,6 +29,7 @@
     <Science v-else-if="STRUCTURE.science.modal" />
     <Tavern v-else-if="STRUCTURE.tavern.modal" />
     <Navy v-else-if="STRUCTURE.navy.modal" />
+    <Market v-else-if="STRUCTURE.market.modal" />
   </Modal>
 </template>
 
@@ -38,6 +42,6 @@ const STRUCTURE = useStructureStore()
 <style lang="css">
 .bg-1 {
   background: #bd9960;
-  background: linear-gradient(180deg, rgb(231, 187, 116) 0%, rgb(206, 168, 112) 49%, rgba(166, 156, 83, 1) 62%, rgba(91, 125, 144, 1) 76%, rgba(55, 65, 81, 1) 100%);
+  background: linear-gradient(180deg, rgb(231, 187, 116) 0%, rgb(206, 168, 112) 49%, rgba(166, 156, 83, 1) 62%, rgba(91, 125, 144, 1) 70%, rgba(55, 65, 81, 1) 100%);
 }
 </style>
