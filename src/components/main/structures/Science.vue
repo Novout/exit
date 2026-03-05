@@ -3,10 +3,10 @@
     <div class="flex flex-col gap-2 w-full">
       <p>Level: {{ PLAYER.activeCity.science.level }}</p>
       <div class="flex w-full justify-between gap-5 pb-10 items-center">
-          <input type="range" id="volume" name="volume" v-model="set" :min="0" :max="max" />
-          <label for="volume">{{ set }} / {{ max }} Workers</label>
-          <Button @click="onSetWorkers">Set</Button>
-        </div>
+        <input type="range" id="volume" name="volume" v-model="set" :min="0" :max="max" />
+        <label for="volume">{{ set }} / {{ max }} Workers</label>
+        <Button @click="onSetWorkers">Set</Button>
+      </div>
       <div class="flex w-full justify-between"><ResourcesBar :resources="resources" /><Button @click="onUpgrade">Upgrade</Button></div>
     </div>
   </StructureModal>
