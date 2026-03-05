@@ -17,9 +17,11 @@ export interface City {
   },
   tavern: {
     level: number
+    workers: number
   },
   science: {
     level: number
+    workers: number
   }
   cityhall: {
     name: string,

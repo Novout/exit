@@ -2,28 +2,38 @@
   <StructureModal name="science">
     <div class="flex flex-col gap-2 w-full">
       <p>Level: {{ PLAYER.activeCity.science.level }}</p>
-      <div class="flex w-full gap-5 items-center">
-        <input type="range" id="volume" name="volume" v-model="scientists.ref" :min="scientists.min" :max="scientists.max" />
-        <label for="volume">{{ scientists.ref }} Scientists</label>
-      </div>
+      <div class="flex w-full justify-between gap-5 pb-10 items-center">
+          <input type="range" id="volume" name="volume" v-model="set" :min="0" :max="max" />
+          <label for="volume">{{ set }} / {{ max }} Workers</label>
+          <Button @click="onSetWorkers">Set</Button>
+        </div>
       <div class="flex w-full justify-between"><ResourcesBar :resources="resources" /><Button @click="onUpgrade">Upgrade</Button></div>
     </div>
   </StructureModal>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { CityhallUpgrade, ScienceUpgrade } from '../../../defines/upgrades';
 import { usePlayerStore } from '../../../store/player';
 
 const PLAYER = usePlayerStore()
 
 const resources = ref(ScienceUpgrade(PLAYER.activeCity.science.level + 1))
-const scientists = reactive({
-  ref: 0,
-  min: 0,
-  max: PLAYER.activeCity.cityhall.population.maxAcc
-})
+
+const set = ref(PLAYER.activeCity.science.workers)
+const max = computed(() => PLAYER.activeCity.science.level * 7)
+
+const onSetWorkers = () => {
+  const pop = PLAYER.activeCity.cityhall.population.acc - (Number(PLAYER.activeCity.tavern.workers))
+
+  if(pop < set.value) {
+    set.value = PLAYER.activeCity.science.workers
+    return
+  }
+
+  PLAYER.activeCity.science.workers = set.value
+}
 
 const onUpgrade = () => {
   const levelTarget = PLAYER.activeCity.science.level + 1

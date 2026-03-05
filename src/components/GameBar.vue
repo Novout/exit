@@ -11,7 +11,7 @@
           {{ city.cityhall.name }}
         </option>
       </select>
-      <p class="text-sm">População {{ PLAYER.activeCity.cityhall.population.acc }} / {{ PLAYER.activeCity.cityhall.population.maxAcc }}</p>
+      <p class="text-sm">Population {{ PLAYER.activeCity.cityhall.population.acc }} / {{ PLAYER.activeCity.cityhall.population.maxAcc }} Workers {{ workers }} </p>
       <div class="flex items-center justify-between gap-5 text-sm">
         <p class="flex items-center"><IconWood class="w-6 h-6" />{{ PLAYER.activeCity.cityhall.wood.acc }} / {{ PLAYER.activeCity.cityhall.wood.maxAcc }}</p>
         <p class="flex items-center"><IconStone class="w-6 h-6" />{{ PLAYER.activeCity.cityhall.stone.acc }} / {{ PLAYER.activeCity.cityhall.stone.maxAcc }}</p>
@@ -35,7 +35,10 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue';
 import { usePlayerStore } from '../store/player';
 
 const PLAYER = usePlayerStore()
+
+const workers = computed(() => Number(PLAYER.activeCity.tavern.workers) + Number(PLAYER.activeCity.science.workers))
 </script>
