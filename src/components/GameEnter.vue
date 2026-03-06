@@ -75,9 +75,9 @@ const onStart = () => {
     if(_gold < 0) {
       const cities = PLAYER.data.cities
       const citiesPopGold = [...cities, PLAYER.activeCity].reduce((acc, current) => {
-        if((current.tavern.workers * 24) + 50 < current.cityhall.population.acc) return acc
+        const workers = (Number(current.science.workers) + Number(current.tavern.workers))
 
-        return acc + (current.cityhall.population.acc - (Number(current.science.workers) + Number(current.tavern.workers)))
+        return acc + (current.cityhall.population.acc - Number((workers * 4).toFixed()))
       }, 0)
 
       PLAYER.data.gold.acc += citiesPopGold
@@ -96,12 +96,19 @@ const onStart = () => {
     }
 
     if(_population < 0) {
-      if(PLAYER.activeCity.cityhall.population.acc <= PLAYER.activeCity.cityhall.population.maxAcc) {
+      // TODO: tavern happy
+      // const isValidHappyInActive = Number((PLAYER.activeCity.tavern.workers * 12).toFixed()) + 50 < PLAYER.activeCity.cityhall.population.acc
+      const isValidMaxInactive = PLAYER.activeCity.cityhall.population.acc < PLAYER.activeCity.cityhall.population.maxAcc
+      
+      if(isValidMaxInactive) {
         PLAYER.activeCity.cityhall.population.acc++
       }
 
       PLAYER.data.cities = PLAYER.data.cities.map(city => {
-        if(city.cityhall.population.acc <= city.cityhall.population.maxAcc) {
+        // const isValidHappyInExternal = Number(PLAYER.activeCity.tavern.workers) * 24 + 50 < city.cityhall.population.acc
+        const isValidMaxExternal = city.cityhall.population.acc < city.cityhall.population.maxAcc
+
+        if(isValidMaxExternal) {
           if(city.cityhall.name === PLAYER.activeCity.cityhall.name) return city
 
           city.cityhall.population.acc++

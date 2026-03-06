@@ -35,9 +35,9 @@ export const getNewCity = (): City => {
       level: 1,
       happy: 200,
       population: {
-        acc: 10,
+        acc: 30,
         maxAcc: 60,
-        time: 10000
+        time: 7000
       },
       sulfur: {
         acc: 0,

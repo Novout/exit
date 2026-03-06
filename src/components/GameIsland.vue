@@ -4,6 +4,19 @@
       <p v-if="city.name && city.owner">{{ city.name }}</p>
       <IconCityHall class="h-20 w-20 cursor-pointer" />
     </div>
+    <div class="absolute left-100 top-100">
+      <IconWood class="w-20 h-20" />
+    </div>
+    <div class="absolute left-150 top-100">
+      <IconStone v-if="PLAYER.data.island.type === 'stone'" class="w-20 h-20" />
+      <IconWine v-else-if="PLAYER.data.island.type === 'wine'" class="w-20 h-20" />
+      <IconCrystal v-else-if="PLAYER.data.island.type === 'crystal'" class="w-20 h-20" />
+      <IconSulfur v-else-if="PLAYER.data.island.type === 'sulfur'" class="w-20 h-20" />
+    </div>
+    <Modal>
+      <CityHall v-if="STRUCTURE.wood.modal" />
+      <Military v-else-if="STRUCTURE.resource.modal" />
+    </Modal>
   </div>
 </template>
 
@@ -12,9 +25,11 @@ import { onMounted, ref } from 'vue';
 import { usePlayerStore } from '../store/player';
 import { useWolrdStore } from '../store/world';
 import type { IslandCity } from '../types';
+import { useStructureStore } from '../store/structure';
 
 const WORLD = useWolrdStore()
 const PLAYER = usePlayerStore()
+const STRUCTURE = useStructureStore()
 
 const cities = ref<IslandCity[]>([])
 
