@@ -39,7 +39,6 @@ export const getNewCity = (): City => {
         maxAcc: 60,
         time: 10000
       },
-      
       sulfur: {
         acc: 0,
         maxAcc: 200

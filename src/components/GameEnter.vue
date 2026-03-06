@@ -4,9 +4,9 @@
     <input class="p-2" v-model="data.name" type="text" />
     <p>Map Size</p>
     <select class="p-2" name="size" v-model="data.size">
-      <option>small</option>
-      <option>default</option>
-      <option>large</option>
+      <option>Small</option>
+      <option>Default</option>
+      <option>Large</option>
     </select>
     <button class="w-40 p-2" @click="onStart">Create</button>
   </div>
@@ -17,14 +17,20 @@ import { reactive } from 'vue';
 import { useCycleStore } from '../store/cycle';
 import { usePlayerStore } from '../store/player';
 import { getNewCity, getNewPlayerData } from '../defines/player';
-import _default from 'unplugin-vue-components';
+import { useWorld } from '../use/world';
+import { random } from '../utils';
+import { useWolrdStore } from '../store/world';
+import type { IslandCity } from '../types';
 
 const CYCLE = useCycleStore()
 const PLAYER = usePlayerStore()
+const WORLD = useWolrdStore()
+
+const world = useWorld()
 
 const data = reactive({
   name: '',
-  size: 'default',
+  size: 'Default',
 })
 
 const onStart = () => {
@@ -35,7 +41,21 @@ const onStart = () => {
   PLAYER.activeCity = getNewCity()
   PLAYER.activeCity.cityhall.name = data.name
   PLAYER.activeCityName = data.name
+
+  world.create()
+
+  const island = random(WORLD.islands)
+  island.cities = island.cities.map((city: IslandCity, index: number) => {
+    if(index === 0) {
+      city.owner = 'main'
+      city.name = data.name
+    }
+
+    return city
+  })
+
   PLAYER.data = {
+    island,
     map: {
       type: 'default'
     },

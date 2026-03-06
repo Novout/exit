@@ -13,7 +13,7 @@ declare module 'vue' {
   export interface GlobalComponents {
     Button: typeof import('./src/components/utils/Button.vue')['default']
     CityHall: typeof import('./src/components/main/structures/CityHall.vue')['default']
-    copy: typeof import('./src/components/main/structures/Science copy.vue')['default']
+    copy: typeof import('./src/components/GameWorld copy.vue')['default']
     Fortress: typeof import('./src/components/main/structures/Fortress.vue')['default']
     GameBar: typeof import('./src/components/GameBar.vue')['default']
     GameCity: typeof import('./src/components/GameCity.vue')['default']
@@ -22,6 +22,7 @@ declare module 'vue' {
     GameMain: typeof import('./src/components/GameMain.vue')['default']
     GameMainbutton: typeof import('./src/components/main/GameMainbutton.vue')['default']
     GameMainButton: typeof import('./src/components/main/GameMainButton.vue')['default']
+    GameWorld: typeof import('./src/components/GameWorld.vue')['default']
     Hospital: typeof import('./src/components/main/structures/Hospital.vue')['default']
     IconCityHall: typeof import('./src/components/main/icons/IconCityHall.vue')['default']
     IconClose: typeof import('./src/components/main/icons/IconClose.vue')['default']

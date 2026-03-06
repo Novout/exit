@@ -21,9 +21,9 @@
       </div>
     </div>
     <div class="pl-5">
-      <button class="p-2"><IconWorld class="h-20 w-20"/></button>
-      <button class="p-2"><IconIsland class="h-20 w-20"/></button>
-      <button class="p-2"><IconCityHall class="h-20 w-20"/></button>
+      <button class="p-2"><IconWorld @click="CYCLE.type = 'world'" class="h-20 w-20"/></button>
+      <button class="p-2"><IconIsland @click="CYCLE.type = 'island'" class="h-20 w-20"/></button>
+      <button class="p-2"><IconCityHall @click="CYCLE.type = 'city'" class="h-20 w-20"/></button>
     </div>
   </div>
   <div class="w-full">
@@ -37,8 +37,10 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { usePlayerStore } from '../store/player';
+import { useCycleStore } from '../store/cycle';
 
 const PLAYER = usePlayerStore()
+const CYCLE = useCycleStore()
 
 const workers = computed(() => Number(PLAYER.activeCity.tavern.workers) + Number(PLAYER.activeCity.science.workers))
 </script>

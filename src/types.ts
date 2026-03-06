@@ -1,4 +1,5 @@
 export interface Player {
+  island: Island
   map: {
     type: string
   }
@@ -10,6 +11,19 @@ export interface Player {
     points: number
   },
   cities: City[]
+}
+
+export interface Island {
+  x: number,
+  y: number,
+  type: ResourcesType
+}
+
+export interface IslandCity {
+  x: number,
+  y: number
+  owner?: string
+  name?: string
 }
 
 export interface City {
@@ -68,3 +82,5 @@ export interface Resources {
   wood: number,
   crystal: number
 }
+
+export type ResourcesType = 'wood' | 'sulfur' | 'crystal' | 'wine' | 'stone'
