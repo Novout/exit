@@ -81,19 +81,21 @@ const onStart = () => {
 
     if(_wood < 0) {
       PLAYER.data.cities = PLAYER.data.cities.map(city => {
-        if(city.cityhall.wood.maxAcc > city.cityhall.wood.acc) {
-          const workers = (Number(city.locksmith.workers))
+        const workers = (Number(city.locksmith.workers))
+        const max = Number((workers * 2.5).toFixed())
 
-          city.cityhall.wood.acc += Number((workers * 2).toFixed())
+        if(city.cityhall.wood.maxAcc > city.cityhall.wood.acc + max) {
+          city.cityhall.wood.acc += max
         }
 
         return city
       })
 
-      if(PLAYER.activeCity.cityhall.wood.maxAcc > PLAYER.activeCity.cityhall.wood.acc) {
-        const workers = (Number(PLAYER.activeCity.locksmith.workers))
+      const workers = (Number(PLAYER.activeCity.locksmith.workers))
+      const max = Number((workers * 2.5).toFixed())
 
-        PLAYER.activeCity.cityhall.wood.acc += Number((workers * 2).toFixed())
+      if(PLAYER.activeCity.cityhall.wood.maxAcc > PLAYER.activeCity.cityhall.wood.acc) {
+        PLAYER.activeCity.cityhall.wood.acc += max
       }
 
       _wood = 5
@@ -101,19 +103,22 @@ const onStart = () => {
 
     if(_bonus < 0) {
       PLAYER.data.cities = PLAYER.data.cities.map(city => {
-        if(city.cityhall.wood.maxAcc > city.cityhall.wood.acc) {
-          const workers = (Number(city.bonus.workers))
+        const workers = (Number(city.bonus.workers))
+        const max = Number((workers * 2.5).toFixed())
 
-          city.cityhall[city.type].acc += Number((workers * 2.5).toFixed())
+        if(city.cityhall.wood.maxAcc > city.cityhall.wood.acc + max) {
+          city.cityhall[city.type].acc += max
         }
 
         return city
       })
 
-      if(PLAYER.activeCity.cityhall[PLAYER.activeCity.type].maxAcc > PLAYER.activeCity.cityhall[PLAYER.activeCity.type].acc) {
-        const workers = (Number(PLAYER.activeCity.bonus.workers))
+      const workers = (Number(PLAYER.activeCity.bonus.workers))
+      const max = Number((workers * 2.5).toFixed())
 
-        PLAYER.activeCity.cityhall[PLAYER.activeCity.type].acc += Number((workers * 2.5).toFixed())
+      if(PLAYER.activeCity.cityhall[PLAYER.activeCity.type].maxAcc > PLAYER.activeCity.cityhall[PLAYER.activeCity.type].acc) {
+
+        PLAYER.activeCity.cityhall[PLAYER.activeCity.type].acc += max
       }
 
       _bonus = 5
