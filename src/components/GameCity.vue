@@ -6,13 +6,13 @@
     <GameMainButton @click="STRUCTURE.storage.modal = true" class="absolute left-300 top-150 bg-cyan">
       Storage
     </GameMainButton>
-    <GameMainButton @click="STRUCTURE.market.modal = true" class="absolute left-270 top-70 bg-red">
+    <GameMainButton @click="STRUCTURE.market.modal = true" class="absolute left-270 top-70 bg-amber">
       Market
     </GameMainButton>
-     <GameMainButton @click="STRUCTURE.military.modal = true" class="absolute left-110 top-120 bg-gradient-from-lime">
+     <GameMainButton @click="STRUCTURE.military.modal = true" class="absolute left-110 top-120 bg-red">
       Military
     </GameMainButton>
-    <GameMainButton @click="STRUCTURE.science.modal = true" class="absolute left-140 top-70 bg-amber">
+    <GameMainButton @click="STRUCTURE.science.modal = true" class="absolute left-140 top-70 bg-lime">
       Science
     </GameMainButton>
      <GameMainButton @click="STRUCTURE.tavern.modal = true" class="absolute left-80 top-150 bg-pink">

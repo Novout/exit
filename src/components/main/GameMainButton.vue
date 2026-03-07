@@ -1,3 +1,3 @@
 <template>
-  <button class="py-3 px-6 w-30 font-poppins cursor-pointer"><slot/></button>
+  <button class="py-4 px-6 w-32 font-poppins cursor-pointer rounded-full border-none shadow-2xl hover:text-white transition-colors"><slot/></button>
 </template>
