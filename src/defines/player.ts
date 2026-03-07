@@ -16,6 +16,7 @@ export const getNewCity = (): City => {
   return { 
     navy: [],
     soldiers: [],
+    type: 'stone',
     storage: {
       level: 1
     },

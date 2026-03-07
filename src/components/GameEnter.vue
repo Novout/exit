@@ -37,19 +37,22 @@ const onStart = () => {
   if(!data.name) return
 
   CYCLE.started = true
+  
+  world.create()
 
   PLAYER.activeCity = getNewCity()
   PLAYER.activeCity.cityhall.name = data.name
   PLAYER.activeCityName = data.name
-
-  world.create()
 
   const island = random(WORLD.islands)
   island.cities = island.cities.map((city: IslandCity, index: number) => {
     if(index === 0) {
       city.owner = 'main'
       city.name = data.name
+      PLAYER.activeCity.type = island.type
     }
+    
+    city.type = island.type
 
     return city
   })
@@ -66,11 +69,55 @@ const onStart = () => {
   let _population = PLAYER.activeCity.cityhall.population.time / 1000
   let _gold = 5
   let _science = 5
+  let _wood = 5
+  let _bonus = 5
 
   setInterval(() => {
     _population--
     _gold--
     _science--
+    _wood--
+    _bonus--
+
+    if(_wood < 0) {
+      PLAYER.data.cities = PLAYER.data.cities.map(city => {
+        if(city.cityhall.wood.maxAcc > city.cityhall.wood.acc) {
+          const workers = (Number(city.locksmith.workers))
+
+          city.cityhall.wood.acc += Number((workers * 2).toFixed())
+        }
+
+        return city
+      })
+
+      if(PLAYER.activeCity.cityhall.wood.maxAcc > PLAYER.activeCity.cityhall.wood.acc) {
+        const workers = (Number(PLAYER.activeCity.locksmith.workers))
+
+        PLAYER.activeCity.cityhall.wood.acc += Number((workers * 2).toFixed())
+      }
+
+      _wood = 5
+    }
+
+    if(_bonus < 0) {
+      PLAYER.data.cities = PLAYER.data.cities.map(city => {
+        if(city.cityhall.wood.maxAcc > city.cityhall.wood.acc) {
+          const workers = (Number(city.bonus.workers))
+
+          city.cityhall[city.type].acc += Number((workers * 2.5).toFixed())
+        }
+
+        return city
+      })
+
+      if(PLAYER.activeCity.cityhall[PLAYER.activeCity.type].maxAcc > PLAYER.activeCity.cityhall[PLAYER.activeCity.type].acc) {
+        const workers = (Number(PLAYER.activeCity.bonus.workers))
+
+        PLAYER.activeCity.cityhall[PLAYER.activeCity.type].acc += Number((workers * 2.5).toFixed())
+      }
+
+      _bonus = 5
+    }
 
     if(_gold < 0) {
       const cities = PLAYER.data.cities

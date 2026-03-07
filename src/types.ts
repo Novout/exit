@@ -24,11 +24,13 @@ export interface IslandCity {
   y: number
   owner?: string
   name?: string
+  type: ResourcesType
 }
 
 export interface City {
   navy: [],
   soldiers: [],
+  type: ResourcesType
   locksmith: {
     level: number
     workers: number
