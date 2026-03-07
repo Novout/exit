@@ -6,27 +6,36 @@ export const useWorld = () => {
 
   const create = () => {
     for (let i = 0; i < 15; i++) {
-      const x = Math.floor(Math.random() * 30)
+      const x = 2 + Math.floor(Math.random() * 30)
       const y = Math.floor(Math.random() * 10)
 
-      WORLD.islands.push({
-        x,
-        y,
-        type: random(['wood', 'stone', 'sulfur', 'crystal', 'wine']),
-        cities: []
-      })
+      const ignore = WORLD.islands.find((island) => island.x === x && island.y === y)
+
+      if(!ignore) {
+        WORLD.islands.push({
+          x,
+          y,
+          type: random(['wood', 'stone', 'sulfur', 'crystal', 'wine']),
+          cities: []
+        })
+      }
     }
 
     for (let i = 0; i < 9; i++) {
-      const x = Math.floor(Math.random() * 30)
+      const x = 2 + Math.floor(Math.random() * 30)
       const y = Math.floor(Math.random() * 10)
 
       WORLD.islands = WORLD.islands.map((island) => {
-        island.cities.push({
-          x,
-          y,
-          owner: undefined
-        })
+        const ignore = WORLD.islands.find((island) => island.x === x && island.y === y)
+
+        if(!ignore) {
+          island.cities.push({
+            x,
+            y,
+            owner: undefined,
+            type: island.type
+          })
+        }
 
         return island
       })
