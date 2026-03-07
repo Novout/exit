@@ -15,8 +15,8 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { BonusUpgrade } from '../../../defines/upgrades';
-import { usePlayerStore } from '../../../store/player';
+import { BonusUpgrade } from '../../../../defines/upgrades';
+import { usePlayerStore } from '../../../../store/player';
 
 const PLAYER = usePlayerStore()
 

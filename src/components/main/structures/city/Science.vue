@@ -1,7 +1,7 @@
 <template>
-  <StructureModal name="locksmith">
+  <StructureModal name="science">
     <div class="flex flex-col gap-2 w-full">
-      <p>Level: {{ PLAYER.activeCity.locksmith.level }}</p>
+      <p>Level: {{ PLAYER.activeCity.science.level }}</p>
       <div class="flex w-full justify-between gap-5 pb-10 items-center">
         <input type="range" id="volume" name="volume" v-model="set" :min="0" :max="max" />
         <label for="volume">{{ set }} / {{ max }} Workers</label>
@@ -15,31 +15,31 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { LocksmithUpgrade, ScienceUpgrade } from '../../../defines/upgrades';
-import { usePlayerStore } from '../../../store/player';
+import { ScienceUpgrade } from '../../../../defines/upgrades';
+import { usePlayerStore } from '../../../../store/player';
 
 const PLAYER = usePlayerStore()
 
-const resources = ref(ScienceUpgrade(PLAYER.activeCity.locksmith.level + 1))
+const resources = ref(ScienceUpgrade(PLAYER.activeCity.science.level + 1))
 
-const set = ref(PLAYER.activeCity.locksmith.workers)
-const max = computed(() => PLAYER.activeCity.locksmith.level * 7)
+const set = ref(PLAYER.activeCity.science.workers)
+const max = computed(() => PLAYER.activeCity.science.level * 7)
 
 const onSetWorkers = () => {
-  const pop = PLAYER.activeCity.cityhall.population.acc - (Number(PLAYER.activeCity.locksmith.workers))
+  const pop = PLAYER.activeCity.cityhall.population.acc - (Number(PLAYER.activeCity.science.workers))
 
   if(pop < set.value) {
-    set.value = PLAYER.activeCity.locksmith.workers
+    set.value = PLAYER.activeCity.science.workers
     return
   }
 
-  PLAYER.activeCity.locksmith.workers = set.value
+  PLAYER.activeCity.science.workers = set.value
 }
 
 const onUpgrade = () => {
-  const levelTarget = PLAYER.activeCity.locksmith.level + 1
+  const levelTarget = PLAYER.activeCity.science.level + 1
 
-  const upg = LocksmithUpgrade(levelTarget)
+  const upg = ScienceUpgrade(levelTarget)
 
   if(upg) {
     const dmgWood = upg.wood
@@ -48,7 +48,7 @@ const onUpgrade = () => {
     if(PLAYER.activeCity.cityhall.wood.acc >= dmgWood && PLAYER.activeCity.cityhall.stone.acc >= dmgStone) {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
-      PLAYER.activeCity.locksmith.level++
+      PLAYER.activeCity.science.level++
     }
   }
 }

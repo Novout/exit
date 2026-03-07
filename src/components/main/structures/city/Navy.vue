@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import { ShipyardUpgrade } from '../../../defines/upgrades'
-import { usePlayerStore } from '../../../store/player'
+import { ShipyardUpgrade } from '../../../../defines/upgrades'
+import { usePlayerStore } from '../../../../store/player'
 
 const PLAYER = usePlayerStore()
 

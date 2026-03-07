@@ -67,8 +67,8 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
-import { MarketUpgrade } from '../../../defines/upgrades';
-import { usePlayerStore } from '../../../store/player';
+import { MarketUpgrade } from '../../../../defines/upgrades';
+import { usePlayerStore } from '../../../../store/player';
 
 const PLAYER = usePlayerStore()
 

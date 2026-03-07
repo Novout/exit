@@ -7,8 +7,8 @@
 </template>
 
 <script setup lang="ts">
-import { MilitaryUpgrade } from '../../../defines/upgrades'
-import { usePlayerStore } from '../../../store/player'
+import { MilitaryUpgrade } from '../../../../defines/upgrades'
+import { usePlayerStore } from '../../../../store/player'
 
 const PLAYER = usePlayerStore()
 

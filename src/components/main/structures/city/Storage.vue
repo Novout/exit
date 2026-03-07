@@ -11,8 +11,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { StorageCost, StorageUpgrade } from '../../../defines/upgrades';
-import { usePlayerStore } from '../../../store/player';
+import { StorageCost, StorageUpgrade } from '../../../../defines/upgrades';
+import { usePlayerStore } from '../../../../store/player';
 
 const PLAYER = usePlayerStore()
 

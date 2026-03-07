@@ -13,8 +13,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import { CityhallUpgrade } from '../../../defines/upgrades';
-import { usePlayerStore } from '../../../store/player';
+import { CityhallUpgrade } from '../../../../defines/upgrades';
+import { usePlayerStore } from '../../../../store/player';
 
 const PLAYER = usePlayerStore()
 

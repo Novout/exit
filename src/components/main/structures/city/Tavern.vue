@@ -15,8 +15,8 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { TavernUpgrade } from '../../../defines/upgrades';
-import { usePlayerStore } from '../../../store/player';
+import { TavernUpgrade } from '../../../../defines/upgrades';
+import { usePlayerStore } from '../../../../store/player';
 
 const PLAYER = usePlayerStore()
 
