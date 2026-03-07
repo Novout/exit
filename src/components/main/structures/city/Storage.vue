@@ -2,9 +2,9 @@
   <StructureModal name="storage">
     <div class="flex flex-col gap-2 w-full">
       <p>Level: {{ PLAYER.activeCity.cityhall.level }}</p>
-      <ResourcesBar description="Actually" :resources="resources" />
-      <ResourcesBar description="Next" :resources="StorageUpgrade(PLAYER.activeCity.storage.level + 1)" />
-      <div class="flex w-full justify-between pt-20"><ResourcesBar :resources="StorageCost(PLAYER.activeCity.storage.level + 1)" /><Button @click="onUpgrade">Upgrade</Button></div>
+      <ResourcesBar description="Actually" :resources="actually" />
+      <ResourcesBar description="Next" :resources="next" />
+      <div class="flex w-full justify-between pt-20"><ResourcesBar :resources="cost" /><Button @click="onUpgrade">Upgrade</Button></div>
     </div>
   </StructureModal>
 </template>
@@ -16,7 +16,9 @@ import { usePlayerStore } from '../../../../store/player';
 
 const PLAYER = usePlayerStore()
 
-const resources = ref(StorageUpgrade(PLAYER.activeCity.storage.level))
+const actually = ref(StorageUpgrade(PLAYER.activeCity.storage.level))
+const next = ref(StorageUpgrade(PLAYER.activeCity.storage.level + 1))
+const cost = ref(StorageCost(PLAYER.activeCity.storage.level + 1))
 
 const onUpgrade = () => {
   const levelTarget = PLAYER.activeCity.storage.level + 1
@@ -40,6 +42,10 @@ const onUpgrade = () => {
         PLAYER.activeCity.cityhall.sulfur.maxAcc = stg.sulfur
         PLAYER.activeCity.cityhall.wine.maxAcc = stg.wine
         PLAYER.activeCity.cityhall.crystal.maxAcc = stg.crystal
+
+        next.value = stg
+        actually.value = StorageUpgrade(PLAYER.activeCity.storage.level)
+        cost.value = StorageCost(PLAYER.activeCity.storage.level)
       }
     }
   }

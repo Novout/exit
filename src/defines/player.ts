@@ -55,23 +55,23 @@ export const getNewCity = (): City => {
         time: 7000
       },
       sulfur: {
-        acc: 0,
+        acc: 125,
         maxAcc: 200
       },
       stone: { 
-        acc: 0,
+        acc: 125,
         maxAcc: 200
       },
       wine: {
-        acc: 0,
+        acc: 125,
         maxAcc: 200
       },
       wood: {
-        acc: 200,
+        acc: 400,
         maxAcc: 500
       },
       crystal: {
-        acc: 0,
+        acc: 125,
         maxAcc: 200
       }
   }}

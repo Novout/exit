@@ -6,7 +6,7 @@ export const useWorld = () => {
 
   const create = () => {
     for (let i = 0; i < 15; i++) {
-      const x = 2 + Math.floor(Math.random() * 30)
+      const x = 1 + Math.floor(Math.random() * 25)
       const y = Math.floor(Math.random() * 10)
 
       const ignore = WORLD.islands.find((island) => island.x === x && island.y === y)
@@ -22,7 +22,7 @@ export const useWorld = () => {
     }
 
     for (let i = 0; i < 9; i++) {
-      const x = 2 + Math.floor(Math.random() * 30)
+      const x = 1 + Math.floor(Math.random() * 25)
       const y = Math.floor(Math.random() * 10)
 
       WORLD.islands = WORLD.islands.map((island) => {

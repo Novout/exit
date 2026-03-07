@@ -6,8 +6,11 @@
       <button class="p-5 flex items-center gap-5 justify-center"><IconGold class="w-6 h-6" /> {{ PLAYER.data.gold.acc }} {{ PLAYER.data.gold.set }}</button>
     </div>
     <div class="flex items-center flex-col pl-5">
-      <select id="city-select" class="flex items-center flex-col pl-5" v-model="PLAYER.activeCityName">
-        <option v-for="(city, index) in PLAYER.data.cities" :value="city" :key="index">
+      <select id="city-select" class="flex items-center flex-col pl-5 p-2 w-40 border-none shadow-xl" v-model="PLAYER.activeCityName">
+        <option class="bg-white" :value="PLAYER.activeCity.cityhall.name">
+          {{ PLAYER.activeCity.cityhall.name }}
+        </option>
+        <option class="bg-white" v-for="(city, index) in PLAYER.data.cities" :value="city.cityhall.name" :key="index">
           {{ city.cityhall.name }}
         </option>
       </select>

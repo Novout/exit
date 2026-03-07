@@ -45,6 +45,8 @@ const onStart = () => {
   PLAYER.activeCityName = data.name
 
   const island = random(WORLD.islands)
+  PLAYER.data.island = island
+  
   island.cities = island.cities.map((city: IslandCity, index: number) => {
     if(index === 0) {
       city.owner = 'main'
@@ -82,7 +84,7 @@ const onStart = () => {
     if(_wood < 0) {
       PLAYER.data.cities = PLAYER.data.cities.map(city => {
         const workers = (Number(city.locksmith.workers))
-        const max = Number((workers * 2.5).toFixed())
+        const max = Number((workers * 4).toFixed())
 
         if(city.cityhall.wood.maxAcc > city.cityhall.wood.acc + max) {
           city.cityhall.wood.acc += max

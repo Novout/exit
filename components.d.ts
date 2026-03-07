@@ -38,6 +38,7 @@ declare module 'vue' {
     IconScience: typeof import('./src/components/main/icons/IconScience.vue')['default']
     IconStone: typeof import('./src/components/main/icons/IconStone.vue')['default']
     IconSulfur: typeof import('./src/components/main/icons/IconSulfur.vue')['default']
+    IconTerrain: typeof import('./src/components/main/icons/IconTerrain.vue')['default']
     IconWall: typeof import('./src/components/main/icons/IconWall.vue')['default']
     IconWine: typeof import('./src/components/main/icons/IconWine.vue')['default']
     IconWood: typeof import('./src/components/main/icons/IconWood.vue')['default']

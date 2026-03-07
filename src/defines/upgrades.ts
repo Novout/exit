@@ -105,14 +105,14 @@ export const StorageCost = (level: number): Resources | undefined => {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 400,
+      wood: 300,
       crystal: 0
     },
     3: {
-      stone: 0,
+      stone: 100,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 500,
       crystal: 0
     },
     4: {
@@ -149,11 +149,11 @@ export const StorageUpgrade = (level: number): Resources | undefined => {
       crystal: 400
     },
     3: {
-      stone: 0,
-      wine:0,
-      sulfur: 0,
-      wood: 0,
-      crystal: 0
+      stone: 1000,
+      wine: 1000,
+      sulfur: 1000,
+      wood: 4000,
+      crystal: 1000
     },
     4: {
       stone: 0,
