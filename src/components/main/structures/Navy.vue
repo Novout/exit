@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { MilitaryUpgrade } from '../../../defines/upgrades'
+import { ShipyardUpgrade } from '../../../defines/upgrades'
 import { usePlayerStore } from '../../../store/player'
 
 const PLAYER = usePlayerStore()
@@ -15,7 +15,7 @@ const PLAYER = usePlayerStore()
 const onUpgrade = () => {
   const levelTarget = PLAYER.activeCity.cityhall.level + 1
 
-  const upg = MilitaryUpgrade(levelTarget)
+  const upg = ShipyardUpgrade(levelTarget)
 
   if(upg) {
     const dmgWood = upg.wood
@@ -24,7 +24,7 @@ const onUpgrade = () => {
     if(PLAYER.activeCity.cityhall.wood.acc >= dmgWood && PLAYER.activeCity.cityhall.stone.acc >= dmgStone) {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
-      PLAYER.activeCity.cityhall.level++
+      PLAYER.activeCity.shipyard.level++
     }
   }
 }

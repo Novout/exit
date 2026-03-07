@@ -29,6 +29,20 @@ export interface IslandCity {
 export interface City {
   navy: [],
   soldiers: [],
+  locksmith: {
+    level: number
+    workers: number
+  },
+  bonus: {
+    level: number
+    workers: number
+  },
+  shipyard: {
+    level: number
+  },
+  military: {
+    level: number
+  },
   storage: {
     level: number
   },

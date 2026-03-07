@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { CityhallUpgrade, TavernUpgrade } from '../../../defines/upgrades';
+import { TavernUpgrade } from '../../../defines/upgrades';
 import { usePlayerStore } from '../../../store/player';
 
 const PLAYER = usePlayerStore()
@@ -39,7 +39,7 @@ const onSetWorkers = () => {
 const onUpgrade = () => {
   const levelTarget = PLAYER.activeCity.tavern.level + 1
 
-  const upg = CityhallUpgrade(levelTarget)
+  const upg = TavernUpgrade(levelTarget)
 
   if(upg) {
     const dmgWood = upg.wood

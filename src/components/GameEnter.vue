@@ -75,7 +75,7 @@ const onStart = () => {
     if(_gold < 0) {
       const cities = PLAYER.data.cities
       const citiesPopGold = [...cities, PLAYER.activeCity].reduce((acc, current) => {
-        const workers = (Number(current.science.workers) + Number(current.tavern.workers))
+        const workers = (Number(current.science.workers) + Number(current.tavern.workers) + Number(current.bonus.workers) + Number(current.locksmith.workers))
 
         return acc + (current.cityhall.population.acc - Number((workers * 4).toFixed()))
       }, 0)

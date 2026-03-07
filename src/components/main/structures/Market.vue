@@ -67,7 +67,7 @@
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
-import { CityhallUpgrade, MarketUpgrade } from '../../../defines/upgrades';
+import { MarketUpgrade } from '../../../defines/upgrades';
 import { usePlayerStore } from '../../../store/player';
 
 const PLAYER = usePlayerStore()
@@ -93,7 +93,7 @@ const sell = reactive({
 const onUpgrade = () => {
   const levelTarget = PLAYER.activeCity.science.level + 1
 
-  const upg = CityhallUpgrade(levelTarget)
+  const upg = MarketUpgrade(levelTarget)
 
   if(upg) {
     const dmgWood = upg.wood
@@ -102,7 +102,7 @@ const onUpgrade = () => {
     if(PLAYER.activeCity.cityhall.wood.acc >= dmgWood && PLAYER.activeCity.cityhall.stone.acc >= dmgStone) {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
-      PLAYER.activeCity.science.level++
+      PLAYER.activeCity.market.level++
     }
   }
 }

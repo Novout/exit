@@ -1,21 +1,21 @@
 <template>
   <div class="overflow-scroll min-h-100vh w-full">
-    <div class="absolute" :style="{ left: `${city.x * 50}px`, top: `${(city.y * 50) + 200}px`, color: `${city.owner === 'main' ? 'green' : 'black'}` }" v-for="(city, index) in cities" :key="index">
+    <div class="absolute cursor-pointer" :style="{ left: `${city.x * 50}px`, top: `${(city.y * 50) + 200}px`, color: `${city.owner === 'main' ? 'green' : 'black'}` }" v-for="(city, index) in cities" :key="index">
       <p v-if="city.name && city.owner">{{ city.name }}</p>
       <IconCityHall class="h-20 w-20 cursor-pointer" />
     </div>
-    <div class="absolute left-100 top-100">
+    <div @click="STRUCTURE.wood.modal = true" class="absolute left-100 top-100 cursor-pointer">
       <IconWood class="w-20 h-20" />
     </div>
-    <div class="absolute left-150 top-100">
+    <div @click="STRUCTURE.resource.modal = true" class="absolute left-150 top-100 cursor-pointer">
       <IconStone v-if="PLAYER.data.island.type === 'stone'" class="w-20 h-20" />
       <IconWine v-else-if="PLAYER.data.island.type === 'wine'" class="w-20 h-20" />
       <IconCrystal v-else-if="PLAYER.data.island.type === 'crystal'" class="w-20 h-20" />
       <IconSulfur v-else-if="PLAYER.data.island.type === 'sulfur'" class="w-20 h-20" />
     </div>
     <Modal>
-      <CityHall v-if="STRUCTURE.wood.modal" />
-      <Military v-else-if="STRUCTURE.resource.modal" />
+      <IslandWood v-if="STRUCTURE.wood.modal" />
+      <IslandBonus v-else-if="STRUCTURE.resource.modal" />
     </Modal>
   </div>
 </template>

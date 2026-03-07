@@ -24,7 +24,7 @@ const onUpgrade = () => {
     if(PLAYER.activeCity.cityhall.wood.acc >= dmgWood && PLAYER.activeCity.cityhall.stone.acc >= dmgStone) {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
-      PLAYER.activeCity.cityhall.level++
+      PLAYER.activeCity.military.level++
     }
   }
 }

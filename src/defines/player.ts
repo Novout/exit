@@ -30,6 +30,20 @@ export const getNewCity = (): City => {
     market: {
       level: 1,
     },
+    military: {
+      level: 1,
+    },
+    shipyard: {
+      level: 1,
+    },
+    bonus: {
+      level: 1,
+      workers: 0
+    },
+    locksmith: {
+      level: 1,
+      workers: 0
+    },
     cityhall: {
       name: '',
       level: 1,

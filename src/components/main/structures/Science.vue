@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { CityhallUpgrade, ScienceUpgrade } from '../../../defines/upgrades';
+import { ScienceUpgrade } from '../../../defines/upgrades';
 import { usePlayerStore } from '../../../store/player';
 
 const PLAYER = usePlayerStore()
@@ -26,7 +26,7 @@ const set = ref(PLAYER.activeCity.science.workers)
 const max = computed(() => PLAYER.activeCity.science.level * 7)
 
 const onSetWorkers = () => {
-  const pop = PLAYER.activeCity.cityhall.population.acc - (Number(PLAYER.activeCity.tavern.workers))
+  const pop = PLAYER.activeCity.cityhall.population.acc - (Number(PLAYER.activeCity.science.workers))
 
   if(pop < set.value) {
     set.value = PLAYER.activeCity.science.workers
@@ -39,7 +39,7 @@ const onSetWorkers = () => {
 const onUpgrade = () => {
   const levelTarget = PLAYER.activeCity.science.level + 1
 
-  const upg = CityhallUpgrade(levelTarget)
+  const upg = ScienceUpgrade(levelTarget)
 
   if(upg) {
     const dmgWood = upg.wood
