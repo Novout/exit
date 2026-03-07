@@ -43,6 +43,7 @@ declare module 'vue' {
     IconWood: typeof import('./src/components/main/icons/IconWood.vue')['default']
     IconWorld: typeof import('./src/components/main/icons/IconWorld.vue')['default']
     IslandBonus: typeof import('./src/components/main/structures/island/IslandBonus.vue')['default']
+    IslandView: typeof import('./src/components/main/structures/island/IslandView.vue')['default']
     IslandWood: typeof import('./src/components/main/structures/island/IslandWood.vue')['default']
     Market: typeof import('./src/components/main/structures/city/Market.vue')['default']
     Military: typeof import('./src/components/main/structures/city/Military.vue')['default']
