@@ -6,7 +6,7 @@
         <p>Population: {{ PLAYER.activeCity.cityhall.population.acc }} / {{ PLAYER.activeCity.cityhall.population.maxAcc }}</p>
         <p>Pop per birth: {{ PLAYER.activeCity.cityhall.population.time / 1000 }}</p>
       </div>
-      <div class="flex w-full justify-between"><ResourcesBar :resources="resources" /><Button @click="onUpgrade">Upgrade</Button></div>
+      <div class="flex w-full items-center justify-between"><ResourcesBar :resources="resources" /><p> +30 Pop </p><Button @click="onUpgrade">Upgrade</Button></div>
     </div>
   </StructureModal>
 </template>
@@ -33,6 +33,9 @@ const onUpgrade = () => {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
       PLAYER.activeCity.cityhall.level++
+      PLAYER.activeCity.cityhall.population.maxAcc += 30
+
+      resources.value = CityhallUpgrade(PLAYER.activeCity.cityhall.level + 1)
     }
   }
 }

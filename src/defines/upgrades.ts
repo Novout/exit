@@ -3,31 +3,31 @@ import type { Resources } from "../types"
 export const CityhallUpgrade =(level: number): Resources | undefined => {
   return {
     2: {
-      stone: 0,
+      stone: 50,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 180,
       crystal: 0
     },
     3: {
-      stone: 0,
+      stone: 100,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 350,
       crystal: 0
     },
     4: {
-      stone: 0,
+      stone: 150,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 480,
       crystal: 0
     },
     5: {
-      stone: 0,
+      stone: 210,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 600,
       crystal: 0
     }
   }[level]
