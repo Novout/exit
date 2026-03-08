@@ -49,6 +49,8 @@ const onUpgrade = () => {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
       PLAYER.activeCity.science.level++
+
+      resources.value = ScienceUpgrade(levelTarget + 1)
     }
   }
 }

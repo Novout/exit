@@ -27,6 +27,7 @@
 import { ref } from 'vue';
 import { usePlayerStore } from '../../../../store/player';
 import { usePointsStore } from '../../../../store/points';
+import { StorageUpgrade } from '../../../../defines/upgrades';
 
 const PLAYER = usePlayerStore()
 const POINTS = usePointsStore()
@@ -37,7 +38,18 @@ const onEconomy1 = () => {
   if(PLAYER.data.science.points >= 14 && !POINTS.economy.the_beginning) { 
     if(PLAYER.activeCity.storage.level === 1) {
       PLAYER.activeCity.storage.level++ 
-      PLAYER.data.science.points -= 14
+
+      const stg = StorageUpgrade(PLAYER.activeCity.storage.level)
+
+      if(stg) {
+        PLAYER.activeCity.cityhall.stone.maxAcc = stg.stone
+        PLAYER.activeCity.cityhall.wood.maxAcc = stg.wood
+        PLAYER.activeCity.cityhall.sulfur.maxAcc = stg.sulfur
+        PLAYER.activeCity.cityhall.wine.maxAcc = stg.wine
+        PLAYER.activeCity.cityhall.crystal.maxAcc = stg.crystal
+  
+        PLAYER.data.science.points -= 14
+      }
     }
       
     POINTS.economy.the_beginning = true

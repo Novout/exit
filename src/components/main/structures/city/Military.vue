@@ -76,7 +76,7 @@ const onSet = () => {
 }
 
 const onUpgrade = () => {
-  const levelTarget = PLAYER.activeCity.cityhall.level + 1
+  const levelTarget = PLAYER.activeCity.military.level + 1
 
   const upg = MilitaryUpgrade(levelTarget)
 
@@ -88,6 +88,8 @@ const onUpgrade = () => {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
       PLAYER.activeCity.military.level++
+
+      resources.value = MilitaryUpgrade(levelTarget + 1)
     }
   }
 }
