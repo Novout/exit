@@ -52,7 +52,7 @@ export const getNewCity = (): City => {
       level: 1,
     },
     palace: {
-      level: 1,
+      level: 0,
     },
     wall: {
       level: 1,

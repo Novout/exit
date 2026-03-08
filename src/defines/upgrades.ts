@@ -39,28 +39,28 @@ export const ShipyardUpgrade =(level: number): Resources | undefined => {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 250,
       crystal: 0
     },
     3: {
-      stone: 0,
+      stone: 90,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 350,
       crystal: 0
     },
     4: {
-      stone: 0,
+      stone: 120,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 460,
       crystal: 0
     },
     5: {
-      stone: 0,
+      stone: 160,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 560,
       crystal: 0
     }
   }[level]
@@ -72,28 +72,28 @@ export const MilitaryUpgrade =(level: number): Resources | undefined => {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 150,
       crystal: 0
     },
     3: {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 230,
       crystal: 0
     },
     4: {
-      stone: 0,
+      stone: 25,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 350,
       crystal: 0
     },
     5: {
-      stone: 0,
+      stone: 40,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 520,
       crystal: 0
     }
   }[level]
@@ -105,28 +105,28 @@ export const StorageCost = (level: number): Resources | undefined => {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 300,
+      wood: 260,
       crystal: 0
     },
     3: {
-      stone: 100,
+      stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 500,
+      wood: 410,
       crystal: 0
     },
     4: {
-      stone: 0,
+      stone: 50,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 560,
       crystal: 0
     },
     5: {
-      stone: 0,
+      stone: 70,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 780,
       crystal: 0
     }
   }[level]
@@ -156,18 +156,18 @@ export const StorageUpgrade = (level: number): Resources | undefined => {
       crystal: 1000
     },
     4: {
-      stone: 0,
-      wine:0,
-      sulfur: 0,
-      wood: 0,
-      crystal: 0
+      stone: 1600,
+      wine:1600,
+      sulfur: 1600,
+      wood: 5600,
+      crystal: 1600
     },
     5: {
-      stone: 0,
-      wine:0,
-      sulfur: 0,
-      wood: 0,
-      crystal: 0
+      stone: 2200,
+      wine:2200,
+      sulfur: 2200,
+      wood: 8000,
+      crystal: 2200
     }
   }[level]
 }
@@ -178,28 +178,28 @@ export const TavernUpgrade = (level: number): Resources | undefined => {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 210,
       crystal: 0
     },
     3: {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 360,
       crystal: 0
     },
     4: {
-      stone: 0,
+      stone: 20,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 450,
       crystal: 0
     },
     5: {
-      stone: 0,
+      stone: 80,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 760,
       crystal: 0
     }
   }[level]
@@ -211,29 +211,29 @@ export const ScienceUpgrade = (level: number): Resources | undefined => {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
-      crystal: 0
+      wood: 220,
+      crystal: 50
     },
     3: {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
-      crystal: 0
+      wood: 400,
+      crystal: 110
     },
     4: {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
-      crystal: 0
+      wood: 560,
+      crystal: 210
     },
     5: {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
-      crystal: 0
+      wood: 700,
+      crystal: 340
     }
   }[level]
 }
@@ -244,28 +244,28 @@ export const MarketUpgrade = (level: number): Resources | undefined => {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 210,
       crystal: 0
     },
     3: {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 350,
       crystal: 0
     },
     4: {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 670,
       crystal: 0
     },
     5: {
-      stone: 0,
+      stone: 90,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 800,
       crystal: 0
     }
   }[level]
@@ -277,28 +277,28 @@ export const LocksmithUpgrade = (level: number): Resources | undefined => {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 230,
       crystal: 0
     },
     3: {
-      stone: 0,
+      stone: 30,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 420,
       crystal: 0
     },
     4: {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 610,
       crystal: 0
     },
     5: {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 1020,
       crystal: 0
     }
   }[level]
@@ -310,28 +310,28 @@ export const BonusUpgrade = (level: number): Resources | undefined => {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 230,
       crystal: 0
     },
     3: {
-      stone: 0,
+      stone: 30,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 420,
       crystal: 0
     },
     4: {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 610,
       crystal: 0
     },
     5: {
       stone: 0,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 1020,
       crystal: 0
     }
   }[level]
@@ -398,31 +398,31 @@ export const MarketSet = (): any[] => {
 export const WallUpgrade =(level: number): Resources | undefined => {
   return {
     2: {
-      stone: 0,
+      stone: 70,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 260,
       crystal: 0
     },
     3: {
-      stone: 0,
+      stone: 150,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 380,
       crystal: 0
     },
     4: {
-      stone: 0,
+      stone: 230,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 560,
       crystal: 0
     },
     5: {
-      stone: 0,
+      stone: 340,
       wine:0,
       sulfur: 0,
-      wood: 0,
+      wood: 710,
       crystal: 0
     }
   }[level]
@@ -430,33 +430,26 @@ export const WallUpgrade =(level: number): Resources | undefined => {
 
 export const PalaceUpgrade =(level: number): Resources | undefined => {
   return {
+    1: {
+      stone: 210,
+      wine:210,
+      sulfur: 210,
+      wood: 560,
+      crystal: 210
+    },
     2: {
-      stone: 0,
-      wine:0,
-      sulfur: 0,
-      wood: 0,
-      crystal: 0
+      stone: 505,
+      wine:505,
+      sulfur: 505,
+      wood: 1200,
+      crystal: 505
     },
     3: {
-      stone: 0,
-      wine:0,
-      sulfur: 0,
-      wood: 0,
-      crystal: 0
-    },
-    4: {
-      stone: 0,
-      wine:0,
-      sulfur: 0,
-      wood: 0,
-      crystal: 0
-    },
-    5: {
-      stone: 0,
-      wine:0,
-      sulfur: 0,
-      wood: 0,
-      crystal: 0
+      stone: 800,
+      wine:800,
+      sulfur: 800,
+      wood: 1760,
+      crystal: 800
     }
   }[level]
 }
