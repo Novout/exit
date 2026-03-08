@@ -3,7 +3,7 @@
     <div class="flex flex-col gap-2 w-full overflow-auto h-100">
       <p>Level: {{ PLAYER.activeCity.market.level }}</p>
       <div :class="[PLAYER.data.actions.market.activeBuyAction ? '' : 'opacity-50']" class="flex flex-col w-full">
-        <h2>Buy</h2>
+        <h2>Buy / Gold {{ buyPrev * 4 }}</h2>
         <div class="flex gap-4 items-center w-full justify-between">
           <IconWood class="h-8 w-8" />
           <p>{{ buy.wood }}</p>
@@ -32,7 +32,7 @@
         <Button @click="onBuy">Buy</Button>
       </div>
       <div :class="[PLAYER.data.actions.market.activeSellAction ? '' : 'opacity-50']" class="flex flex-col w-full">
-        <h2>Sell</h2>
+        <h2>Sell / Gold {{ sellPrev * 2 }}</h2>
         <div class="flex gap-4 items-center w-full justify-between">
           <IconWood class="h-8 w-8" />
           <p>{{ sell.wood }}</p>
@@ -66,13 +66,16 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+import { computed, reactive, ref } from 'vue';
 import { MarketUpgrade } from '../../../../defines/upgrades';
 import { usePlayerStore } from '../../../../store/player';
 
 const PLAYER = usePlayerStore()
 
 const resources = ref(MarketUpgrade(PLAYER.activeCity.science.level + 1))
+
+const buyPrev = computed(() => Number(buy.wood) + Number(buy.stone) + Number(buy.wine) + Number(buy.sulfur) + Number(buy.crystal))
+const sellPrev = computed(() => Number(sell.wood) + Number(sell.stone) + Number(sell.wine) + Number(sell.sulfur) + Number(sell.crystal))
 
 const buy = reactive({
   wood: 0,
@@ -95,14 +98,14 @@ const onBuy = () => {
 
   const acc = Number(buy.wood) + Number(buy.wine) + Number(buy.stone) + Number(buy.sulfur) + Number(buy.crystal)
 
-  if(acc <= PLAYER.data.gold.acc) {
+  if(acc <= PLAYER.data.gold.acc * 4) {
     if(PLAYER.activeCity.cityhall.wine.acc <= PLAYER.activeCity.cityhall.wine.maxAcc) PLAYER.activeCity.cityhall.wine.acc += Number(buy.wine)
     if(PLAYER.activeCity.cityhall.stone.acc <= PLAYER.activeCity.cityhall.stone.maxAcc) PLAYER.activeCity.cityhall.stone.acc += Number(buy.stone)
     if(PLAYER.activeCity.cityhall.wood.acc <= PLAYER.activeCity.cityhall.wood.maxAcc) PLAYER.activeCity.cityhall.wood.acc += Number(buy.wood)
     if(PLAYER.activeCity.cityhall.crystal.acc <= PLAYER.activeCity.cityhall.crystal.maxAcc) PLAYER.activeCity.cityhall.crystal.acc += Number(buy.crystal)
     if(PLAYER.activeCity.cityhall.sulfur.acc <= PLAYER.activeCity.cityhall.sulfur.maxAcc) PLAYER.activeCity.cityhall.sulfur.acc += Number(buy.sulfur)
 
-    PLAYER.data.gold.acc -= acc
+    PLAYER.data.gold.acc -= acc * 4
 
     buy.wood = 0
     buy.wine = 0
@@ -117,25 +120,38 @@ const onBuy = () => {
 const onSell = () => {
   if(!PLAYER.data.actions.market.activeSellAction) return
 
-  const acc = Number(sell.wood) + Number(sell.wine) + Number(sell.stone) + Number(sell.sulfur) + Number(sell.crystal)
+  let acc = 0
 
-  if(acc <= PLAYER.data.gold.acc) {
-    if(Number(sell.wine) <= PLAYER.activeCity.cityhall.wine.acc) PLAYER.activeCity.cityhall.wine.acc -= Number(sell.wine)
-    if(Number(sell.stone) <= PLAYER.activeCity.cityhall.stone.maxAcc) PLAYER.activeCity.cityhall.stone.acc -= Number(sell.stone)
-    if(Number(sell.wood) <= PLAYER.activeCity.cityhall.wood.maxAcc) PLAYER.activeCity.cityhall.wood.acc -= Number(sell.wood)
-    if(Number(sell.crystal) <= PLAYER.activeCity.cityhall.crystal.maxAcc) PLAYER.activeCity.cityhall.crystal.acc -= Number(sell.crystal)
-    if(Number(sell.sulfur) <= PLAYER.activeCity.cityhall.sulfur.maxAcc) PLAYER.activeCity.cityhall.sulfur.acc -= Number(sell.sulfur)
-
-    PLAYER.data.gold.acc += acc
-
-    sell.wood = 0
-    sell.wine = 0
-    sell.stone = 0
-    sell.crystal = 0
-    sell.sulfur = 0
-
-    PLAYER.data.actions.market.activeSellAction = false
+  if(Number(sell.wine) <= PLAYER.activeCity.cityhall.wine.acc) { 
+    PLAYER.activeCity.cityhall.wine.acc -= Number(sell.wine) 
+    acc += Number(sell.wine) 
   }
+  if(Number(sell.stone) <= PLAYER.activeCity.cityhall.stone.acc) { 
+    PLAYER.activeCity.cityhall.stone.acc -= Number(sell.stone) 
+    acc += Number(sell.stone) 
+  }
+  if(Number(sell.wood) <= PLAYER.activeCity.cityhall.wood.acc) { 
+    PLAYER.activeCity.cityhall.wood.acc -= Number(sell.wood) 
+    acc += Number(sell.wood) 
+  }
+  if(Number(sell.crystal) <= PLAYER.activeCity.cityhall.crystal.acc) { 
+    PLAYER.activeCity.cityhall.crystal.acc -= Number(sell.crystal) 
+    acc += Number(sell.crystal) 
+  }
+  if(Number(sell.sulfur) <= PLAYER.activeCity.cityhall.sulfur.acc) { 
+    PLAYER.activeCity.cityhall.sulfur.acc -= Number(sell.sulfur) 
+    acc += Number(sell.sulfur) 
+  }
+
+  PLAYER.data.gold.acc += acc * 2
+
+  sell.wood = 0
+  sell.wine = 0
+  sell.stone = 0
+  sell.crystal = 0
+  sell.sulfur = 0
+
+  if(acc !== 0) PLAYER.data.actions.market.activeSellAction = false
 }
 
 const onUpgrade = () => {
