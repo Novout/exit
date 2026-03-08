@@ -91,8 +91,8 @@ const onStart = () => {
     _market--
 
     if(_market < 0) {
-      const buy = random(MarketSet) 
-      const sell = random(MarketSet) 
+      const buy = random(MarketSet()) 
+      const sell = random(MarketSet()) 
 
       PLAYER.data.cities = PLAYER.data.cities.map(city => {
         city.market.buyResources = buy
@@ -107,7 +107,7 @@ const onStart = () => {
       PLAYER.data.actions.market.activeBuyAction = true
       PLAYER.data.actions.market.activeSellAction = true
 
-      _market = 120
+      _market = 60
     }
 
     if(_wood < 0) {
