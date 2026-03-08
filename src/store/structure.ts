@@ -37,6 +37,15 @@ export const useStructureStore = defineStore('structure', {
     },
     palace: {
       modal: false
-    }
+    },
+    notifies: {
+      modal: false
+    },
+    points: {
+      modal: false
+    },
+    military_base: {
+      modal: false
+    },
   }),
 })

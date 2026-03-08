@@ -171,7 +171,7 @@ const onStart = () => {
     if(_science < 0) {
       const cities = PLAYER.data.cities
       const citiesPopScience = [...cities, PLAYER.activeCity].reduce((acc, current) => {
-        return acc + current.science.workers
+        return Number(acc) + Number(current.science.workers)
       }, 0)
 
       PLAYER.data.science.points += citiesPopScience

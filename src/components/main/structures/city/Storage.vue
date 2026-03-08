@@ -1,7 +1,7 @@
 <template>
   <StructureModal name="storage">
     <div class="flex flex-col gap-2 w-full">
-      <p>Level: {{ PLAYER.activeCity.cityhall.level }}</p>
+      <p>Level: {{ PLAYER.activeCity.storage.level }}</p>
       <ResourcesBar description="Actually" :resources="actually" />
       <ResourcesBar description="Next" :resources="next" />
       <div class="flex w-full justify-between pt-20"><ResourcesBar :resources="cost" /><Button @click="onUpgrade">Upgrade</Button></div>

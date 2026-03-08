@@ -30,9 +30,9 @@
     </div>
   </div>
   <div class="w-full">
-    <button class="p-2"><IconEvents class="h-20 w-20"/></button>
-    <button class="p-2"><IconMilitary class="h-20 w-20"/></button>
-    <button class="p-2"><IconScience class="h-20 w-20"/></button>
+    <button @click="STRUCTURE.notifies.modal = true" class="p-2"><IconEvents class="h-20 w-20"/></button>
+    <button @click="STRUCTURE.military_base.modal = true" class="p-2"><IconMilitary class="h-20 w-20"/></button>
+    <button @click="STRUCTURE.points.modal = true" class="p-2"><IconScience class="h-20 w-20"/></button>
   </div>
   </div>
 </template>
@@ -41,9 +41,11 @@
 import { computed } from 'vue';
 import { usePlayerStore } from '../store/player';
 import { useCycleStore } from '../store/cycle';
+import { useStructureStore } from '../store/structure';
 
 const PLAYER = usePlayerStore()
 const CYCLE = useCycleStore()
+const STRUCTURE = useStructureStore()
 
 const workers = computed(() => Number(PLAYER.activeCity.tavern.workers) + Number(PLAYER.activeCity.science.workers))
 </script>

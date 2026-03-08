@@ -38,6 +38,7 @@
     <Market v-else-if="STRUCTURE.market.modal" />
     <Palace v-else-if="STRUCTURE.palace.modal" />
     <Wall v-else-if="STRUCTURE.wall.modal" />
+    <Points v-else-if="STRUCTURE.points.modal" />
   </Modal>
 </template>
 
