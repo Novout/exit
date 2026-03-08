@@ -16,10 +16,10 @@ import { usePlayerStore } from '../../../../store/player';
 
 const PLAYER = usePlayerStore()
 
-const resources = ref(WallUpgrade(PLAYER.activeCity.palace.level + 1))
+const resources = ref(WallUpgrade(PLAYER.activeCity.wall.level + 1))
 
 const onUpgrade = () => {
-  const levelTarget = PLAYER.activeCity.palace.level + 1
+  const levelTarget = PLAYER.activeCity.wall.level + 1
 
   const upg = WallUpgrade(levelTarget)
 

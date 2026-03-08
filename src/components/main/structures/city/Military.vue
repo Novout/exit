@@ -23,17 +23,19 @@
         crystal: ((Number(units.spearman) * 0) + Number(units.archer) * 0 + Number(units.catapult) * 0 + Number(units.hoplita) * 0 + Number(units.mech * 120))
       }" />
       <Button @click="onSet">Set</Button>
-      <div class="flex w-full justify-between"><Button @click="onUpgrade">Upgrade</Button></div>
+      <div class="flex pt-5 w-full justify-between"><ResourcesBar :resources="resources" /><Button @click="onUpgrade">Upgrade</Button></div>
     </div>
   </StructureModal>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { MilitaryUpgrade } from '../../../../defines/upgrades'
 import { usePlayerStore } from '../../../../store/player'
 
 const PLAYER = usePlayerStore()
+
+const resources = ref(MilitaryUpgrade(PLAYER.activeCity.military.level + 1))
 
 const units = reactive({
   spearman: 0,
