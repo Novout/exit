@@ -14,7 +14,7 @@
           {{ city.cityhall.name }}
         </option>
       </select>
-      <p class="text-sm">Population {{ PLAYER.activeCity.cityhall.population.acc }} / {{ PLAYER.activeCity.cityhall.population.maxAcc }} Workers {{ workers }} </p>
+      <p class="text-sm">Population: {{ PLAYER.activeCity.cityhall.population.acc }} / {{ PLAYER.activeCity.cityhall.population.maxAcc }} | Workers: {{ workers }} </p>
       <div class="flex items-center justify-between gap-5 text-sm">
         <p class="flex items-center"><IconWood class="w-6 h-6" />{{ PLAYER.activeCity.cityhall.wood.acc }} / {{ PLAYER.activeCity.cityhall.wood.maxAcc }}</p>
         <p class="flex items-center"><IconStone class="w-6 h-6" />{{ PLAYER.activeCity.cityhall.stone.acc }} / {{ PLAYER.activeCity.cityhall.stone.maxAcc }}</p>
