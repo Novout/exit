@@ -21,6 +21,12 @@
     <GameMainButton @click="STRUCTURE.navy.modal = true" class="absolute left-200 top-200 bg-blue">
       Shipyard
     </GameMainButton>
+    <GameMainButton @click="STRUCTURE.palace.modal = true" class="absolute left-190 top-50 bg-purple">
+      Palace
+    </GameMainButton>
+    <GameMainButton @click="STRUCTURE.wall.modal = true" class="absolute left-100 top-45 bg-yellow">
+      Wall
+    </GameMainButton>
   </div>
   <Modal>
     <CityHall v-if="STRUCTURE.cityhall.modal" />
@@ -30,6 +36,8 @@
     <Tavern v-else-if="STRUCTURE.tavern.modal" />
     <Navy v-else-if="STRUCTURE.navy.modal" />
     <Market v-else-if="STRUCTURE.market.modal" />
+    <Palace v-else-if="STRUCTURE.palace.modal" />
+    <Wall v-else-if="STRUCTURE.wall.modal" />
   </Modal>
 </template>
 

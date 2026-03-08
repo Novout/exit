@@ -51,6 +51,12 @@ export const getNewCity = (): City => {
     shipyard: {
       level: 1,
     },
+    palace: {
+      level: 1,
+    },
+    wall: {
+      level: 1,
+    },
     bonus: {
       level: 1,
       workers: 0

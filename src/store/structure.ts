@@ -31,6 +31,12 @@ export const useStructureStore = defineStore('structure', {
     },
     cityView: {
       modal: false
+    },
+    wall: {
+      modal: false
+    },
+    palace: {
+      modal: false
     }
   }),
 })

@@ -48,6 +48,12 @@ export interface City {
   shipyard: {
     level: number
   },
+  palace: {
+    level: number
+  },
+  wall: {
+    level: number
+  },
   military: {
     level: number
   },

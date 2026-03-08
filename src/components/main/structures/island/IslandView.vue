@@ -10,10 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { usePlayerStore } from '../../../../store/player';
 import { useWolrdStore } from '../../../../store/world';
-
-const PLAYER = usePlayerStore()
 
 const world = useWolrdStore()
 </script>

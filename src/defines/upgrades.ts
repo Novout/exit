@@ -394,3 +394,69 @@ export const MarketSet = (): any[] => {
       crystal: 1200
     }]
 }
+
+export const WallUpgrade =(level: number): Resources | undefined => {
+  return {
+    2: {
+      stone: 0,
+      wine:0,
+      sulfur: 0,
+      wood: 0,
+      crystal: 0
+    },
+    3: {
+      stone: 0,
+      wine:0,
+      sulfur: 0,
+      wood: 0,
+      crystal: 0
+    },
+    4: {
+      stone: 0,
+      wine:0,
+      sulfur: 0,
+      wood: 0,
+      crystal: 0
+    },
+    5: {
+      stone: 0,
+      wine:0,
+      sulfur: 0,
+      wood: 0,
+      crystal: 0
+    }
+  }[level]
+}
+
+export const PalaceUpgrade =(level: number): Resources | undefined => {
+  return {
+    2: {
+      stone: 0,
+      wine:0,
+      sulfur: 0,
+      wood: 0,
+      crystal: 0
+    },
+    3: {
+      stone: 0,
+      wine:0,
+      sulfur: 0,
+      wood: 0,
+      crystal: 0
+    },
+    4: {
+      stone: 0,
+      wine:0,
+      sulfur: 0,
+      wood: 0,
+      crystal: 0
+    },
+    5: {
+      stone: 0,
+      wine:0,
+      sulfur: 0,
+      wood: 0,
+      crystal: 0
+    }
+  }[level]
+}
