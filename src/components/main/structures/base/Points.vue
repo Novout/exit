@@ -3,9 +3,9 @@
     <div class="flex flex-1 w-full">
       <p>Points {{ PLAYER.data.science.points }}</p>
       <div class="flex flex-col flex-1 w-60 h-70vh">
-        <button @click="set = 'economy'" class="px-10 py-20">Economy</button>
-        <button @click="set = 'battlefield'" class="px-10 py-20">Battlefield</button>
-        <button @click="set = 'travel'" class="px-10 py-20">Wolrd Travel</button>
+        <button @click="set = 'economy'" class="px-5 py-20 w-80">Economy</button>
+        <button @click="set = 'battlefield'" class="px-5 py-20 w-80">Battlefield</button>
+        <button @click="set = 'travel'" class="px-5 py-20 w-80">Wolrd Travel</button>
       </div>
       <div class="flex flex-col flex-1 w-full h-70vh
       ">
