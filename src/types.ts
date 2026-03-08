@@ -35,7 +35,10 @@ export interface IslandCity {
 
 export interface City {
   navy: [],
-  soldiers: [],
+  soldiers: {
+    units: number,
+    type: UnitsType
+  }[],
   type: ResourcesType
   locksmith: {
     level: number
@@ -114,3 +117,4 @@ export interface Resources {
 }
 
 export type ResourcesType = 'wood' | 'sulfur' | 'crystal' | 'wine' | 'stone'
+export type UnitsType = 'spearman' | 'archer' | 'hoplita' | 'catapult' | 'mech'

@@ -15,7 +15,22 @@ export const getNewPlayerData = () => {
 export const getNewCity = (): City => {
   return { 
     navy: [],
-    soldiers: [],
+    soldiers: [{
+      type: 'spearman',
+      units: 0
+    }, {
+      type: 'archer',
+      units: 0
+    }, {
+      type: 'hoplita',
+      units: 0
+    }, {
+      type: 'catapult',
+      units: 0
+    }, {
+      type: 'mech',
+      units: 0
+    }],
     type: 'stone',
     storage: {
       level: 1

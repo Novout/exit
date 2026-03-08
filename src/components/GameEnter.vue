@@ -160,7 +160,17 @@ const onStart = () => {
       const citiesPopGold = [...cities, PLAYER.activeCity].reduce((acc, current) => {
         const workers = (Number(current.science.workers) + Number(current.tavern.workers) + Number(current.bonus.workers) + Number(current.locksmith.workers))
 
-        return acc + (current.cityhall.population.acc - Number((workers * 4).toFixed()))
+        const soldiers = current.soldiers.reduce((acc, current) => {
+          if(current.type === 'spearman') return Number(acc) + Number(current.units * 1)
+          if(current.type === 'archer') return Number(acc) + Number(current.units * 2)
+          if(current.type === 'catapult') return Number(acc) + Number(current.units * 6)
+          if(current.type === 'hoplita') return Number(acc) + Number(current.units * 4)
+          if(current.type === 'mech') return Number(acc) + Number(current.units * 2)
+
+          return acc
+        }, 0)
+
+        return acc + (current.cityhall.population.acc - Number((workers * 4).toFixed()) - Number(soldiers))
       }, 0)
 
       PLAYER.data.gold.acc += citiesPopGold
