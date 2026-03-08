@@ -336,3 +336,61 @@ export const BonusUpgrade = (level: number): Resources | undefined => {
     }
   }[level]
 }
+
+export const MarketSet = (): any[] => {
+  return [{
+      stone: 500,
+      wine: 200,
+      sulfur: 300,
+      wood: 150,
+      crystal: 500
+    }, {
+      stone: 600,
+      wine: 450,
+      sulfur: 500,
+      wood: 300,
+      crystal: 200
+    }, {
+      stone: 300,
+      wine:450,
+      sulfur: 200,
+      wood: 500,
+      crystal: 0
+    }, {
+      stone: 200,
+      wine:300,
+      sulfur: 200,
+      wood: 600,
+      crystal: 700
+    }, {
+      stone: 500,
+      wine:200,
+      sulfur: 0,
+      wood: 450,
+      crystal: 300
+    }, {
+      stone: 200,
+      wine:300,
+      sulfur: 500,
+      wood: 700,
+      crystal: 450
+    }, {
+      stone: 450,
+      wine:500,
+      sulfur: 150,
+      wood: 800,
+      crystal: 200
+    }, {
+      stone: 450,
+      wine: 200,
+      sulfur: 450,
+      wood: 200,
+      crystal: 500
+    }, {
+      stone: 300,
+      wine:150,
+      sulfur: 400,
+      wood: 200,
+      crystal: 1200
+    }]
+}

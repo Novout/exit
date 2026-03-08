@@ -1,4 +1,10 @@
 export interface Player {
+  actions: {
+    market: {
+      activeBuyAction: boolean
+      activeSellAction: boolean
+    }
+  }
   island: Island
   map: {
     type: string
@@ -57,7 +63,9 @@ export interface City {
     workers: number
   },
   market: {
-    level: number
+    level: number,
+    buyResources: Resources,
+    sellResources: Resources
   }
   cityhall: {
     name: string,

@@ -30,6 +30,20 @@ export const getNewCity = (): City => {
     },
     market: {
       level: 1,
+      buyResources: {
+        sulfur: 200,
+        stone: 200,
+        wine: 200,
+        wood: 200,
+        crystal: 200
+      },
+      sellResources: {
+        sulfur: 200,
+        stone: 200,
+        wine: 200,
+        wood: 200,
+        crystal: 200
+      }
     },
     military: {
       level: 1,

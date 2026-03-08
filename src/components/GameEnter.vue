@@ -21,6 +21,7 @@ import { useWorld } from '../use/world';
 import { random } from '../utils';
 import { useWolrdStore } from '../store/world';
 import type { IslandCity } from '../types';
+import { MarketSet } from '../defines/upgrades';
 
 const CYCLE = useCycleStore()
 const PLAYER = usePlayerStore()
@@ -60,6 +61,12 @@ const onStart = () => {
   })
 
   PLAYER.data = {
+    actions: {
+      market: {
+        activeBuyAction: true,
+        activeSellAction: true
+      }
+    },
     island,
     map: {
       type: 'default'
@@ -73,6 +80,7 @@ const onStart = () => {
   let _science = 5
   let _wood = 5
   let _bonus = 5
+  let _market = 60
 
   setInterval(() => {
     _population--
@@ -80,6 +88,27 @@ const onStart = () => {
     _science--
     _wood--
     _bonus--
+    _market--
+
+    if(_market < 0) {
+      const buy = random(MarketSet) 
+      const sell = random(MarketSet) 
+
+      PLAYER.data.cities = PLAYER.data.cities.map(city => {
+        city.market.buyResources = buy
+        city.market.sellResources = sell
+
+        return city
+      })
+
+      PLAYER.activeCity.market.buyResources = buy
+      PLAYER.activeCity.market.sellResources = sell
+
+      PLAYER.data.actions.market.activeBuyAction = true
+      PLAYER.data.actions.market.activeSellAction = true
+
+      _market = 120
+    }
 
     if(_wood < 0) {
       PLAYER.data.cities = PLAYER.data.cities.map(city => {
