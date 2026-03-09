@@ -4,7 +4,7 @@
       <div class="flex w-full justify-between">
         <p>Level: {{ PLAYER.activeCity.cityhall.level }}</p>
         <p>Population: {{ PLAYER.activeCity.cityhall.population.acc }} / {{ PLAYER.activeCity.cityhall.population.maxAcc }}</p>
-        <p>Pop per birth: {{ PLAYER.activeCity.cityhall.population.time / 1000 }}</p>
+        <p>Tavern Bonus: {{ Number(PLAYER.activeCity.tavern.workers) * 12 }}</p>
       </div>
       <div class="flex w-full items-center justify-between"><ResourcesBar :resources="resources" /><p> +30 Pop </p><Button @click="onUpgrade">Upgrade</Button></div>
     </div>
