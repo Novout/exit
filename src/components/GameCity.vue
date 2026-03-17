@@ -39,6 +39,7 @@
     <Palace v-else-if="STRUCTURE.palace.modal" />
     <Wall v-else-if="STRUCTURE.wall.modal" />
     <Points v-else-if="STRUCTURE.points.modal" />
+    <Events v-else-if="STRUCTURE.notifies.modal" />
   </Modal>
 </template>
 

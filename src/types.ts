@@ -116,5 +116,10 @@ export interface Resources {
   crystal: number
 }
 
+export interface Event {
+  type: 'points'
+  message: string
+}
+
 export type ResourcesType = 'wood' | 'sulfur' | 'crystal' | 'wine' | 'stone'
 export type UnitsType = 'spearman' | 'archer' | 'hoplita' | 'catapult' | 'mech'

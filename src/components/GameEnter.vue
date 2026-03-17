@@ -23,11 +23,13 @@ import { useWolrdStore } from '../store/world';
 import type { IslandCity } from '../types';
 import { MarketSet } from '../defines/upgrades';
 import { usePointsStore } from '../store/points';
+import { useEventsStore } from '../store/events';
 
 const CYCLE = useCycleStore()
 const PLAYER = usePlayerStore()
 const WORLD = useWolrdStore()
 const POINTS = usePointsStore()
+const EVENTS = useEventsStore()
 
 const world = useWorld()
 
@@ -218,6 +220,37 @@ const onStart = () => {
 
       if(POINTS.economy.the_beginning_value <= 0) {
         POINTS.economy.the_beginning_finish = true
+
+        EVENTS.list.unshift({
+          type: 'points',
+          message: 'The score at the beginning was researched!'
+        })
+      }
+    }
+
+    if(POINTS.battlefield.distance_start && !POINTS.battlefield.distance_finish) {
+      POINTS.battlefield.distance_value--
+
+      if(POINTS.battlefield.distance_value <= 0) {
+        POINTS.battlefield.distance_finish = true
+
+        EVENTS.list.unshift({
+          type: 'points',
+          message: 'The score at distance was researched!'
+        })
+      }
+    }
+
+    if(POINTS.travel.out_to_sea_start && !POINTS.travel.out_to_sea_finish) {
+      POINTS.travel.out_to_sea_value--
+
+      if(POINTS.travel.out_to_sea_value <= 0) {
+        POINTS.travel.out_to_sea_finish = true
+
+        EVENTS.list.unshift({
+          type: 'points',
+          message: 'The score at out to sea was researched!'
+        })
       }
     }
   }, 1000)

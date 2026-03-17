@@ -39,9 +39,9 @@ const set = ref('economy')
 
 const theBeginningValue = computed(() => format(POINTS.economy.the_beginning_value)) 
 
-const distanceValue = computed(() => format(POINTS.economy.the_beginning_value)) 
+const distanceValue = computed(() => format(POINTS.battlefield.distance_value)) 
 
-const outToSeaValue = computed(() => format(POINTS.economy.the_beginning_value)) 
+const outToSeaValue = computed(() => format(POINTS.travel.out_to_sea_value)) 
 
 const onEconomy1 = () => {
   if(PLAYER.data.science.points >= 14 && !POINTS.economy.the_beginning_finish) { 

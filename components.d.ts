@@ -13,7 +13,8 @@ declare module 'vue' {
   export interface GlobalComponents {
     Button: typeof import('./src/components/utils/Button.vue')['default']
     CityHall: typeof import('./src/components/main/structures/city/CityHall.vue')['default']
-    copy: typeof import('./src/components/utils/StructureModal copy.vue')['default']
+    copy: typeof import('./src/components/main/structures/base/Points copy.vue')['default']
+    Events: typeof import('./src/components/main/structures/base/Events.vue')['default']
     Fortress: typeof import('./src/components/main/structures/Fortress.vue')['default']
     GameBar: typeof import('./src/components/GameBar.vue')['default']
     GameCity: typeof import('./src/components/GameCity.vue')['default']
