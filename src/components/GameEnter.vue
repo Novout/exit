@@ -22,10 +22,12 @@ import { random } from '../utils';
 import { useWolrdStore } from '../store/world';
 import type { IslandCity } from '../types';
 import { MarketSet } from '../defines/upgrades';
+import { usePointsStore } from '../store/points';
 
 const CYCLE = useCycleStore()
 const PLAYER = usePlayerStore()
 const WORLD = useWolrdStore()
+const POINTS = usePointsStore()
 
 const world = useWorld()
 
@@ -209,6 +211,14 @@ const onStart = () => {
         return city
       })
       _population = PLAYER.activeCity.cityhall.population.time / 1000
+    }
+    
+    if(POINTS.economy.the_beginning_start && !POINTS.economy.the_beginning_finish) {
+      POINTS.economy.the_beginning_value--
+
+      if(POINTS.economy.the_beginning_value <= 0) {
+        POINTS.economy.the_beginning_finish = true
+      }
     }
   }, 1000)
 }
