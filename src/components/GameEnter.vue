@@ -1,14 +1,16 @@
 <template>
-  <div class="flex flex-col gap-5 items-center justify-center w-full h-100vh">
-    <p>Name of Capital</p>
-    <input class="p-2" v-model="data.name" type="text" />
-    <p>Map Size</p>
-    <select class="p-2" name="size" v-model="data.size">
-      <option>Small</option>
-      <option>Default</option>
-      <option>Large</option>
-    </select>
-    <button class="w-40 p-2" @click="onStart">Create</button>
+  <div class="flex font-poppins flex-col gap-5 items-center justify-center w-full h-100vh">
+    <div class="flex flex-col rounded-lg w-120 bg-bluegray p-5 h-80 items-center justify-between">
+      <p class="font-bold">Name of Capital</p>
+      <input class="p-2" v-model="data.name" type="text" />
+      <p>Map Size</p>
+      <select class="p-2" name="size" v-model="data.size">
+        <option>Small</option>
+        <option>Default</option>
+        <option>Large</option>
+      </select>
+      <button class="w-40 p-2 font-poppins cursor-pointer b-2 border-bluegray" @click="onStart">Create</button>
+    </div>
   </div>
 </template>
 
