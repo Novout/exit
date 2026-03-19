@@ -5,10 +5,10 @@
       <IconCityHall v-if="city.owner" @click="WORLD.cityActive = city" class="h-20 w-20 cursor-pointer" />
       <IconTerrain v-else @click="WORLD.cityActive = city" class="h-20 w-20 cursor-pointer" />
     </div>
-    <div @click="STRUCTURE.wood.modal = true" class="absolute left-100 top-100 cursor-pointer">
+    <div v-if="cities.some((city) => city.owner === 'main')" @click="STRUCTURE.wood.modal = true" class="absolute left-100 top-100 cursor-pointer">
       <IconWood class="w-20 h-20" />
     </div>
-    <div @click="STRUCTURE.resource.modal = true" class="absolute left-150 top-100 cursor-pointer">
+    <div v-if="cities.some((city) => city.owner === 'main')" @click="STRUCTURE.resource.modal = true" class="absolute left-150 top-100 cursor-pointer">
       <IconStone v-if="PLAYER.data.island.type === 'stone'" class="w-20 h-20" />
       <IconWine v-else-if="PLAYER.data.island.type === 'wine'" class="w-20 h-20" />
       <IconCrystal v-else-if="PLAYER.data.island.type === 'crystal'" class="w-20 h-20" />

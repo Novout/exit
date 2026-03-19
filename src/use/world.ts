@@ -9,7 +9,7 @@ export const useWorld = () => {
       const x = 1 + Math.floor(Math.random() * 25)
       const y = Math.floor(Math.random() * 10)
 
-      const ignore = WORLD.islands.find((island) => island.x === x && island.y === y)
+      const ignore = WORLD.islands.some((island) => island.x === x && island.y === y)
 
       if(!ignore) {
         WORLD.islands.push({
@@ -22,11 +22,12 @@ export const useWorld = () => {
     }
 
     for (let i = 0; i < 9; i++) {
-      const x = 1 + Math.floor(Math.random() * 25)
-      const y = Math.floor(Math.random() * 10)
-
+      
       WORLD.islands = WORLD.islands.map((island) => {
-        const ignore = WORLD.islands.find((island) => island.x === x && island.y === y)
+        const x = 1 + Math.floor(Math.random() * 25)
+        const y = Math.floor(Math.random() * 10)
+        
+        const ignore = WORLD.islands.some((island) => island.x === x && island.y === y)
 
         if(!ignore) {
           island.cities.push({

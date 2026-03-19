@@ -59,6 +59,9 @@ const onStart = () => {
       city.owner = 'main'
       city.name = data.name
       PLAYER.activeCity.type = island.type
+    } else if (index === 1) {
+      city.owner = 'bot-1'
+      city.name = 'Bot 1'
     }
     
     city.type = island.type
