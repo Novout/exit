@@ -23,6 +23,7 @@ export interface Island {
   x: number,
   y: number,
   type: ResourcesType
+  vikingLevel: number
 }
 
 export interface IslandCity {

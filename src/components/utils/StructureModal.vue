@@ -34,5 +34,6 @@ onClickOutside(section, () => {
   STRUCTURE.military_base.modal = false
   STRUCTURE.points.modal = false
   STRUCTURE.notifies.modal = false
+  STRUCTURE.viking.modal = false
 })
 </script>

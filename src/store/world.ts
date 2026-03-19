@@ -8,6 +8,7 @@ export const useWolrdStore = defineStore('world', {
       x: number,
       y: number,
       type: ResourcesType,
+      vikingLevel: 1,
       cities: IslandCity[]
     }[],
   }),

@@ -16,6 +16,7 @@ export const useWorld = () => {
           x,
           y,
           type: random(['wood', 'stone', 'sulfur', 'crystal', 'wine']),
+          vikingLevel: 1,
           cities: []
         })
       }
@@ -26,7 +27,7 @@ export const useWorld = () => {
       WORLD.islands = WORLD.islands.map((island) => {
         const x = 1 + Math.floor(Math.random() * 25)
         const y = Math.floor(Math.random() * 10)
-        
+
         const ignore = WORLD.islands.some((island) => island.x === x && island.y === y)
 
         if(!ignore) {

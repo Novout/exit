@@ -47,5 +47,8 @@ export const useStructureStore = defineStore('structure', {
     military_base: {
       modal: false
     },
+    viking: {
+      modal: false
+    },
   }),
 })

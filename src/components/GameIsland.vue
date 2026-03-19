@@ -8,6 +8,9 @@
     <div v-if="cities.some((city) => city.owner === 'main')" @click="STRUCTURE.wood.modal = true" class="absolute left-100 top-100 cursor-pointer">
       <IconWood class="w-20 h-20" />
     </div>
+    <div @click="STRUCTURE.viking.modal = true" class="absolute left-160 top-150 cursor-pointer">
+      <IconViking class="w-20 h-20" />
+    </div>
     <div v-if="cities.some((city) => city.owner === 'main')" @click="STRUCTURE.resource.modal = true" class="absolute left-150 top-100 cursor-pointer">
       <IconStone v-if="PLAYER.data.island.type === 'stone'" class="w-20 h-20" />
       <IconWine v-else-if="PLAYER.data.island.type === 'wine'" class="w-20 h-20" />
@@ -17,6 +20,7 @@
     <Modal>
       <IslandWood v-if="STRUCTURE.wood.modal" />
       <IslandBonus v-else-if="STRUCTURE.resource.modal" />
+      <IslandViking v-else-if="STRUCTURE.viking.modal" />
     </Modal>
     <IslandView />
   </div>
