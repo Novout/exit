@@ -7,10 +7,13 @@
 </template>
 
 <script setup lang="ts">
-import { ShipyardUpgrade } from '../../../../defines/upgrades'
+import { ref } from 'vue'
+import { NavyUpgrade, ShipyardUpgrade } from '../../../../defines/upgrades'
 import { usePlayerStore } from '../../../../store/player'
 
 const PLAYER = usePlayerStore()
+
+const resources = ref(NavyUpgrade(PLAYER.activeCity.palace.level + 1))
 
 const onUpgrade = () => {
   const levelTarget = PLAYER.activeCity.cityhall.level + 1
@@ -25,6 +28,8 @@ const onUpgrade = () => {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
       PLAYER.activeCity.shipyard.level++
+
+      resources.value = NavyUpgrade(levelTarget + 1)
     }
   }
 }

@@ -31,6 +31,8 @@ const onUpgrade = () => {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
       PLAYER.activeCity.wall.level++
+
+      resources.value = WallUpgrade(levelTarget + 1)
     }
   }
 }

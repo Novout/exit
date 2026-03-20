@@ -15,12 +15,12 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue';
-import { LocksmithUpgrade, ScienceUpgrade } from '../../../../defines/upgrades';
+import { LocksmithUpgrade } from '../../../../defines/upgrades';
 import { usePlayerStore } from '../../../../store/player';
 
 const PLAYER = usePlayerStore()
 
-const resources = ref(ScienceUpgrade(PLAYER.activeCity.locksmith.level + 1))
+const resources = ref(LocksmithUpgrade(PLAYER.activeCity.locksmith.level + 1))
 
 const set = ref(PLAYER.activeCity.locksmith.workers)
 const max = computed(() => PLAYER.activeCity.locksmith.level * 7)
@@ -49,6 +49,8 @@ const onUpgrade = () => {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
       PLAYER.activeCity.locksmith.level++
+
+      resources.value = LocksmithUpgrade(levelTarget + 1)
     }
   }
 }

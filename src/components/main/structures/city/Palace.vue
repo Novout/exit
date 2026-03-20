@@ -31,6 +31,8 @@ const onUpgrade = () => {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
       PLAYER.activeCity.palace.level++
+
+      resources.value = PalaceUpgrade(levelTarget + 1)
     }
   }
 }

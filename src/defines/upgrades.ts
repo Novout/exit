@@ -66,6 +66,39 @@ export const ShipyardUpgrade =(level: number): Resources | undefined => {
   }[level]
 }
 
+export const NavyUpgrade =(level: number): Resources | undefined => {
+  return {
+    2: {
+      stone: 0,
+      wine:0,
+      sulfur: 0,
+      wood: 150,
+      crystal: 0
+    },
+    3: {
+      stone: 0,
+      wine:0,
+      sulfur: 0,
+      wood: 230,
+      crystal: 0
+    },
+    4: {
+      stone: 25,
+      wine:0,
+      sulfur: 0,
+      wood: 350,
+      crystal: 0
+    },
+    5: {
+      stone: 40,
+      wine:0,
+      sulfur: 0,
+      wood: 520,
+      crystal: 0
+    }
+  }[level]
+}
+
 export const MilitaryUpgrade =(level: number): Resources | undefined => {
   return {
     2: {
