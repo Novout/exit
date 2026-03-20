@@ -24,13 +24,13 @@ import { random } from '../utils';
 import { useWolrdStore } from '../store/world';
 import type { IslandCity } from '../types';
 import { MarketSet } from '../defines/upgrades';
-import { usePointsStore } from '../store/points';
+import { useControllerStore } from '../store/points';
 import { useEventsStore } from '../store/events';
 
 const CYCLE = useCycleStore()
 const PLAYER = usePlayerStore()
 const WORLD = useWolrdStore()
-const POINTS = usePointsStore()
+const CONTROLLER = useControllerStore()
 const EVENTS = useEventsStore()
 
 const world = useWorld()
@@ -219,45 +219,23 @@ const onStart = () => {
       })
       _population = PLAYER.activeCity.cityhall.population.time / 1000
     }
-    
-    if(POINTS.economy.the_beginning_start && !POINTS.economy.the_beginning_finish) {
-      POINTS.economy.the_beginning_value--
 
-      if(POINTS.economy.the_beginning_value <= 0) {
-        POINTS.economy.the_beginning_finish = true
+    CONTROLLER.list.forEach((item, index) => {
+      if(item.start && !item.finish) {
+        if(CONTROLLER.list[index]) {
+          CONTROLLER.list[index].value--
 
-        EVENTS.list.unshift({
-          type: 'points',
-          message: 'The score at the beginning was researched!'
-        })
+          if(item.value <= 0) {
+            CONTROLLER.list[index].finish = true
+  
+            EVENTS.list.unshift({
+              type: 'points',
+              message: item.message
+            })
+          }
+        }
       }
-    }
-
-    if(POINTS.battlefield.distance_start && !POINTS.battlefield.distance_finish) {
-      POINTS.battlefield.distance_value--
-
-      if(POINTS.battlefield.distance_value <= 0) {
-        POINTS.battlefield.distance_finish = true
-
-        EVENTS.list.unshift({
-          type: 'points',
-          message: 'The score at distance was researched!'
-        })
-      }
-    }
-
-    if(POINTS.travel.out_to_sea_start && !POINTS.travel.out_to_sea_finish) {
-      POINTS.travel.out_to_sea_value--
-
-      if(POINTS.travel.out_to_sea_value <= 0) {
-        POINTS.travel.out_to_sea_finish = true
-
-        EVENTS.list.unshift({
-          type: 'points',
-          message: 'The score at out to sea was researched!'
-        })
-      }
-    }
+    })
   }, 1000)
 }
 </script>
