@@ -8,6 +8,7 @@
         <p class="p-1" :class="[PLAYER.data.gold.set >= 0 ? 'bg-yellow' : 'bg-red']">Gold {{ PLAYER.data.gold.set }}</p>
         <Button @click="onSetWorkers">Set</Button>
       </div>
+      <p v-if="def.start && !def.finish">{{ computed(() => format(def.level[PLAYER.activeCity.locksmith.level + 1])) }}</p>
       <div class="flex w-full justify-between"><ResourcesBar :resources="resources" /><Button @click="onUpgrade">Upgrade</Button></div>
     </div>
   </StructureModal>
@@ -17,10 +18,16 @@
 import { computed, ref } from 'vue';
 import { LocksmithUpgrade } from '../../../../defines/upgrades';
 import { usePlayerStore } from '../../../../store/player';
+import type { ConstructionTime } from '../../../../types';
+import { useControllerStore } from '../../../../store/controller';
+import { format } from '../../../../utils';
 
 const PLAYER = usePlayerStore()
+const CONTROLLER = useControllerStore()
 
 const resources = ref(LocksmithUpgrade(PLAYER.activeCity.locksmith.level + 1))
+
+const def = computed(() => CONTROLLER.constructions.find(item => item.id === 'wood_0') as ConstructionTime)
 
 const set = ref(PLAYER.activeCity.locksmith.workers)
 const max = computed(() => PLAYER.activeCity.locksmith.level * 7)
@@ -48,7 +55,12 @@ const onUpgrade = () => {
     if(PLAYER.activeCity.cityhall.wood.acc >= dmgWood && PLAYER.activeCity.cityhall.stone.acc >= dmgStone) {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
-      PLAYER.activeCity.locksmith.level++
+
+      const city = CONTROLLER.constructions.find(item => item.id === 'wood_0') as ConstructionTime
+      const cityIndex = CONTROLLER.constructions.indexOf(city)
+
+      CONTROLLER.constructions[cityIndex]!.finish = false
+      CONTROLLER.constructions[cityIndex]!.start = true 
 
       resources.value = LocksmithUpgrade(levelTarget + 1)
     }

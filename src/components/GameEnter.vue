@@ -269,8 +269,12 @@ const onStart = () => {
               PLAYER.activeCity.tavern.level++
             } else if (item.id === 'wall') {
               PLAYER.activeCity.wall.level++
-            }
-  
+            } else if (item.id === 'wood_0') {
+              PLAYER.activeCity.locksmith.level++
+            } else if (item.id === 'bonus_0') {
+              PLAYER.activeCity.bonus.level++
+            } 
+
             EVENTS.list.unshift({
               type: 'constructions',
               message: item.message

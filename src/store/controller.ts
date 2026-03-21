@@ -120,6 +120,32 @@ export const useControllerStore = defineStore('controller', {
         start: false,
         finish: false,
         activeLevel: 2
+      },
+      {
+        id: 'wood_0',
+        message: 'Upgrade wall',
+        level: {
+          2: 38,
+          3: 62,
+          4: 97,
+          5: 170,
+        },
+        start: false,
+        finish: false,
+        activeLevel: 2
+      },
+      {
+        id: 'bonus_0',
+        message: 'Upgrade wall',
+        level: {
+          2: 38,
+          3: 62,
+          4: 97,
+          5: 170,
+        },
+        start: false,
+        finish: false,
+        activeLevel: 2
       }
     ] as ConstructionTime[],
     points: [
