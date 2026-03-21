@@ -4,19 +4,26 @@
       <div class="flex w-full justify-between">
         <p>Level: {{ PLAYER.activeCity.palace.level }}</p>
       </div>
+      <p v-if="def.start && !def.finish">{{ computed(() => format(def.level[PLAYER.activeCity.palace.level + 1])) }}</p>
       <div class="flex w-full justify-between"><ResourcesBar :resources="resources" /><Button @click="onUpgrade">Upgrade</Button></div>
     </div>
   </StructureModal>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { PalaceUpgrade } from '../../../../defines/upgrades';
 import { usePlayerStore } from '../../../../store/player';
+import { format } from '../../../../utils';
+import { useControllerStore } from '../../../../store/controller';
+import type { ConstructionTime } from '../../../../types';
 
 const PLAYER = usePlayerStore()
+const CONTROLLER = useControllerStore()
 
 const resources = ref(PalaceUpgrade(PLAYER.activeCity.palace.level + 1))
+
+const def = computed(() => CONTROLLER.constructions.find(item => item.id === 'palace') as ConstructionTime)
 
 const onUpgrade = () => {
   const levelTarget = PLAYER.activeCity.palace.level + 1
@@ -30,7 +37,12 @@ const onUpgrade = () => {
     if(PLAYER.activeCity.cityhall.wood.acc >= dmgWood && PLAYER.activeCity.cityhall.stone.acc >= dmgStone) {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
-      PLAYER.activeCity.palace.level++
+      
+      const city = CONTROLLER.constructions.find(item => item.id === 'palace') as ConstructionTime
+      const cityIndex = CONTROLLER.constructions.indexOf(city)
+
+      CONTROLLER.constructions[cityIndex]!.finish = false
+      CONTROLLER.constructions[cityIndex]!.start = true 
 
       resources.value = PalaceUpgrade(levelTarget + 1)
     }

@@ -7,18 +7,24 @@
         <p>Tavern Bonus: {{ Number(PLAYER.activeCity.tavern.workers) * 12 }}</p>
       </div>
       <div class="flex w-full items-center justify-between"><ResourcesBar :resources="resources" /><p> +30 Pop </p><Button @click="onUpgrade">Upgrade</Button></div>
+      <p v-if="cityhall.start && !cityhall.finish">{{ computed(() => format(cityhall.level[PLAYER.activeCity.cityhall.level + 1])) }}</p>
     </div>
   </StructureModal>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { CityhallUpgrade } from '../../../../defines/upgrades';
 import { usePlayerStore } from '../../../../store/player';
+import { useControllerStore } from '../../../../store/controller';
+import { format } from '../../../../utils';
+import type { ConstructionTime } from '../../../../types';
 
 const PLAYER = usePlayerStore()
+const CONTROLLER = useControllerStore()
 
 const resources = ref(CityhallUpgrade(PLAYER.activeCity.cityhall.level + 1))
+const cityhall = computed(() => CONTROLLER.constructions.find(item => item.id === 'cityhall') as ConstructionTime)
 
 const onUpgrade = () => {
   const levelTarget = PLAYER.activeCity.cityhall.level + 1
@@ -29,11 +35,15 @@ const onUpgrade = () => {
     const dmgWood = upg.wood
     const dmgStone = upg.stone 
 
-    if(PLAYER.activeCity.cityhall.wood.acc >= dmgWood && PLAYER.activeCity.cityhall.stone.acc >= dmgStone) {
+    if(!cityhall.value.start && PLAYER.activeCity.cityhall.wood.acc >= dmgWood && PLAYER.activeCity.cityhall.stone.acc >= dmgStone) {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
-      PLAYER.activeCity.cityhall.level++
-      PLAYER.activeCity.cityhall.population.maxAcc += 30
+
+      const city = CONTROLLER.constructions.find(item => item.id === 'cityhall') as ConstructionTime
+      const cityIndex = CONTROLLER.constructions.indexOf(city)
+
+      CONTROLLER.constructions[cityIndex]!.finish = false
+      CONTROLLER.constructions[cityIndex]!.start = true 
 
       resources.value = CityhallUpgrade(PLAYER.activeCity.cityhall.level + 1)
     }

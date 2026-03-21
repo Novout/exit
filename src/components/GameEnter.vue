@@ -24,7 +24,7 @@ import { random } from '../utils';
 import { useWolrdStore } from '../store/world';
 import type { IslandCity } from '../types';
 import { MarketSet } from '../defines/upgrades';
-import { useControllerStore } from '../store/points';
+import { useControllerStore } from '../store/controller';
 import { useEventsStore } from '../store/events';
 
 const CYCLE = useCycleStore()
@@ -220,16 +220,59 @@ const onStart = () => {
       _population = PLAYER.activeCity.cityhall.population.time / 1000
     }
 
-    CONTROLLER.list.forEach((item, index) => {
+    CONTROLLER.points.forEach((item, index) => {
       if(item.start && !item.finish) {
-        if(CONTROLLER.list[index]) {
-          CONTROLLER.list[index].value--
+        if(CONTROLLER.points[index]) {
+          CONTROLLER.points[index].value--
 
           if(item.value <= 0) {
-            CONTROLLER.list[index].finish = true
+            CONTROLLER.points[index].finish = true
   
             EVENTS.list.unshift({
               type: 'points',
+              message: item.message
+            })
+          }
+        }
+      }
+    })
+
+    CONTROLLER.constructions.forEach((item, index) => {
+      if(item.start && !item.finish) {
+        if(CONTROLLER.constructions[index]) {
+          const activeLevel = item.activeLevel
+        
+          const active = item.level[activeLevel]
+
+          if(active) CONTROLLER.constructions[index].level[activeLevel]--
+
+          if(item.level[activeLevel] <= 0) {
+            CONTROLLER.constructions[index].finish = true
+            CONTROLLER.constructions[index].start = false
+
+            if(item.id === 'cityhall') {
+              PLAYER.activeCity.cityhall.level++
+              PLAYER.activeCity.cityhall.population.maxAcc += 30
+            } else if (item.id === 'market') {
+              PLAYER.activeCity.market.level++
+            } else if (item.id === 'military') {
+              PLAYER.activeCity.military.level++
+            } else if (item.id === 'navy') {
+              PLAYER.activeCity.shipyard.level++
+            } else if (item.id === 'palace') {
+              PLAYER.activeCity.palace.level++
+            } else if (item.id === 'science') {
+              PLAYER.activeCity.science.level++
+            } else if (item.id === 'storage') {
+              PLAYER.activeCity.storage.level++
+            } else if (item.id === 'tavern') {
+              PLAYER.activeCity.tavern.level++
+            } else if (item.id === 'wall') {
+              PLAYER.activeCity.wall.level++
+            }
+  
+            EVENTS.list.unshift({
+              type: 'constructions',
               message: item.message
             })
           }

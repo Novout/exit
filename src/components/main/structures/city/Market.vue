@@ -61,6 +61,7 @@
         <Button @click="onSell">Sell</Button>
       </div>
       <div class="flex w-full justify-between pt-10"><ResourcesBar :resources="resources" /><Button @click="onUpgrade">Upgrade</Button></div>
+      <p v-if="def.start && !def.finish">{{ computed(() => format(def.level[PLAYER.activeCity.market.level + 1])) }}</p>
     </div>
   </StructureModal>
 </template>
@@ -69,10 +70,15 @@
 import { computed, reactive, ref } from 'vue';
 import { MarketUpgrade } from '../../../../defines/upgrades';
 import { usePlayerStore } from '../../../../store/player';
+import type { ConstructionTime } from '../../../../types';
+import { useControllerStore } from '../../../../store/controller';
+import { format } from '../../../../utils';
 
 const PLAYER = usePlayerStore()
+const CONTROLLER = useControllerStore()
 
 const resources = ref(MarketUpgrade(PLAYER.activeCity.science.level + 1))
+const def = computed(() => CONTROLLER.constructions.find(item => item.id === 'market') as ConstructionTime)
 
 const buyPrev = computed(() => Number(buy.wood) + Number(buy.stone) + Number(buy.wine) + Number(buy.sulfur) + Number(buy.crystal))
 const sellPrev = computed(() => Number(sell.wood) + Number(sell.stone) + Number(sell.wine) + Number(sell.sulfur) + Number(sell.crystal))
@@ -163,10 +169,15 @@ const onUpgrade = () => {
     const dmgWood = upg.wood
     const dmgStone = upg.stone 
 
-    if(PLAYER.activeCity.cityhall.wood.acc >= dmgWood && PLAYER.activeCity.cityhall.stone.acc >= dmgStone) {
+    if(!def.value.start && PLAYER.activeCity.cityhall.wood.acc >= dmgWood && PLAYER.activeCity.cityhall.stone.acc >= dmgStone) {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
-      PLAYER.activeCity.market.level++
+
+      const city = CONTROLLER.constructions.find(item => item.id === 'market') as ConstructionTime
+      const cityIndex = CONTROLLER.constructions.indexOf(city)
+
+      CONTROLLER.constructions[cityIndex]!.finish = false
+      CONTROLLER.constructions[cityIndex]!.start = true 
 
       resources.value = MarketUpgrade(levelTarget + 1)
     }

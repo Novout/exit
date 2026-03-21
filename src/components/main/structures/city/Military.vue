@@ -23,19 +23,26 @@
         crystal: ((Number(units.spearman) * 0) + Number(units.archer) * 0 + Number(units.catapult) * 0 + Number(units.hoplita) * 0 + Number(units.mech * 120))
       }" />
       <Button @click="onSet">Set</Button>
+      <p v-if="def.start && !def.finish">{{ computed(() => format(def.level[PLAYER.activeCity.military.level + 1])) }}</p>
       <div class="flex pt-5 w-full justify-between"><ResourcesBar :resources="resources" /><Button @click="onUpgrade">Upgrade</Button></div>
     </div>
   </StructureModal>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import { MilitaryUpgrade } from '../../../../defines/upgrades'
 import { usePlayerStore } from '../../../../store/player'
+import type { ConstructionTime } from '../../../../types'
+import { format } from '../../../../utils'
+import { useControllerStore } from '../../../../store/controller'
 
 const PLAYER = usePlayerStore()
+const CONTROLLER = useControllerStore()
 
 const resources = ref(MilitaryUpgrade(PLAYER.activeCity.military.level + 1))
+
+const def = computed(() => CONTROLLER.constructions.find(item => item.id === 'military') as ConstructionTime)
 
 const units = reactive({
   spearman: 0,
@@ -84,10 +91,15 @@ const onUpgrade = () => {
     const dmgWood = upg.wood
     const dmgStone = upg.stone 
 
-    if(PLAYER.activeCity.cityhall.wood.acc >= dmgWood && PLAYER.activeCity.cityhall.stone.acc >= dmgStone) {
+    if(!def.value.start && PLAYER.activeCity.cityhall.wood.acc >= dmgWood && PLAYER.activeCity.cityhall.stone.acc >= dmgStone) {
       PLAYER.activeCity.cityhall.wood.acc -= upg.wood
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone
-      PLAYER.activeCity.military.level++
+
+      const city = CONTROLLER.constructions.find(item => item.id === 'military') as ConstructionTime
+      const cityIndex = CONTROLLER.constructions.indexOf(city)
+
+      CONTROLLER.constructions[cityIndex]!.finish = false
+      CONTROLLER.constructions[cityIndex]!.start = true 
 
       resources.value = MilitaryUpgrade(levelTarget + 1)
     }

@@ -118,8 +118,27 @@ export interface Resources {
 }
 
 export interface Event {
-  type: 'points'
+  type: 'points' | 'constructions' | 'army'
   message: string
+}
+
+export interface PointTime {
+  id: string,
+  message: string,
+  description: string,
+  type: string,
+  start: boolean,
+  value: number,
+  finish: boolean
+}
+
+export interface ConstructionTime {
+  id: string,
+  message: string,
+  level: any,
+  start: boolean,
+  finish: boolean
+  activeLevel: number
 }
 
 export type ResourcesType = 'wood' | 'sulfur' | 'crystal' | 'wine' | 'stone'
