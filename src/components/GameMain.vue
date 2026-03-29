@@ -1,5 +1,6 @@
 <template>
   <GameEnter v-if="!CYCLE.started" />
+  <GameBattle v-else-if="true" />
   <div v-else>
     <GameBar />
     <GameWorld v-if="CYCLE.type === 'world'" />

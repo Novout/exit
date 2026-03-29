@@ -17,6 +17,7 @@ declare module 'vue' {
     Events: typeof import('./src/components/main/structures/base/Events.vue')['default']
     Fortress: typeof import('./src/components/main/structures/Fortress.vue')['default']
     GameBar: typeof import('./src/components/GameBar.vue')['default']
+    GameBattle: typeof import('./src/components/GameBattle.vue')['default']
     GameCity: typeof import('./src/components/GameCity.vue')['default']
     GameEnter: typeof import('./src/components/GameEnter.vue')['default']
     GameIsland: typeof import('./src/components/GameIsland.vue')['default']

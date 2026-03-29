@@ -141,5 +141,35 @@ export interface ConstructionTime {
   activeLevel: number
 }
 
+export interface UnitBattleDefine {
+  id: UnitsType,
+  priority?: boolean,
+  wall?: boolean,
+  range?: boolean,
+  hp: number,
+  attack: number,
+  units?: number,
+  maxUnits?: number
+}
+
+export interface UnitBattleAcc {
+  wall: number,
+  mech: number,
+  viking?: number,
+  catapult: number,
+  archer: number,
+  hoplita: number,
+  spearman: number,
+}
+
+export type UnitsType = 'wall' | 'spearman' | 'archer' | 'hoplita' | 'catapult' | 'mech'
+export type UnitBattleType = 'extra' | 'destruction_line' | 'back_line' | 'front_line' | 'wall'
+export type UnitBattleContext = [UnitsType, UnitBattleType, number, number][]
+
+export interface Battle {
+  attacker?: UnitBattleContext
+  defender?: UnitBattleContext
+  city?: City
+}
+
 export type ResourcesType = 'wood' | 'sulfur' | 'crystal' | 'wine' | 'stone'
-export type UnitsType = 'spearman' | 'archer' | 'hoplita' | 'catapult' | 'mech'
