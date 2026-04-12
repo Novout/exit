@@ -33,7 +33,7 @@ export const useBattle = () => {
             ['mech', 'extra', acc.mech, 7],
             ['catapult', 'destruction_line', acc.catapult, 10],
             ['archer', 'back_line', acc.archer, 30],
-            ['hoplita', 'front_line', acc.spearman, 30],
+            ['hoplita', 'front_line', acc.hoplita, 30],
             ['spearman', 'front_line', acc.spearman, 30],
           ]
           : viking ? [
@@ -100,6 +100,8 @@ export const useBattle = () => {
       let _acc = 0
 
       const isOnlyArcherActive = isWall && isDefender
+
+      if(value[1] === 'disabled') return acc
 
       if(value[0] === 'spearman' && !isOnlyArcherActive) {
         if(value[2] < 90) {

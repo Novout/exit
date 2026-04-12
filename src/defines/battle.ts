@@ -14,7 +14,7 @@ export const getBattleValues = () => {
     return {
       id: 'spearman',
       hp: 42,
-      attack: 34,
+      attack: 19,
       units: 0,
       maxUnits: 30
     }

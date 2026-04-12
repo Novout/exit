@@ -162,14 +162,17 @@ export interface UnitBattleAcc {
   spearman: number,
 }
 
-export type UnitsType = 'wall' | 'spearman' | 'archer' | 'hoplita' | 'catapult' | 'mech'
-export type UnitBattleType = 'extra' | 'destruction_line' | 'back_line' | 'front_line' | 'wall'
+export type UnitsType = 'wall' | 'viking' | 'spearman' | 'archer' | 'hoplita' | 'catapult' | 'mech'
+export type UnitBattleType = 'extra' | 'destruction_line' | 'back_line' | 'front_line' | 'wall' | 'disabled'
 export type UnitBattleContext = [UnitsType, UnitBattleType, number, number][]
 
 export interface Battle {
   attacker?: UnitBattleContext
   defender?: UnitBattleContext
+  playerSide?: 'attacker' | 'defender'
   city?: City
+  winBonus?: Resources
+  isViking?: boolean
 }
 
 export type ResourcesType = 'wood' | 'sulfur' | 'crystal' | 'wine' | 'stone'

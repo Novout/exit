@@ -41,8 +41,8 @@ export const VikingGain = (level: number): Resources | undefined => {
     1: {
       stone: 60,
       wine: 60,
-      sulfur: 100,
-      wood: 60,
+      sulfur: 60,
+      wood: 120,
       crystal: 60
     },
     2: {
