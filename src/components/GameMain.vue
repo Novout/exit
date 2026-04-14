@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { useCycleStore } from '../store/cycle';
+import { useCycleStore } from "../store/cycle";
 
-const CYCLE = useCycleStore()
+const CYCLE = useCycleStore();
 </script>

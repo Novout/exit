@@ -1,19 +1,29 @@
 <template>
   <div class="flex flex-wrap gap-2 w-full">
-    <p>{{ props.description || 'Cost' }}</p>
-    <p class="flex items-center"><IconWood class="w-6 h-6" />{{ props.resources.wood }}</p>
-    <p class="flex items-center"><IconStone class="w-6 h-6" />{{ props.resources.stone }}</p>
-    <p class="flex items-center"><IconWine class="w-6 h-6" />{{ props.resources.wine }}</p>
-    <p class="flex items-center"><IconCrystal class="w-6 h-6" />{{ props.resources.crystal }}</p>
-    <p class="flex items-center"><IconSulfur class="w-6 h-6" />{{ props.resources.sulfur }}</p>
+    <p>{{ props.description || "Cost" }}</p>
+    <p class="flex items-center">
+      <IconWood class="w-6 h-6" />{{ props.resources.wood }}
+    </p>
+    <p class="flex items-center">
+      <IconStone class="w-6 h-6" />{{ props.resources.stone }}
+    </p>
+    <p class="flex items-center">
+      <IconWine class="w-6 h-6" />{{ props.resources.wine }}
+    </p>
+    <p class="flex items-center">
+      <IconCrystal class="w-6 h-6" />{{ props.resources.crystal }}
+    </p>
+    <p class="flex items-center">
+      <IconSulfur class="w-6 h-6" />{{ props.resources.sulfur }}
+    </p>
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { Resources } from '../../types';
+import type { Resources } from "../../types";
 
 const props = defineProps<{
-  resources: Resources
-  description?: string
-}>()
+  resources: Resources;
+  description?: string;
+}>();
 </script>

@@ -1,54 +1,54 @@
-import { defineStore } from "pinia"
+import { defineStore } from "pinia";
 
-export const useStructureStore = defineStore('structure', {
-  state: () => ({ 
+export const useStructureStore = defineStore("structure", {
+  state: () => ({
     cityhall: {
-      modal: false
+      modal: false,
     },
     military: {
-      modal: false
+      modal: false,
     },
     storage: {
-      modal: false
+      modal: false,
     },
     tavern: {
-      modal: false
+      modal: false,
     },
     science: {
-      modal: false
+      modal: false,
     },
     navy: {
-      modal: false
+      modal: false,
     },
     market: {
-      modal: false
+      modal: false,
     },
     wood: {
-      modal: false
+      modal: false,
     },
     resource: {
-      modal: false
+      modal: false,
     },
     cityView: {
-      modal: false
+      modal: false,
     },
     wall: {
-      modal: false
+      modal: false,
     },
     palace: {
-      modal: false
+      modal: false,
     },
     notifies: {
-      modal: false
+      modal: false,
     },
     points: {
-      modal: false
+      modal: false,
     },
     military_base: {
-      modal: false
+      modal: false,
     },
     viking: {
-      modal: false
+      modal: false,
     },
   }),
-})
+});

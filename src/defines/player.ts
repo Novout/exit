@@ -1,47 +1,53 @@
-import type { City } from "../types"
+import type { City } from "../types";
 
 export const getNewPlayerData = () => {
   return {
     gold: {
       acc: 100,
-      set: 0
+      set: 0,
     },
     science: {
-      points: 0
-    }
-  }
-}
+      points: 0,
+    },
+  };
+};
 
 export const getNewCity = (): City => {
-  return { 
+  return {
     navy: [],
-    soldiers: [{
-      type: 'spearman',
-      units: 0
-    }, {
-      type: 'archer',
-      units: 0
-    }, {
-      type: 'hoplita',
-      units: 0
-    }, {
-      type: 'catapult',
-      units: 0
-    }, {
-      type: 'mech',
-      units: 0
-    }],
-    type: 'stone',
+    soldiers: [
+      {
+        type: "spearman",
+        units: 0,
+      },
+      {
+        type: "archer",
+        units: 0,
+      },
+      {
+        type: "hoplita",
+        units: 0,
+      },
+      {
+        type: "catapult",
+        units: 0,
+      },
+      {
+        type: "mech",
+        units: 0,
+      },
+    ],
+    type: "stone",
     storage: {
-      level: 1
+      level: 1,
     },
     tavern: {
       level: 1,
-      workers: 0
+      workers: 0,
     },
     science: {
       level: 1,
-      workers: 0
+      workers: 0,
     },
     market: {
       level: 1,
@@ -50,15 +56,15 @@ export const getNewCity = (): City => {
         stone: 200,
         wine: 200,
         wood: 200,
-        crystal: 200
+        crystal: 200,
       },
       sellResources: {
         sulfur: 200,
         stone: 200,
         wine: 200,
         wood: 200,
-        crystal: 200
-      }
+        crystal: 200,
+      },
     },
     military: {
       level: 1,
@@ -74,40 +80,41 @@ export const getNewCity = (): City => {
     },
     bonus: {
       level: 1,
-      workers: 0
+      workers: 0,
     },
     locksmith: {
       level: 1,
-      workers: 0
+      workers: 0,
     },
     cityhall: {
-      name: '',
+      name: "",
       level: 1,
       happy: 200,
       population: {
         acc: 30,
         maxAcc: 60,
-        time: 7000
+        time: 7000,
       },
       sulfur: {
         acc: 125,
-        maxAcc: 200
+        maxAcc: 200,
       },
-      stone: { 
+      stone: {
         acc: 125,
-        maxAcc: 200
+        maxAcc: 200,
       },
       wine: {
         acc: 125,
-        maxAcc: 200
+        maxAcc: 200,
       },
       wood: {
         acc: 400,
-        maxAcc: 500
+        maxAcc: 500,
       },
       crystal: {
         acc: 125,
-        maxAcc: 200
-      }
-  }}
-}
+        maxAcc: 200,
+      },
+    },
+  };
+};

@@ -1,179 +1,193 @@
 export interface Player {
   actions: {
     market: {
-      activeBuyAction: boolean
-      activeSellAction: boolean
-    }
-  }
-  island: Island
+      activeBuyAction: boolean;
+      activeSellAction: boolean;
+    };
+  };
+  island: Island;
   map: {
-    type: string
-  }
+    type: string;
+  };
   gold: {
-    acc: number,
-    set: number
-  },
+    acc: number;
+    set: number;
+  };
   science: {
-    points: number
-  },
-  cities: City[]
+    points: number;
+  };
+  cities: City[];
 }
 
 export interface Island {
-  x: number,
-  y: number,
-  type: ResourcesType
-  vikingLevel: number
+  x: number;
+  y: number;
+  type: ResourcesType;
+  vikingLevel: number;
 }
 
 export interface IslandCity {
-  x: number,
-  y: number
-  owner?: string
-  name?: string
-  type: ResourcesType
+  x: number;
+  y: number;
+  owner?: string;
+  name?: string;
+  type: ResourcesType;
 }
 
 export interface City {
-  navy: [],
+  navy: [];
   soldiers: {
-    units: number,
-    type: UnitsType
-  }[],
-  type: ResourcesType
+    units: number;
+    type: UnitsType;
+  }[];
+  type: ResourcesType;
   locksmith: {
-    level: number
-    workers: number
-  },
+    level: number;
+    workers: number;
+  };
   bonus: {
-    level: number
-    workers: number
-  },
+    level: number;
+    workers: number;
+  };
   shipyard: {
-    level: number
-  },
+    level: number;
+  };
   palace: {
-    level: number
-  },
+    level: number;
+  };
   wall: {
-    level: number
-  },
+    level: number;
+  };
   military: {
-    level: number
-  },
+    level: number;
+  };
   storage: {
-    level: number
-  },
+    level: number;
+  };
   tavern: {
-    level: number
-    workers: number
-  },
+    level: number;
+    workers: number;
+  };
   science: {
-    level: number
-    workers: number
-  },
+    level: number;
+    workers: number;
+  };
   market: {
-    level: number,
-    buyResources: Resources,
-    sellResources: Resources
-  }
+    level: number;
+    buyResources: Resources;
+    sellResources: Resources;
+  };
   cityhall: {
-    name: string,
-    level: number,
-    happy: number,
+    name: string;
+    level: number;
+    happy: number;
     population: {
-      acc: number,
-      time: number,
-      maxAcc: number
-    },
+      acc: number;
+      time: number;
+      maxAcc: number;
+    };
     sulfur: {
-      acc: number,
-      maxAcc: number
-    },
-    stone: { 
-      acc: number,
-      maxAcc: number
-    },
+      acc: number;
+      maxAcc: number;
+    };
+    stone: {
+      acc: number;
+      maxAcc: number;
+    };
     wine: {
-      acc: number,
-      maxAcc: number
-    },
+      acc: number;
+      maxAcc: number;
+    };
     wood: {
-      acc: number,
-      maxAcc: number
-    }
+      acc: number;
+      maxAcc: number;
+    };
     crystal: {
-      acc: number,
-      maxAcc: number
-    }
-  }
+      acc: number;
+      maxAcc: number;
+    };
+  };
 }
 
 export interface Resources {
-  sulfur: number,
-  stone: number,
-  wine: number,
-  wood: number,
-  crystal: number
+  sulfur: number;
+  stone: number;
+  wine: number;
+  wood: number;
+  crystal: number;
 }
 
 export interface Event {
-  type: 'points' | 'constructions' | 'army'
-  message: string
+  type: "points" | "constructions" | "army";
+  message: string;
 }
 
 export interface PointTime {
-  id: string,
-  message: string,
-  description: string,
-  type: string,
-  start: boolean,
-  value: number,
-  finish: boolean
+  id: string;
+  message: string;
+  description: string;
+  type: string;
+  start: boolean;
+  value: number;
+  finish: boolean;
 }
 
 export interface ConstructionTime {
-  id: string,
-  message: string,
-  level: any,
-  start: boolean,
-  finish: boolean
-  activeLevel: number
+  id: string;
+  message: string;
+  level: any;
+  start: boolean;
+  finish: boolean;
+  activeLevel: number;
 }
 
 export interface UnitBattleDefine {
-  id: UnitsType,
-  priority?: boolean,
-  wall?: boolean,
-  range?: boolean,
-  hp: number,
-  attack: number,
-  units?: number,
-  maxUnits?: number
+  id: UnitsType;
+  priority?: boolean;
+  wall?: boolean;
+  range?: boolean;
+  hp: number;
+  attack: number;
+  units?: number;
+  maxUnits?: number;
 }
 
 export interface UnitBattleAcc {
-  wall: number,
-  mech: number,
-  viking?: number,
-  catapult: number,
-  archer: number,
-  hoplita: number,
-  spearman: number,
+  wall: number;
+  mech: number;
+  viking?: number;
+  catapult: number;
+  archer: number;
+  hoplita: number;
+  spearman: number;
 }
 
-export type UnitsType = 'wall' | 'viking' | 'spearman' | 'archer' | 'hoplita' | 'catapult' | 'mech' | 'disabled'
-export type UnitBattleType = 'extra' | 'destruction_line' | 'back_line' | 'front_line' | 'wall' | 'disabled'
-export type UnitBattleSet = [UnitsType, UnitBattleType, number, number]
-export type UnitBattleContext = UnitBattleSet[]
+export type UnitsType =
+  | "wall"
+  | "viking"
+  | "spearman"
+  | "archer"
+  | "hoplita"
+  | "catapult"
+  | "mech"
+  | "disabled";
+export type UnitBattleType =
+  | "extra"
+  | "destruction_line"
+  | "back_line"
+  | "front_line"
+  | "wall"
+  | "disabled";
+export type UnitBattleSet = [UnitsType, UnitBattleType, number, number];
+export type UnitBattleContext = UnitBattleSet[];
 
 export interface Battle {
-  attacker?: UnitBattleContext
-  defender?: UnitBattleContext
-  playerSide?: 'attacker' | 'defender'
-  city?: City
-  winBonus?: Resources
-  isViking?: boolean
+  attacker?: UnitBattleContext;
+  defender?: UnitBattleContext;
+  playerSide?: "attacker" | "defender";
+  city?: City;
+  winBonus?: Resources;
+  isViking?: boolean;
 }
 
-export type ResourcesType = 'wood' | 'sulfur' | 'crystal' | 'wine' | 'stone'
+export type ResourcesType = "wood" | "sulfur" | "crystal" | "wine" | "stone";

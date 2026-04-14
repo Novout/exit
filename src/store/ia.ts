@@ -1,7 +1,7 @@
-import { defineStore } from "pinia"
+import { defineStore } from "pinia";
 
-export const useIAStore = defineStore('ia', {
-  state: () => ({ 
+export const useIAStore = defineStore("ia", {
+  state: () => ({
     bots: [],
   }),
-})
+});

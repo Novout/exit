@@ -1,48 +1,66 @@
 <template>
   <StructureModal name="shipyard">
     <div class="flex flex-col gap-2 w-full">
-      <p v-if="def.start && !def.finish">{{ computed(() => format(def.level[PLAYER.activeCity.shipyard.level + 1])) }}</p>
-      <div class="flex w-full justify-between"><Button @click="onUpgrade">Upgrade</Button></div>
+      <p v-if="def.start && !def.finish">
+        {{
+          computed(() =>
+            format(def.level[PLAYER.activeCity.shipyard.level + 1]),
+          )
+        }}
+      </p>
+      <div class="flex w-full justify-between">
+        <Button @click="onUpgrade">Upgrade</Button>
+      </div>
     </div>
   </StructureModal>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import { NavyUpgrade, ShipyardUpgrade } from '../../../../defines/upgrades'
-import { usePlayerStore } from '../../../../store/player'
-import { useControllerStore } from '../../../../store/controller'
-import type { ConstructionTime } from '../../../../types'
-import { format } from '../../../../utils'
+import { computed, ref } from "vue";
+import { NavyUpgrade, ShipyardUpgrade } from "../../../../defines/upgrades";
+import { usePlayerStore } from "../../../../store/player";
+import { useControllerStore } from "../../../../store/controller";
+import type { ConstructionTime } from "../../../../types";
+import { format } from "../../../../utils";
 
-const PLAYER = usePlayerStore()
-const CONTROLLER = useControllerStore()
+const PLAYER = usePlayerStore();
+const CONTROLLER = useControllerStore();
 
-const resources = ref(NavyUpgrade(PLAYER.activeCity.palace.level + 1))
+const resources = ref(NavyUpgrade(PLAYER.activeCity.palace.level + 1));
 
-const def = computed(() => CONTROLLER.constructions.find(item => item.id === 'navy') as ConstructionTime)
+const def = computed(
+  () =>
+    CONTROLLER.constructions.find(
+      (item) => item.id === "navy",
+    ) as ConstructionTime,
+);
 
 const onUpgrade = () => {
-  const levelTarget = PLAYER.activeCity.cityhall.level + 1
+  const levelTarget = PLAYER.activeCity.cityhall.level + 1;
 
-  const upg = ShipyardUpgrade(levelTarget)
+  const upg = ShipyardUpgrade(levelTarget);
 
-  if(upg) {
-    const dmgWood = upg.wood
-    const dmgStone = upg.stone 
+  if (upg) {
+    const dmgWood = upg.wood;
+    const dmgStone = upg.stone;
 
-    if(PLAYER.activeCity.cityhall.wood.acc >= dmgWood && PLAYER.activeCity.cityhall.stone.acc >= dmgStone) {
-      PLAYER.activeCity.cityhall.wood.acc -= upg.wood
-      PLAYER.activeCity.cityhall.stone.acc -= upg.stone
+    if (
+      PLAYER.activeCity.cityhall.wood.acc >= dmgWood &&
+      PLAYER.activeCity.cityhall.stone.acc >= dmgStone
+    ) {
+      PLAYER.activeCity.cityhall.wood.acc -= upg.wood;
+      PLAYER.activeCity.cityhall.stone.acc -= upg.stone;
 
-      const city = CONTROLLER.constructions.find(item => item.id === 'navy') as ConstructionTime
-      const cityIndex = CONTROLLER.constructions.indexOf(city)
+      const city = CONTROLLER.constructions.find(
+        (item) => item.id === "navy",
+      ) as ConstructionTime;
+      const cityIndex = CONTROLLER.constructions.indexOf(city);
 
-      CONTROLLER.constructions[cityIndex]!.finish = false
-      CONTROLLER.constructions[cityIndex]!.start = true 
+      CONTROLLER.constructions[cityIndex]!.finish = false;
+      CONTROLLER.constructions[cityIndex]!.start = true;
 
-      resources.value = NavyUpgrade(levelTarget + 1)
+      resources.value = NavyUpgrade(levelTarget + 1);
     }
   }
-}
+};
 </script>

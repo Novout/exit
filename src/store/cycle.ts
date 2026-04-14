@@ -1,9 +1,9 @@
-import { defineStore } from "pinia"
+import { defineStore } from "pinia";
 
-export const useCycleStore = defineStore('cycle', {
-  state: () => ({ 
+export const useCycleStore = defineStore("cycle", {
+  state: () => ({
     started: false,
-    type: 'city',
-    value: 1, 
+    type: "battle",
+    value: 1,
   }),
-})
+});

@@ -1,7 +1,18 @@
 <template>
   <StructureModalFull name="points">
     <div class="flex flex-col gap-3 w-full">
-      <div class="p-2" :class="[event.type === 'points' ? 'bg-cyan text-black' : event.type === 'constructions' ? 'bg-yellow text-black' : '']" v-for="(event, key) in EVENTS.list" :key="key">
+      <div
+        class="p-2"
+        :class="[
+          event.type === 'points'
+            ? 'bg-cyan text-black'
+            : event.type === 'constructions'
+              ? 'bg-yellow text-black'
+              : '',
+        ]"
+        v-for="(event, key) in EVENTS.list"
+        :key="key"
+      >
         <p>{{ event.message }}</p>
       </div>
     </div>
@@ -9,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { useEventsStore } from '../../../../store/events';
+import { useEventsStore } from "../../../../store/events";
 
-const EVENTS = useEventsStore()
+const EVENTS = useEventsStore();
 </script>
