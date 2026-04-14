@@ -1,7 +1,9 @@
 import { getBattleValues } from "../defines/battle"
-import type { UnitBattleAcc, UnitBattleContext, UnitBattleType } from "../types"
+import type { UnitBattleAcc, UnitBattleContext, UnitBattleSet, UnitBattleType } from "../types"
 
 export const useBattle = () => {
+  const defines = getBattleValues()
+
   const splitUnitsByStack = (count: number, stack: number): number[] => {
     const arr: number[] = []
     let counter = 0
@@ -155,5 +157,89 @@ export const useBattle = () => {
     }, 0)
   }
 
-  return { getUnitsCounter, splitUnitsByStack, getLineSequence, asType, getTotalDamage }
+  const acceptDamage = (item: UnitBattleSet) => {
+    let isFrontlineDefender = false
+
+    let acc_units = 0
+    let acc_hp = 0
+    let acc_raw_hp = 0
+
+    if(item[0] === 'mech') {
+      if(item[2] < 21) {
+        isFrontlineDefender = true
+        acc_units = item[2]
+        acc_hp = defines.mech().hp * item[2]
+        acc_raw_hp = defines.mech().hp
+      } else {
+        acc_hp = defines.mech().hp * 21
+        acc_units = 21
+        acc_raw_hp = defines.mech().hp
+      }
+  }
+  
+  if(item[0] === 'hoplita') {
+    if(item[2] < 90 && !isFrontlineDefender) {
+      isFrontlineDefender = true
+      acc_units = item[2]
+      acc_hp = defines.hoplita().hp * item[2]
+      acc_raw_hp = defines.hoplita().hp
+    } else {
+      acc_hp = defines.hoplita().hp * 90
+      acc_units = 90
+      acc_raw_hp = defines.hoplita().hp
+    }
+  }
+
+  if(item[0] === 'spearman') {
+    if(item[2] < 90 && !isFrontlineDefender) {
+      acc_units = item[2]
+      acc_hp = defines.spearman().hp * item[2]
+      acc_raw_hp = defines.spearman().hp
+    } else {
+      acc_hp = defines.spearman().hp * 90
+      acc_units = 90
+      acc_raw_hp = defines.spearman().hp
+    }
+  }
+
+  if(item[0] === 'archer') {
+    if(item[2] < 90) {
+      acc_units = item[2]
+      acc_hp = defines.archer().hp * item[2]
+      acc_raw_hp = defines.archer().hp
+    } else {
+      acc_hp = defines.archer().hp * 90
+      acc_units = 90
+      acc_raw_hp = defines.archer().hp
+    }
+  }
+
+  if(item[0] === 'catapult') {
+    if(item[2] < 30) {
+      acc_units = item[2]
+      acc_hp = defines.catapult().hp * item[2]
+      acc_raw_hp = defines.catapult().hp
+    } else {
+      acc_hp = defines.catapult().hp * 30
+      acc_units = 30
+      acc_raw_hp = defines.catapult().hp
+    }
+  }
+
+  if(item[0] === 'viking') {
+    if(item[2] < 30) {
+      acc_units = item[2]
+      acc_hp = defines.viking().hp * item[2]
+      acc_raw_hp = defines.viking().hp
+    } else {
+      acc_hp = defines.viking().hp * 30
+      acc_units = 30
+      acc_raw_hp = defines.viking().hp
+    }
+  }
+
+  return { acc_units, acc_hp, acc_raw_hp }
+  }
+
+  return { getUnitsCounter, splitUnitsByStack, getLineSequence, asType, getTotalDamage, acceptDamage }
 }

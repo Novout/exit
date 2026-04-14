@@ -65,5 +65,15 @@ export const getBattleValues = () => {
     }
   }
 
-  return { wall, spearman, archer, catapult, hoplita, mech }
+  const viking = (): UnitBattleDefine => {
+    return {
+      id: 'viking',
+      hp: 60,
+      attack: 28,
+      units: 0,
+      maxUnits: 30
+    }
+  }
+
+  return { wall, spearman, archer, catapult, hoplita, mech, viking }
 }

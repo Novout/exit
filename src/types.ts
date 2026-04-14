@@ -162,9 +162,10 @@ export interface UnitBattleAcc {
   spearman: number,
 }
 
-export type UnitsType = 'wall' | 'viking' | 'spearman' | 'archer' | 'hoplita' | 'catapult' | 'mech'
+export type UnitsType = 'wall' | 'viking' | 'spearman' | 'archer' | 'hoplita' | 'catapult' | 'mech' | 'disabled'
 export type UnitBattleType = 'extra' | 'destruction_line' | 'back_line' | 'front_line' | 'wall' | 'disabled'
-export type UnitBattleContext = [UnitsType, UnitBattleType, number, number][]
+export type UnitBattleSet = [UnitsType, UnitBattleType, number, number]
+export type UnitBattleContext = UnitBattleSet[]
 
 export interface Battle {
   attacker?: UnitBattleContext

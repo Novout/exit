@@ -1,18 +1,38 @@
 <template>
-  <div class="flex flex-col w-full items-center pt-10 min-h-100vh">
+  <div class="flex flex-col w-full justify-center items-center pt-10 min-h-100vh">
     <div class="flex flex-col items-center justify-center w-full">
       <div class="flex flex-col items-center justify-center flex-1 gap-6 w-full">
         <div v-for="(atk, key) in attacker" :key="key" class="flex flex-row items-center gap-3">
           <div v-for="(value, index) in getStacks(atk)" :key="index">
-            <div class="flex flex-row items-center gap-2 rounded-xl bg-dark text-white px-1 border-black border-2" v-if="index <= 2">
-              <IconSpearman class="w-5 h-5" v-if="atk[0] === 'spearman' && atk[1] !== 'disabled'" />
-              <IconArcher class="w-5 h-5" v-else-if="atk[0] === 'archer' && atk[1] !== 'disabled'" />
-              <IconViking class="w-5 h-5" v-else-if="atk[0] === 'viking' && atk[1] !== 'disabled'" />
-              <IconHoplita class="w-5 h-5" v-else-if="atk[0] === 'hoplita' && atk[1] !== 'disabled'" />
-              <IconCatapult class="w-5 h-5" v-else-if="atk[0] === 'catapult' && atk[1] !== 'disabled'" />
-              <IconMech class="w-5 h-5" v-else-if="atk[0] === 'mech' && atk[1] !== 'disabled'" />
-              <IconWall class="w-5 h-5" v-else-if="atk[0] === 'wall' && atk[1] !== 'disabled'" />
-              <p>{{ value }} / {{ atk[3] }}</p>
+            <div v-if="index <= 2">
+              <div class="flex flex-row items-center gap-2 rounded-xl bg-dark text-white px-1 border-black border-2" v-if="atk[0] === 'spearman' && atk[1] !== 'disabled' && !attacker?.some(item => item[0] === 'hoplita' || item[0] === 'mech')">
+                <IconSpearman class="w-5 h-5" />
+                <p>{{ value }} / {{ atk[3] }}</p>
+              </div>
+              <div class="flex flex-row items-center gap-2 rounded-xl bg-dark text-white px-1 border-black border-2" v-else-if="atk[0] === 'hoplita' && atk[1] !== 'disabled' && !attacker?.some(item => item[0] === 'mech')">
+                <IconHoplita class="w-5 h-5" />
+                <p>{{ value }} / {{ atk[3] }}</p>
+              </div>
+              <div class="flex flex-row items-center gap-2 rounded-xl bg-dark text-white px-1 border-black border-2" v-else-if="atk[0] === 'mech' && atk[1] !== 'disabled'" >
+                <IconMech class="w-5 h-5"/>
+                <p>{{ value }} / {{ atk[3] }}</p>
+              </div>
+              <div class="flex flex-row items-center gap-2 rounded-xl bg-dark text-white px-1 border-black border-2" v-else-if="atk[0] === 'archer' && atk[1] !== 'disabled'" >
+                <IconArcher class="w-5 h-5" />
+                <p>{{ value }} / {{ atk[3] }}</p>
+              </div>
+              <div class="flex flex-row items-center gap-2 rounded-xl bg-dark text-white px-1 border-black border-2" v-else-if="atk[0] === 'viking' && atk[1] !== 'disabled'" >
+                <IconViking class="w-5 h-5" />
+                <p>{{ value }} / {{ atk[3] }}</p>
+              </div>
+              <div class="flex flex-row items-center gap-2 rounded-xl bg-dark text-white px-1 border-black border-2" v-else-if="atk[0] === 'catapult' && atk[1] !== 'disabled'" >
+                <IconCatapult class="w-5 h-5" />
+                <p>{{ value }} / {{ atk[3] }}</p>
+              </div>
+              <div class="flex flex-row items-center gap-2 rounded-xl bg-dark text-white px-1 border-black border-2" v-else-if="atk[0] === 'wall' && atk[1] !== 'disabled'" >
+                <IconWall class="w-5 h-5" />
+                <p>{{ value }} / {{ atk[3] }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -21,15 +41,35 @@
       <div class="flex flex-col items-center justify-center flex-1 pt-5 gap-6 w-full">
         <div v-for="(atk, key) in defender" :key="key" class="flex flex-row items-center gap-3">
           <div v-for="(value, index) in getStacks(atk)" :key="index">
-            <div class="flex flex-row items-center gap-2 rounded-xl bg-dark text-white px-1 border-black border-2" v-if="index <= 2">
-              <IconSpearman class="w-5 h-5" v-if="atk[0] === 'spearman' && atk[1] !== 'disabled'" />
-              <IconArcher class="w-5 h-5" v-else-if="atk[0] === 'archer' && atk[1] !== 'disabled'" />
-              <IconViking class="w-5 h-5" v-else-if="atk[0] === 'viking' && atk[1] !== 'disabled'" />
-              <IconHoplita class="w-5 h-5" v-else-if="atk[0] === 'hoplita' && atk[1] !== 'disabled'" />
-              <IconCatapult class="w-5 h-5" v-else-if="atk[0] === 'catapult' && atk[1] !== 'disabled'" />
-              <IconMech class="w-5 h-5" v-else-if="atk[0] === 'mech' && atk[1] !== 'disabled'" />
-              <IconWall class="w-5 h-5" v-else-if="atk[0] === 'wall' && atk[1] !== 'disabled'" />
-              <p>{{ value }} / {{ atk[3] }}</p>
+            <div v-if="index <= 2">
+              <div class="flex flex-row items-center gap-2 rounded-xl bg-dark text-white px-1 border-black border-2" v-if="atk[0] === 'spearman' && atk[1] !== 'disabled' && !attacker?.some(item => item[0] === 'hoplita' || item[0] === 'mech')">
+                <IconSpearman class="w-5 h-5" />
+                <p>{{ value }} / {{ atk[3] }}</p>
+              </div>
+              <div class="flex flex-row items-center gap-2 rounded-xl bg-dark text-white px-1 border-black border-2" v-else-if="atk[0] === 'hoplita' && atk[1] !== 'disabled' && !attacker?.some(item => item[0] === 'mech')">
+                <IconHoplita class="w-5 h-5" />
+                <p>{{ value }} / {{ atk[3] }}</p>
+              </div>
+              <div class="flex flex-row items-center gap-2 rounded-xl bg-dark text-white px-1 border-black border-2" v-else-if="atk[0] === 'mech' && atk[1] !== 'disabled'" >
+                <IconMech class="w-5 h-5"/>
+                <p>{{ value }} / {{ atk[3] }}</p>
+              </div>
+              <div class="flex flex-row items-center gap-2 rounded-xl bg-dark text-white px-1 border-black border-2" v-else-if="atk[0] === 'archer' && atk[1] !== 'disabled'" >
+                <IconArcher class="w-5 h-5" />
+                <p>{{ value }} / {{ atk[3] }}</p>
+              </div>
+              <div class="flex flex-row items-center gap-2 rounded-xl bg-dark text-white px-1 border-black border-2" v-else-if="atk[0] === 'viking' && atk[1] !== 'disabled'" >
+                <IconViking class="w-5 h-5" />
+                <p>{{ value }} / {{ atk[3] }}</p>
+              </div>
+              <div class="flex flex-row items-center gap-2 rounded-xl bg-dark text-white px-1 border-black border-2" v-else-if="atk[0] === 'catapult' && atk[1] !== 'disabled'" >
+                <IconCatapult class="w-5 h-5" />
+                <p>{{ value }} / {{ atk[3] }}</p>
+              </div>
+              <div class="flex flex-row items-center gap-2 rounded-xl bg-dark text-white px-1 border-black border-2" v-else-if="atk[0] === 'wall' && atk[1] !== 'disabled'" >
+                <IconWall class="w-5 h-5" />
+                <p>{{ value }} / {{ atk[3] }}</p>
+              </div>
             </div>
           </div>
         </div>
@@ -68,6 +108,7 @@
     <h2 @click="onNextRound" class="absolute top-6.5 right-40">Round {{ round }}</h2>
     <Button v-if="!isFinished" @click="onNextRound" class="absolute top-10 right-10">Next Round</Button>
     <Button class="absolute top-10 right-10" @click="CYCLE.type = 'city'" v-else>Close</Button>
+    <h1 class="font-poppins" v-if="winner">{{ winner.toUpperCase() }} Winner!</h1>
   </div>
 </template>
 
@@ -89,6 +130,7 @@ const defines = getBattleValues()
 
 const round = ref(0)
 const isFinished = ref(false)
+const winner = ref<'attacker' | 'defender' | null>(null)
 
 const attacker = ref<UnitBattleContext>()
 const defender = ref<UnitBattleContext>()
@@ -141,81 +183,17 @@ const onNextRound = () => {
   if(!defenderItem) return
   const defenderIndex = defender.value.indexOf(defenderItem)
 
-  let acc_units = 0
-  let acc_hp = 0
-  let acc_raw_hp = 0
-
-  if(defenderItem[0] === 'mech') {
-    if(defenderItem[2] < 21) {
-      isFrontlineDefender = true
-      acc_units = defenderItem[2]
-      acc_hp = defines.mech().hp * defenderItem[2]
-      acc_raw_hp = defines.mech().hp
-    } else {
-      acc_hp = defines.mech().hp * 21
-      acc_units = 21
-      acc_raw_hp = defines.mech().hp
-    }
-  }
-  
-  if(defenderItem[0] === 'hoplita') {
-    if(defenderItem[2] < 90 && !isFrontlineDefender) {
-      isFrontlineDefender = true
-      acc_units = defenderItem[2]
-      acc_hp = defines.hoplita().hp * defenderItem[2]
-      acc_raw_hp = defines.hoplita().hp
-    } else {
-      acc_hp = defines.hoplita().hp * 90
-      acc_units = 90
-      acc_raw_hp = defines.hoplita().hp
-    }
-  }
-
-  if(defenderItem[0] === 'spearman') {
-    if(defenderItem[2] < 90 && !isFrontlineDefender) {
-      acc_units = defenderItem[2]
-      acc_hp = defines.spearman().hp * defenderItem[2]
-      acc_raw_hp = defines.spearman().hp
-    } else {
-      acc_hp = defines.spearman().hp * 90
-      acc_units = 90
-      acc_raw_hp = defines.spearman().hp
-    }
-  }
-
-  if(defenderItem[0] === 'archer') {
-    if(defenderItem[2] < 90) {
-      acc_units = defenderItem[2]
-      acc_hp = defines.archer().hp * defenderItem[2]
-      acc_raw_hp = defines.archer().hp
-    } else {
-      acc_hp = defines.archer().hp * 90
-      acc_units = 90
-      acc_raw_hp = defines.archer().hp
-    }
-  }
-
-  if(defenderItem[0] === 'catapult') {
-    if(defenderItem[2] < 30) {
-      acc_units = defenderItem[2]
-      acc_hp = defines.catapult().hp * defenderItem[2]
-      acc_raw_hp = defines.catapult().hp
-    } else {
-      acc_hp = defines.catapult().hp * 30
-      acc_units = 30
-      acc_raw_hp = defines.catapult().hp
-    }
-  }
+  const defenderAcc = battle.acceptDamage(defenderItem)
 
   let breakLoop = false
   while(attackerDmg > 0) {
     defenderItem[2]--
-    attackerDmg -= acc_raw_hp
-    acc_units -= 1
+    attackerDmg -= defenderAcc.acc_raw_hp
+    defenderAcc.acc_units -= 1
 
     if(defenderItem[2] <= 0) {
       breakLoop = true
-      defender.value[defenderIndex] = [defenderItem[0], 'disabled', 0, 0]
+      defender.value[defenderIndex] = ['disabled', 'disabled', 0, 0]
       attackerDmg = 0
     }
   }
@@ -226,16 +204,17 @@ const onNextRound = () => {
   if(attDefender <= 0) {
     isFinished.value = true
 
-    // TODO: limit with maxAcc
     if(BATTLE.base.playerSide === 'attacker' && BATTLE.base.winBonus) {
-      PLAYER.activeCity.cityhall.stone.acc += BATTLE.base.winBonus.stone
-      PLAYER.activeCity.cityhall.wine.acc += BATTLE.base.winBonus.wine
-      PLAYER.activeCity.cityhall.wood.acc += BATTLE.base.winBonus.wood
-      PLAYER.activeCity.cityhall.sulfur.acc += BATTLE.base.winBonus.sulfur
-      PLAYER.activeCity.cityhall.crystal.acc += BATTLE.base.winBonus.crystal
+      if(PLAYER.activeCity.cityhall.stone.acc + BATTLE.base.winBonus.stone <= PLAYER.activeCity.cityhall.stone.maxAcc) PLAYER.activeCity.cityhall.stone.acc += BATTLE.base.winBonus.stone
+      if(PLAYER.activeCity.cityhall.wine.acc + BATTLE.base.winBonus.wine <= PLAYER.activeCity.cityhall.wine.maxAcc)PLAYER.activeCity.cityhall.wine.acc += BATTLE.base.winBonus.wine
+      if(PLAYER.activeCity.cityhall.wood.acc + BATTLE.base.winBonus.wood <= PLAYER.activeCity.cityhall.wood.maxAcc)PLAYER.activeCity.cityhall.wood.acc += BATTLE.base.winBonus.wood
+      if(PLAYER.activeCity.cityhall.sulfur.acc + BATTLE.base.winBonus.sulfur <= PLAYER.activeCity.cityhall.sulfur.maxAcc)PLAYER.activeCity.cityhall.sulfur.acc += BATTLE.base.winBonus.sulfur
+      if(PLAYER.activeCity.cityhall.crystal.acc + BATTLE.base.winBonus.crystal <= PLAYER.activeCity.cityhall.crystal.maxAcc)PLAYER.activeCity.cityhall.crystal.acc += BATTLE.base.winBonus.crystal
     }
 
     if(BATTLE.base.isViking) PLAYER.data.island.vikingLevel++
+
+    winner.value = 'attacker'
   
     return
   }
@@ -247,81 +226,17 @@ const onNextRound = () => {
   if(!attackItem) return
   const attackIndex = attacker.value.indexOf(attackItem)
 
-  acc_units = 0
-  acc_hp = 0
-  acc_raw_hp = 0
-
-  if(attackItem[0] === 'mech') {
-    if(attackItem[2] < 21) {
-      isFrontlineDefender = true
-      acc_units = attackItem[2]
-      acc_hp = defines.mech().hp * attackItem[2]
-      acc_raw_hp = defines.mech().hp
-    } else {
-      acc_hp = defines.mech().hp * 21
-      acc_units = 21
-      acc_raw_hp = defines.mech().hp
-    }
-  }
-  
-  if(attackItem[0] === 'hoplita') {
-    if(attackItem[2] < 90 && !isFrontlineDefender) {
-      isFrontlineDefender = true
-      acc_units = attackItem[2]
-      acc_hp = defines.hoplita().hp * attackItem[2]
-      acc_raw_hp = defines.hoplita().hp
-    } else {
-      acc_hp = defines.hoplita().hp * 90
-      acc_units = 90
-      acc_raw_hp = defines.hoplita().hp
-    }
-  }
-
-  if(attackItem[0] === 'spearman') {
-    if(attackItem[2] < 90 && !isFrontlineDefender) {
-      acc_units = attackItem[2]
-      acc_hp = defines.spearman().hp * attackItem[2]
-      acc_raw_hp = defines.spearman().hp
-    } else {
-      acc_hp = defines.spearman().hp * 90
-      acc_units = 90
-      acc_raw_hp = defines.spearman().hp
-    }
-  }
-
-  if(attackItem[0] === 'archer') {
-    if(attackItem[2] < 90) {
-      acc_units = attackItem[2]
-      acc_hp = defines.archer().hp * attackItem[2]
-      acc_raw_hp = defines.archer().hp
-    } else {
-      acc_hp = defines.archer().hp * 90
-      acc_units = 90
-      acc_raw_hp = defines.archer().hp
-    }
-  }
-
-  if(attackItem[0] === 'catapult') {
-    if(attackItem[2] < 30) {
-      acc_units = attackItem[2]
-      acc_hp = defines.catapult().hp * attackItem[2]
-      acc_raw_hp = defines.catapult().hp
-    } else {
-      acc_hp = defines.catapult().hp * 30
-      acc_units = 30
-      acc_raw_hp = defines.catapult().hp
-    }
-  }
+  const attackerAcc = battle.acceptDamage(attackItem)
 
   breakLoop = false
   while(defenderDmg > 0) {
     attackItem[2]--
-    defenderDmg -= acc_raw_hp
-    acc_units -= 1
+    defenderDmg -= attackerAcc.acc_raw_hp
+    attackerAcc.acc_units -= 1
 
     if(attackItem[2] <= 0) {
       breakLoop = true
-      attacker.value[attackIndex] = [attackItem[0], 'disabled', 0, 0]
+      attacker.value[attackIndex] = ['disabled', 'disabled', 0, 0]
       defenderDmg = 0
     }
   }
@@ -332,16 +247,17 @@ const onNextRound = () => {
   if(attAttack <= 0) {
     isFinished.value = true
 
-    // TODO: limit with maxAcc
     if(BATTLE.base.playerSide === 'defender' && BATTLE.base.winBonus) {
-      PLAYER.activeCity.cityhall.stone.acc += BATTLE.base.winBonus.stone
-      PLAYER.activeCity.cityhall.wine.acc += BATTLE.base.winBonus.wine
-      PLAYER.activeCity.cityhall.wood.acc += BATTLE.base.winBonus.wood
-      PLAYER.activeCity.cityhall.sulfur.acc += BATTLE.base.winBonus.sulfur
-      PLAYER.activeCity.cityhall.crystal.acc += BATTLE.base.winBonus.crystal
+      if(PLAYER.activeCity.cityhall.stone.acc + BATTLE.base.winBonus.stone <= PLAYER.activeCity.cityhall.stone.maxAcc) PLAYER.activeCity.cityhall.stone.acc += BATTLE.base.winBonus.stone
+      if(PLAYER.activeCity.cityhall.wine.acc + BATTLE.base.winBonus.wine <= PLAYER.activeCity.cityhall.wine.maxAcc)PLAYER.activeCity.cityhall.wine.acc += BATTLE.base.winBonus.wine
+      if(PLAYER.activeCity.cityhall.wood.acc + BATTLE.base.winBonus.wood <= PLAYER.activeCity.cityhall.wood.maxAcc)PLAYER.activeCity.cityhall.wood.acc += BATTLE.base.winBonus.wood
+      if(PLAYER.activeCity.cityhall.sulfur.acc + BATTLE.base.winBonus.sulfur <= PLAYER.activeCity.cityhall.sulfur.maxAcc)PLAYER.activeCity.cityhall.sulfur.acc += BATTLE.base.winBonus.sulfur
+      if(PLAYER.activeCity.cityhall.crystal.acc + BATTLE.base.winBonus.crystal <= PLAYER.activeCity.cityhall.crystal.maxAcc)PLAYER.activeCity.cityhall.crystal.acc += BATTLE.base.winBonus.crystal
     }
 
     if(BATTLE.base.isViking) PLAYER.data.island.vikingLevel++
+
+    winner.value = 'defender'
   
     return
   }
