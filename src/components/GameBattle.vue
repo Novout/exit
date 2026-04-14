@@ -1,10 +1,11 @@
 <template>
   <div
-    class="flex flex-col w-full justify-center items-center pt-10 min-h-100vh"
+    :style="{ backgroundImage: `url('/background.png')`}"
+    class="flex bg-cover text-white flex-col w-full justify-center items-center pt-10 min-h-100vh"
   >
-    <div class="flex flex-col items-center justify-center w-full">
+    <div class="flex flex-col bg-white bg-opacity-50 rounded-xl p-5 items-center justify-center w-30%">
       <div
-        class="flex flex-col items-center justify-center flex-1 gap-6 w-full"
+        class="flex flex-col items-center justify-center flex-1 gap-3 w-full"
       >
         <div
           v-for="(atk, key) in attacker"
@@ -78,7 +79,7 @@
       </div>
       <div class="px-1 border-2 border-black border-solid w-90% mt-5"></div>
       <div
-        class="flex flex-col items-center justify-center flex-1 pt-5 gap-6 w-full"
+        class="flex flex-col items-center justify-center flex-1 pt-5 gap-3 w-full"
       >
         <div
           v-for="(atk, key) in defender"
@@ -271,8 +272,6 @@ const onNextRound = () => {
 
     round.value++;
   } else {
-    let isFrontlineDefender = false;
-
     if (!defender.value) return;
 
     const line = battle.getLineSequence(defender.value);
@@ -290,7 +289,7 @@ const onNextRound = () => {
 
       if (defenderItem[2] <= 0) {
         breakLoop = true;
-        defender.value[defenderIndex] = ["disabled", "disabled", 0, 0];
+        defender.value = defender.value?.filter((item) => item[0] !== defenderItem[0]);
         attackerDmg = 0;
       }
     }
@@ -358,7 +357,7 @@ const onNextRound = () => {
 
       if (attackItem[2] <= 0) {
         breakLoop = true;
-        attacker.value[attackIndex] = ["disabled", "disabled", 0, 0];
+        attacker.value = attacker.value?.filter((item) => item[0] !== defenderItem[0]);
         defenderDmg = 0;
       }
     }
