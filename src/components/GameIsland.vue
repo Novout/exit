@@ -4,7 +4,7 @@
       class="absolute flex flex-col justify-center items-center cursor-pointer"
       :style="{
         left: `${city.x * 70}px`,
-        top: `${city.y * 70 + 150}px`,
+        top: `${city.y * 70 + 220}px`,
         color: `${city.owner === 'main' ? 'green' : 'black'}`,
       }"
       v-for="(city, index) in cities"
@@ -14,6 +14,7 @@
       <IconCityHall
         v-if="city.owner"
         @click="WORLD.cityActive = city"
+        :class="city.owner !== 'main' ? 'text-red' : ''"
         class="h-20 w-20 cursor-pointer"
       />
       <IconTerrain
