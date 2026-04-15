@@ -161,6 +161,14 @@ export const useBattle = () => {
         }
       }
 
+      if (value[0] === "viking") {
+        if (value[2] < 30) {
+          _acc = defines.viking().attack * value[2];
+        } else {
+          _acc = defines.viking().attack * 30;
+        }
+      }
+
       return acc + _acc;
     }, 0);
   };
