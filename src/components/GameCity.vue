@@ -1,56 +1,62 @@
 <template>
-  <div class="w-full bg-1 h-100vh">
+  <div class="grid pt-10 grid-cols-5 grid-rows-7 gap-10 w-full bg-1 h-100vh">
+    <p> </p>
     <GameMainButton
       @click="STRUCTURE.cityhall.modal = true"
-      class="absolute left-200 top-120 bg-emerald"
+      class="bg-emerald"
     >
       City Hall
     </GameMainButton>
     <GameMainButton
       @click="STRUCTURE.storage.modal = true"
-      class="absolute left-300 top-150 bg-cyan"
+      class="bg-cyan"
     >
       Storage
     </GameMainButton>
     <GameMainButton
       @click="STRUCTURE.market.modal = true"
-      class="absolute left-270 top-70 bg-amber"
+      class="bg-amber"
     >
       Market
     </GameMainButton>
+    <p> </p>
     <GameMainButton
       @click="STRUCTURE.military.modal = true"
-      class="absolute left-110 top-120 bg-red"
+      class="bg-red"
     >
       Military
     </GameMainButton>
+    <p> </p>
+    <p> </p>
     <GameMainButton
       @click="STRUCTURE.science.modal = true"
-      class="absolute left-140 top-70 bg-lime"
+      class="bg-lime"
     >
       Science
     </GameMainButton>
     <GameMainButton
       @click="STRUCTURE.tavern.modal = true"
-      class="absolute left-80 top-150 bg-pink"
+      class="bg-pink"
     >
       Tavern
     </GameMainButton>
+    <p> </p>
     <GameMainButton
       @click="STRUCTURE.navy.modal = true"
-      class="absolute left-200 top-200 bg-blue"
+      class="bg-blue"
     >
       Shipyard
     </GameMainButton>
     <GameMainButton
       @click="STRUCTURE.palace.modal = true"
-      class="absolute left-190 top-50 bg-purple"
+      class="bg-purple"
     >
       Palace
     </GameMainButton>
+    <p> </p>
     <GameMainButton
       @click="STRUCTURE.wall.modal = true"
-      class="absolute left-100 top-45 bg-yellow"
+      class="bg-yellow"
     >
       Wall
     </GameMainButton>
