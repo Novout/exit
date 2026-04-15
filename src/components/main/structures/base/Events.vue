@@ -20,7 +20,14 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted } from "vue";
+import { usePlayerStore } from "../../../../store/player";
 import { useEventsStore } from "../../../../store/events";
 
+const PLAYER = usePlayerStore();
 const EVENTS = useEventsStore();
+
+onMounted(() => {
+  PLAYER.data.notifies = 0
+})
 </script>

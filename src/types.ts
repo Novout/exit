@@ -1,4 +1,5 @@
 export interface Player {
+  notifies: number;
   actions: {
     market: {
       activeBuyAction: boolean;

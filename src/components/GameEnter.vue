@@ -80,6 +80,7 @@ const onStart = () => {
   });
 
   PLAYER.data = {
+    notifies: 0,
     actions: {
       market: {
         activeBuyAction: true,
@@ -275,6 +276,7 @@ const onStart = () => {
               type: "points",
               message: item.message,
             });
+            PLAYER.data.notifies++
           }
         }
       }
@@ -322,6 +324,7 @@ const onStart = () => {
               type: "constructions",
               message: item.message,
             });
+            PLAYER.data.notifies++
           }
         }
       }
