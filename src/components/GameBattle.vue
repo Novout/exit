@@ -401,8 +401,6 @@ const onNextRound = () => {
             BATTLE.base.winBonus.crystal;
       }
 
-      if (BATTLE.base.isViking) PLAYER.data.island.vikingLevel++;
-
       winner.value = "defender";
 
       return;
