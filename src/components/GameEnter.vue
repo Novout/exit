@@ -1,6 +1,6 @@
 <template>
   <div
-    :style="{ backgroundImage: `url('/background.png')`}"
+    :style="{ backgroundImage: `url('/background.png')` }"
     class="flex bg-cover font-poppins flex-col gap-5 items-center justify-center w-full h-100vh"
   >
     <div
@@ -276,7 +276,53 @@ const onStart = () => {
               type: "points",
               message: item.message,
             });
-            PLAYER.data.notifies++
+            PLAYER.data.notifies++;
+          }
+        }
+      }
+    });
+
+    CONTROLLER.units.forEach((item, index) => {
+      if (item.start && !item.finish) {
+        if (CONTROLLER.units[index]) {
+          CONTROLLER.units[index].value--;
+
+          if (item.value <= 0) {
+            CONTROLLER.units[index].finish = true;
+
+            PLAYER.activeCity.cityhall.wood.acc -=
+              CONTROLLER.units[index]?.values.wood || 0;
+            PLAYER.activeCity.cityhall.stone.acc -=
+              CONTROLLER.units[index]?.values.stone || 0;
+            PLAYER.activeCity.cityhall.sulfur.acc -=
+              CONTROLLER.units[index]?.values.sulfur || 0;
+            PLAYER.activeCity.cityhall.crystal.acc -=
+              CONTROLLER.units[index]?.values.crystal || 0;
+
+            PLAYER.activeCity.soldiers = PLAYER.activeCity.soldiers.map(
+              (soldier) => {
+                if (soldier.type === "spearman")
+                  soldier.units +=
+                    CONTROLLER.units[index]?.values.spearman || 0;
+                if (soldier.type === "hoplita")
+                  soldier.units += CONTROLLER.units[index]?.values.hoplita || 0;
+                if (soldier.type === "mech")
+                  soldier.units += CONTROLLER.units[index]?.values.mech || 0;
+                if (soldier.type === "archer")
+                  soldier.units += CONTROLLER.units[index]?.values.archer || 0;
+                if (soldier.type === "catapult")
+                  soldier.units +=
+                    CONTROLLER.units[index]?.values.catapult || 0;
+
+                return soldier;
+              },
+            );
+
+            EVENTS.list.unshift({
+              type: "army",
+              message: item.message,
+            });
+            PLAYER.data.notifies++;
           }
         }
       }
@@ -324,7 +370,7 @@ const onStart = () => {
               type: "constructions",
               message: item.message,
             });
-            PLAYER.data.notifies++
+            PLAYER.data.notifies++;
           }
         }
       }

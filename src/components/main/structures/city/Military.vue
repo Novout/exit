@@ -94,6 +94,9 @@
         }"
       />
       <Button @click="onSet">Set</Button>
+      <p v-if="CONTROLLER.units[0]!.value > 0">
+        {{ computed(() => format(CONTROLLER.units[0]!.value as any)) }}
+      </p>
       <p v-if="def.start && !def.finish">
         {{
           computed(() =>
@@ -170,20 +173,30 @@ const onSet = () => {
     PLAYER.activeCity.cityhall.crystal.acc >= crystal &&
     PLAYER.activeCity.cityhall.sulfur.acc >= sulfur
   ) {
-    PLAYER.activeCity.cityhall.wood.acc -= wood;
-    PLAYER.activeCity.cityhall.stone.acc -= stone;
-    PLAYER.activeCity.cityhall.sulfur.acc -= sulfur;
-    PLAYER.activeCity.cityhall.crystal.acc -= crystal;
+    const index = PLAYER.activeCity.id;
+    CONTROLLER.units[index]!.finish = false;
+    CONTROLLER.units[index]!.start = true;
 
-    PLAYER.activeCity.soldiers = PLAYER.activeCity.soldiers.map((soldier) => {
-      if (soldier.type === "spearman") soldier.units += Number(units.spearman);
-      if (soldier.type === "archer") soldier.units += Number(units.archer);
-      if (soldier.type === "hoplita") soldier.units += Number(units.hoplita);
-      if (soldier.type === "catapult") soldier.units += Number(units.catapult);
-      if (soldier.type === "mech") soldier.units += Number(units.mech);
+    let value = 0;
+    value += Number(units.spearman) * 5;
+    value += Number(units.archer) * 6;
+    value += Number(units.hoplita) * 10;
+    value += Number(units.catapult) * 16;
+    value += Number(units.mech) * 40;
 
-      return soldier;
-    });
+    CONTROLLER.units[index]!.value = value;
+
+    CONTROLLER.units[index]!.values = {
+      wood,
+      stone,
+      sulfur,
+      crystal,
+      spearman: Number(units.spearman),
+      archer: Number(units.archer),
+      hoplita: Number(units.hoplita),
+      catapult: Number(units.catapult),
+      mech: Number(units.mech),
+    };
   }
 
   units.spearman = 0;

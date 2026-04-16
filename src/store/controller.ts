@@ -148,6 +148,26 @@ export const useControllerStore = defineStore("controller", {
         activeLevel: 2,
       },
     ] as ConstructionTime[],
+    units: [
+      {
+        id: "soldiers_0",
+        message: "Your units are ready!",
+        start: false,
+        finish: false,
+        value: 0,
+        values: {
+          spearman: 0,
+          hoplita: 0,
+          mech: 0,
+          archer: 0,
+          catapult: 0,
+          wood: 0,
+          sulfur: 0,
+          stone: 0,
+          crystal: 0,
+        },
+      },
+    ],
     points: [
       {
         id: "the_beginning",

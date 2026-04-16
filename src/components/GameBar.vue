@@ -68,20 +68,34 @@
       </div>
       <div class="pl-5">
         <button class="p-2">
-          <IconWorld @click="CYCLE.type = 'world'" class="h-10 w-10 md:w-13 md:h-13 2xl:h-20 2xl:w-20" />
+          <IconWorld
+            @click="CYCLE.type = 'world'"
+            class="h-10 w-10 md:w-13 md:h-13 2xl:h-20 2xl:w-20"
+          />
         </button>
         <button class="p-2">
-          <IconIsland @click="CYCLE.type = 'island'" class="h-10 w-10 md:w-13 md:h-13 2xl:h-20 2xl:w-20" />
+          <IconIsland
+            @click="CYCLE.type = 'island'"
+            class="h-10 w-10 md:w-13 md:h-13 2xl:h-20 2xl:w-20"
+          />
         </button>
         <button class="p-2">
-          <IconCityHall @click="CYCLE.type = 'city'" class="h-10 w-10 md:w-13 md:h-13 2xl:h-20 2xl:w-20" />
+          <IconCityHall
+            @click="CYCLE.type = 'city'"
+            class="h-10 w-10 md:w-13 md:h-13 2xl:h-20 2xl:w-20"
+          />
         </button>
       </div>
     </div>
     <div class="w-full">
       <button @click="STRUCTURE.notifies.modal = true" class="p-2">
         <IconEvents class="h-10 w-10 md:w-13 md:h-13 2xl:h-20 2xl:w-20" />
-        <p v-if="PLAYER.data.notifies > 0" class="absolute top-23 text-md rounded-full bg-red-4 text-white p-1 w-4">{{ PLAYER.data.notifies }}</p>
+        <p
+          v-if="PLAYER.data.notifies > 0"
+          class="absolute top-23 text-md rounded-full bg-red-4 text-white p-1 w-4"
+        >
+          {{ PLAYER.data.notifies }}
+        </p>
       </button>
       <button @click="STRUCTURE.military_base.modal = true" class="p-2">
         <IconMilitary class="h-10 w-10 md:w-13 md:h-13 2xl:h-20 2xl:w-20" />

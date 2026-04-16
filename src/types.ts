@@ -37,6 +37,7 @@ export interface IslandCity {
 
 export interface City {
   navy: [];
+  id: number;
   soldiers: {
     units: number;
     type: UnitsType;

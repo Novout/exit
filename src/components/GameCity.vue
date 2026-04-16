@@ -1,63 +1,36 @@
 <template>
   <div class="grid pt-10 grid-cols-5 grid-rows-7 gap-10 w-full bg-1 h-100vh">
-    <p> </p>
-    <GameMainButton
-      @click="STRUCTURE.cityhall.modal = true"
-      class="bg-emerald"
-    >
+    <p></p>
+    <GameMainButton @click="STRUCTURE.cityhall.modal = true" class="bg-emerald">
       City Hall
     </GameMainButton>
-    <GameMainButton
-      @click="STRUCTURE.storage.modal = true"
-      class="bg-cyan"
-    >
+    <GameMainButton @click="STRUCTURE.storage.modal = true" class="bg-cyan">
       Storage
     </GameMainButton>
-    <GameMainButton
-      @click="STRUCTURE.market.modal = true"
-      class="bg-amber"
-    >
+    <GameMainButton @click="STRUCTURE.market.modal = true" class="bg-amber">
       Market
     </GameMainButton>
-    <p> </p>
-    <GameMainButton
-      @click="STRUCTURE.military.modal = true"
-      class="bg-red"
-    >
+    <p></p>
+    <GameMainButton @click="STRUCTURE.military.modal = true" class="bg-red">
       Military
     </GameMainButton>
-    <p> </p>
-    <p> </p>
-    <GameMainButton
-      @click="STRUCTURE.science.modal = true"
-      class="bg-lime"
-    >
+    <p></p>
+    <p></p>
+    <GameMainButton @click="STRUCTURE.science.modal = true" class="bg-lime">
       Science
     </GameMainButton>
-    <GameMainButton
-      @click="STRUCTURE.tavern.modal = true"
-      class="bg-pink"
-    >
+    <GameMainButton @click="STRUCTURE.tavern.modal = true" class="bg-pink">
       Tavern
     </GameMainButton>
-    <p> </p>
-    <GameMainButton
-      @click="STRUCTURE.navy.modal = true"
-      class="bg-blue"
-    >
+    <p></p>
+    <GameMainButton @click="STRUCTURE.navy.modal = true" class="bg-blue">
       Shipyard
     </GameMainButton>
-    <GameMainButton
-      @click="STRUCTURE.palace.modal = true"
-      class="bg-purple"
-    >
+    <GameMainButton @click="STRUCTURE.palace.modal = true" class="bg-purple">
       Palace
     </GameMainButton>
-    <p> </p>
-    <GameMainButton
-      @click="STRUCTURE.wall.modal = true"
-      class="bg-yellow"
-    >
+    <p></p>
+    <GameMainButton @click="STRUCTURE.wall.modal = true" class="bg-yellow">
       Wall
     </GameMainButton>
   </div>

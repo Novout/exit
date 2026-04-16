@@ -15,6 +15,7 @@ export const getNewPlayerData = () => {
 export const getNewCity = (): City => {
   return {
     navy: [],
+    id: 0,
     soldiers: [
       {
         type: "spearman",
