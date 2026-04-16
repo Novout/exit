@@ -2,10 +2,10 @@
   <div class="flex w-full items-center justify-between p-2 bg-bar">
     <div class="font-poppins flex items-center text-lg w-600">
       <div class="flex flex-col w-30">
-        <button class="p-5 flex items-center gap-5">
+        <button class="font-poppins p-5 flex items-center gap-5">
           <IconNavy class="w-6 h-6" /> {{ PLAYER.activeCity.navy.length }}
         </button>
-        <button class="p-5 flex items-center gap-5 justify-center">
+        <button class="p-5 font-poppins flex items-center gap-5 justify-center">
           <IconGold class="w-6 h-6" /> {{ PLAYER.data.gold.acc }}
           {{ PLAYER.data.gold.set }}
         </button>

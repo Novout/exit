@@ -1,5 +1,5 @@
 <template>
-  <div class="grid pt-10 grid-cols-5 grid-rows-7 gap-10 w-full bg-1 h-100vh">
+  <div class="grid px-20 py-10 grid-cols-5 grid-rows-7 gap-10 w-full bg-1 h-100vh">
     <p></p>
     <GameMainButton @click="STRUCTURE.cityhall.modal = true" class="bg-emerald">
       City Hall
@@ -11,9 +11,12 @@
       Market
     </GameMainButton>
     <p></p>
+    <p></p>
+    <p></p>
     <GameMainButton @click="STRUCTURE.military.modal = true" class="bg-red">
       Military
     </GameMainButton>
+    <p></p>
     <p></p>
     <p></p>
     <GameMainButton @click="STRUCTURE.science.modal = true" class="bg-lime">
@@ -22,6 +25,7 @@
     <GameMainButton @click="STRUCTURE.tavern.modal = true" class="bg-pink">
       Tavern
     </GameMainButton>
+    <p></p>
     <p></p>
     <GameMainButton @click="STRUCTURE.navy.modal = true" class="bg-blue">
       Shipyard
