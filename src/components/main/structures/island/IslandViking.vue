@@ -14,6 +14,9 @@
         </div>
       </div>
       <ResourcesBar description="Gain" :resources="vikingLevelGain" />
+      <p v-if="CONTROLLER.travel[0]!.value > 0">
+        {{ computed(() => format(CONTROLLER.travel[0]!.value)) }}
+      </p>
       <Button @click="onPreSetAttack">Attack</Button>
     </div>
   </StructureModal>
@@ -26,9 +29,12 @@ import { vikingDifficult, VikingGain } from "../../../../defines/difficults";
 import { useBattleStore } from "../../../../store/battle";
 import { useBattle } from "../../../../use/battle";
 import { useCycleStore } from "../../../../store/cycle";
-import type { Resources } from "../../../../types";
+import { useControllerStore } from "../../../../store/controller";
+import { format } from "../../../../utils";
+import type { TravelTime } from "../../../../types";
 
 const PLAYER = usePlayerStore();
+const CONTROLLER = useControllerStore();
 const BATTLE = useBattleStore();
 const CYCLE = useCycleStore();
 
@@ -41,57 +47,16 @@ const vikingLevelGain = computed(() =>
   VikingGain(PLAYER.data.island.vikingLevel),
 );
 
+const def = computed(
+  () => CONTROLLER.travel.find((item) => item.id === "viking_0") as TravelTime,
+);
+
 const onPreSetAttack = () => {
-  BATTLE.base.defender = battle.getUnitsCounter(
-    {
-      wall: 0,
-      mech: 0,
-      viking: vikingLevelDifficult.value.soldiers,
-      catapult: 0,
-      archer: vikingLevelDifficult.value.long,
-      hoplita: 0,
-      spearman: 0,
-    },
-    "defender",
-    true,
-  );
+  if (def.value.start) return;
 
-  const city = PLAYER.activeCity;
+  CONTROLLER.travel[0]!.finish = false;
+  CONTROLLER.travel[0]!.start = true;
 
-  const set = {
-    mech: 0,
-    archer: 0,
-    catapult: 0,
-    hoplita: 0,
-    spearman: 0,
-  };
-
-  city?.soldiers.forEach((soldier) => {
-    if (soldier.type === "spearman") set.spearman = soldier.units;
-    if (soldier.type === "archer") set.archer = soldier.units;
-    if (soldier.type === "hoplita") set.hoplita = soldier.units;
-    if (soldier.type === "catapult") set.catapult = soldier.units;
-    if (soldier.type === "mech") set.mech = soldier.units;
-  });
-
-  BATTLE.base.attacker = battle.getUnitsCounter(
-    {
-      ...set,
-      wall: 0,
-      viking: 0,
-    },
-    "attacker",
-    true,
-  );
-
-  BATTLE.base.winBonus = {
-    ...(vikingLevelGain.value as Resources),
-  };
-
-  BATTLE.base.city = undefined;
-  BATTLE.base.playerSide = "attacker";
-  BATTLE.base.isViking = true;
-
-  CYCLE.type = "battle";
+  CONTROLLER.travel[0]!.value = PLAYER.data.island.vikingLevel * 8;
 };
 </script>

@@ -182,6 +182,15 @@ export const useControllerStore = defineStore("controller", {
         },
       },
     ],
+    travel: [
+      {
+        id: "viking_0",
+        message: "War against vikings started!",
+        start: false,
+        value: 0,
+        finish: false,
+      },
+    ],
     points: [
       {
         id: "the_beginning",

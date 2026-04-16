@@ -32,18 +32,23 @@ import { getNewCity, getNewPlayerData } from "../defines/player";
 import { useWorld } from "../use/world";
 import { random } from "../utils";
 import { useWolrdStore } from "../store/world";
-import type { IslandCity } from "../types";
+import type { IslandCity, Resources } from "../types";
 import { MarketSet } from "../defines/upgrades";
 import { useControllerStore } from "../store/controller";
 import { useEventsStore } from "../store/events";
+import { useBattleStore } from "../store/battle";
+import { useBattle } from "../use/battle";
+import { vikingDifficult, VikingGain } from "../defines/difficults";
 
 const CYCLE = useCycleStore();
 const PLAYER = usePlayerStore();
 const WORLD = useWolrdStore();
 const CONTROLLER = useControllerStore();
 const EVENTS = useEventsStore();
+const BATTLE = useBattleStore();
 
 const world = useWorld();
+const battle = useBattle();
 
 const data = reactive({
   name: "",
@@ -277,6 +282,83 @@ const onStart = () => {
               type: "points",
               message: item.message,
             });
+            PLAYER.data.notifies++;
+          }
+        }
+      }
+    });
+
+    CONTROLLER.travel.forEach((item, index) => {
+      if (item.start && !item.finish) {
+        if (CONTROLLER.travel[index]) {
+          CONTROLLER.travel[index].value--;
+
+          if (item.value <= 0) {
+            CONTROLLER.travel[index].finish = true;
+            CONTROLLER.travel[index].start = false;
+
+            const vikingLevelDifficult = vikingDifficult(
+              PLAYER.data.island.vikingLevel,
+            );
+            const vikingLevelGain = VikingGain(PLAYER.data.island.vikingLevel);
+
+            EVENTS.list.unshift({
+              type: "army",
+              message: item.message,
+            });
+
+            BATTLE.base.defender = battle.getUnitsCounter(
+              {
+                wall: 0,
+                mech: 0,
+                viking: vikingLevelDifficult.soldiers,
+                catapult: 0,
+                archer: vikingLevelDifficult.long,
+                hoplita: 0,
+                spearman: 0,
+              },
+              "defender",
+              true,
+            );
+
+            const city = PLAYER.activeCity;
+
+            const set = {
+              mech: 0,
+              archer: 0,
+              catapult: 0,
+              hoplita: 0,
+              spearman: 0,
+            };
+
+            city?.soldiers.forEach((soldier) => {
+              if (soldier.type === "spearman") set.spearman = soldier.units;
+              if (soldier.type === "archer") set.archer = soldier.units;
+              if (soldier.type === "hoplita") set.hoplita = soldier.units;
+              if (soldier.type === "catapult") set.catapult = soldier.units;
+              if (soldier.type === "mech") set.mech = soldier.units;
+            });
+
+            BATTLE.base.attacker = battle.getUnitsCounter(
+              {
+                ...set,
+                wall: 0,
+                viking: 0,
+              },
+              "attacker",
+              true,
+            );
+
+            BATTLE.base.winBonus = {
+              ...(vikingLevelGain as Resources),
+            };
+
+            BATTLE.base.city = undefined;
+            BATTLE.base.playerSide = "attacker";
+            BATTLE.base.isViking = true;
+
+            CYCLE.type = "battle";
+
             PLAYER.data.notifies++;
           }
         }

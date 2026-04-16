@@ -144,6 +144,13 @@ export interface ConstructionTime {
   activeLevel: number;
 }
 
+export interface TravelTime {
+  id: string;
+  message: string;
+  start: boolean;
+  finish: boolean;
+}
+
 export interface UnitBattleDefine {
   id: UnitsType;
   priority?: boolean;
