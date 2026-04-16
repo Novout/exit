@@ -14,6 +14,7 @@ export interface Player {
     acc: number;
     set: number;
   };
+  boats: number;
   science: {
     points: number;
   };

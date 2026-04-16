@@ -81,6 +81,7 @@ const onStart = () => {
 
   PLAYER.data = {
     notifies: 0,
+    boats: 0,
     actions: {
       market: {
         activeBuyAction: true,
@@ -298,6 +299,11 @@ const onStart = () => {
               CONTROLLER.units[index]?.values.sulfur || 0;
             PLAYER.activeCity.cityhall.crystal.acc -=
               CONTROLLER.units[index]?.values.crystal || 0;
+
+            const boats = CONTROLLER.units[index].values.boats;
+            if (boats) {
+              PLAYER.data.boats += boats;
+            }
 
             PLAYER.activeCity.soldiers = PLAYER.activeCity.soldiers.map(
               (soldier) => {

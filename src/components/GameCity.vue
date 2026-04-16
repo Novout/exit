@@ -1,5 +1,7 @@
 <template>
-  <div class="grid px-20 py-10 grid-cols-5 grid-rows-7 gap-10 w-full bg-1 h-100vh">
+  <div
+    class="grid px-20 py-10 grid-cols-5 grid-rows-7 gap-10 w-full bg-1 h-100vh"
+  >
     <p></p>
     <GameMainButton @click="STRUCTURE.cityhall.modal = true" class="bg-emerald">
       City Hall
