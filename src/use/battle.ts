@@ -38,10 +38,10 @@ export const useBattle = () => {
       type === "attacker"
         ? [
             ["mech", "extra", acc.mech, 7],
-            ["catapult", "destruction_line", acc.catapult, 10],
-            ["archer", "back_line", acc.archer, 30],
             ["hoplita", "front_line", acc.hoplita, 30],
             ["spearman", "front_line", acc.spearman, 30],
+            ["archer", "back_line", acc.archer, 30],
+            ["catapult", "destruction_line", acc.catapult, 10],
           ]
         : viking
           ? [
@@ -50,11 +50,11 @@ export const useBattle = () => {
             ]
           : [
               ["wall", "wall", acc.wall],
-              ["spearman", "front_line", acc.spearman, 30],
+              ["mech", "extra", acc.mech, 7],
               ["hoplita", "front_line", acc.hoplita, 30],
+              ["spearman", "front_line", acc.spearman, 30],
               ["archer", "back_line", acc.archer, 30],
               ["catapult", "destruction_line", acc.catapult, 10],
-              ["mech", "extra", acc.mech, 7],
             ];
 
     return units as UnitBattleContext;
