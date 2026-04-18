@@ -275,8 +275,6 @@ const onNextRound = () => {
         return item;
       });
     }
-
-    round.value++;
   }
 
   if (!defender.value) return;
@@ -414,5 +412,7 @@ const onNextRound = () => {
 
     return;
   }
+
+  round.value++;
 };
 </script>
