@@ -249,11 +249,13 @@ const onStart = () => {
 
       if (isValidMaxInactive && isValidHappyInActive) {
         PLAYER.activeCity.cityhall.population.acc++;
+      } else {
+        PLAYER.activeCity.cityhall.population.acc--;
       }
 
       PLAYER.data.cities = PLAYER.data.cities.map((city) => {
         const isValidHappyInActive =
-          Number((city.tavern.workers * 12).toFixed()) + 50 >
+          Number((city.tavern.workers * 15).toFixed()) + 50 >
           city.cityhall.population.acc;
         const isValidMaxExternal =
           city.cityhall.population.acc < city.cityhall.population.maxAcc;
@@ -263,6 +265,8 @@ const onStart = () => {
             return city;
 
           city.cityhall.population.acc++;
+        } else {
+          city.cityhall.population.acc--;
         }
 
         return city;

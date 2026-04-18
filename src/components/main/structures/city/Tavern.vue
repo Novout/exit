@@ -18,6 +18,7 @@
         >
           Gold {{ PLAYER.data.gold.set }}
         </p>
+        <p>Happy: {{ (PLAYER.activeCity.tavern.workers * 15) + 50 - (PLAYER.activeCity.cityhall.population.acc) }}</p>
         <Button @click="onSetWorkers">Set</Button>
       </div>
       <p v-if="def.start && !def.finish">
