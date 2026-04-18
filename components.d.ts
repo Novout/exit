@@ -39,6 +39,7 @@ declare module 'vue' {
     IconMedal: typeof import('./src/components/main/icons/IconMedal.vue')['default']
     IconMedalo: typeof import('./src/components/main/icons/IconMedalo.vue')['default']
     IconMilitary: typeof import('./src/components/main/icons/IconMilitary.vue')['default']
+    IconMoney: typeof import('./src/components/main/icons/IconMoney.vue')['default']
     IconNavy: typeof import('./src/components/main/icons/IconNavy.vue')['default']
     IconPoints: typeof import('./src/components/main/icons/IconPoints.vue')['default']
     IconPop: typeof import('./src/components/main/icons/IconPop.vue')['default']

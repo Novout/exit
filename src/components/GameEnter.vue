@@ -206,7 +206,7 @@ const onStart = () => {
             if (current.type === "hoplita")
               return Number(acc) + Number(current.units * 4);
             if (current.type === "mech")
-              return Number(acc) + Number(current.units * 2);
+              return Number(acc) + Number(current.units * 10);
 
             return acc;
           }, 0);
@@ -214,7 +214,7 @@ const onStart = () => {
           return (
             acc +
             (current.cityhall.population.acc -
-              Number((workers * 4).toFixed()) -
+              Number((workers * 2.5).toFixed()) -
               Number(soldiers.toFixed()))
           );
         },

@@ -1,13 +1,16 @@
 <template>
-  <div class="flex w-full items-center justify-between p-2 bg-bar">
-    <div class="font-poppins flex items-center text-lg w-600">
+  <div class="flex w-full items-center p-2 bg-bar">
+    <div class="font-poppins flex items-center text-lg w-full">
       <div class="flex flex-col w-30">
         <button class="font-poppins p-5 flex items-center gap-5">
           <IconNavy class="w-6 h-6" /> {{ PLAYER.data.boats }}
         </button>
         <button class="p-5 font-poppins flex items-center gap-5 justify-center">
-          <IconGold class="w-6 h-6" /> {{ PLAYER.data.gold.acc }}
-          {{ PLAYER.data.gold.set }}
+          <div>
+            <IconGold class="w-6 h-6" />
+            {{ PLAYER.data.gold.acc }}
+          </div>
+          <p class="px-2 rounded-full" :class="[PLAYER.data.gold.set >= 0 ? 'bg-green' : 'bg-red']">{{ PLAYER.data.gold.set }}</p>
         </button>
       </div>
       <div class="flex items-center flex-col pl-5">
@@ -33,63 +36,68 @@
           {{ PLAYER.activeCity.cityhall.population.maxAcc }} | Workers:
           {{ workers }}
         </p>
-        <div class="flex flex-wrap items-center justify-between gap-5 text-sm">
+        <div class="flex px-5 flex-wrap justify-center items-center gap-5 text-sm">
           <p class="flex items-center">
             <IconWood class="w-6 h-6" />{{
               PLAYER.activeCity.cityhall.wood.acc
             }}
             / {{ PLAYER.activeCity.cityhall.wood.maxAcc }}
+            / +{{ PLAYER.activeCity.locksmith.workers * 4}}
           </p>
           <p class="flex items-center">
             <IconStone class="w-6 h-6" />{{
               PLAYER.activeCity.cityhall.stone.acc
             }}
             / {{ PLAYER.activeCity.cityhall.stone.maxAcc }}
+            / +{{ PLAYER.activeCity.bonus.workers * 4}}
           </p>
           <p class="flex items-center">
             <IconWine class="w-6 h-6" />{{
               PLAYER.activeCity.cityhall.wine.acc
             }}
             / {{ PLAYER.activeCity.cityhall.wine.maxAcc }}
+            / +{{ PLAYER.activeCity.bonus.workers * 4}}
           </p>
           <p class="flex items-center">
             <IconCrystal class="w-6 h-6" />{{
               PLAYER.activeCity.cityhall.crystal.acc
             }}
             / {{ PLAYER.activeCity.cityhall.crystal.maxAcc }}
+            / +{{ PLAYER.activeCity.bonus.workers * 4}}
           </p>
           <p class="flex items-center">
             <IconSulfur class="w-6 h-6" />{{
               PLAYER.activeCity.cityhall.sulfur.acc
             }}
             / {{ PLAYER.activeCity.cityhall.sulfur.maxAcc }}
+            / +{{ PLAYER.activeCity.bonus.workers * 4}}
           </p>
         </div>
       </div>
-      <div class="pl-5">
+      <div>
         <button class="p-2">
           <IconWorld
             @click="CYCLE.type = 'world'"
-            class="h-10 w-10 md:w-13 md:h-13 2xl:h-20 2xl:w-20"
+            class="h-10 w-10 md:w-13 md:h-13 2xl:h-18 2xl:w-18"
           />
         </button>
         <button class="p-2">
           <IconIsland
             @click="CYCLE.type = 'island'"
-            class="h-10 w-10 md:w-13 md:h-13 2xl:h-20 2xl:w-20"
+            class="h-10 w-10 md:w-13 md:h-13 2xl:h-18 2xl:w-18"
           />
         </button>
         <button class="p-2">
           <IconCityHall
             @click="CYCLE.type = 'city'"
-            class="h-10 w-10 md:w-13 md:h-13 2xl:h-20 2xl:w-20"
+            class="h-10 w-10 md:w-13 md:h-13 2xl:h-18 2xl:w-18"
           />
         </button>
       </div>
     </div>
-    <div class="w-full">
+    <div class="w-120">
       <button @click="STRUCTURE.notifies.modal = true" class="p-2">
-        <IconEvents class="h-10 w-10 md:w-13 md:h-13 2xl:h-20 2xl:w-20" />
+        <IconEvents class="h-10 w-10 md:w-13 md:h-13 2xl:h-18 2xl:w-18" />
         <p
           v-if="PLAYER.data.notifies > 0"
           class="absolute top-23 text-md rounded-full bg-red-4 text-white p-1 w-4"
@@ -98,10 +106,10 @@
         </p>
       </button>
       <button @click="STRUCTURE.military_base.modal = true" class="p-2">
-        <IconMilitary class="h-10 w-10 md:w-13 md:h-13 2xl:h-20 2xl:w-20" />
+        <IconMilitary class="h-10 w-10 md:w-13 md:h-13 2xl:h-18 2xl:w-18" />
       </button>
       <button @click="STRUCTURE.points.modal = true" class="p-2">
-        <IconScience class="h-10 w-10 md:w-13 md:h-13 2xl:h-20 2xl:w-20" />
+        <IconScience class="h-10 w-10 md:w-13 md:h-13 2xl:h-18 2xl:w-18" />
       </button>
     </div>
   </div>
