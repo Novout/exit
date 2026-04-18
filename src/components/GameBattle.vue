@@ -22,7 +22,9 @@
                   atk[0] === 'spearman' &&
                   atk[1] !== 'disabled' &&
                   !attacker?.some(
-                    (item) => (item[0] === 'hoplita' && item[2] !== 0) || (item[0] === 'mech' && item[2] !== 0),
+                    (item) =>
+                      (item[0] === 'hoplita' && item[2] !== 0) ||
+                      (item[0] === 'mech' && item[2] !== 0),
                   )
                 "
               >
@@ -96,7 +98,9 @@
                   atk[0] === 'spearman' &&
                   atk[1] !== 'disabled' &&
                   !defender?.some(
-                    (item) => (item[0] === 'hoplita' && item[2] !== 0) || (item[0] === 'mech' && item[2] !== 0),
+                    (item) =>
+                      (item[0] === 'hoplita' && item[2] !== 0) ||
+                      (item[0] === 'mech' && item[2] !== 0),
                   )
                 "
               >
@@ -273,22 +277,24 @@ const onNextRound = () => {
     }
 
     round.value++;
-  } else {
-    if (!defender.value) return;
+  }
 
-    const line = battle.getLineSequence(defender.value);
-    const defenderItem = defender.value.find((item) => item[1] === line);
-    if (!defenderItem) return;
-    const defenderIndex = defender.value.indexOf(defenderItem);
+  if (!defender.value) return;
 
-    const defenderAcc = battle.acceptDamage(defenderItem);
+  let breakLoop = false;
+  const line = battle.getLineSequence(defender.value);
+  const defenderItem = defender.value.find((item) => item[1] === line);
+  if (!defenderItem) return;
+  const defenderIndex = defender.value.indexOf(defenderItem);
 
-    let breakLoop = false;
+  const defenderAcc = battle.acceptDamage(defenderItem);
+
+  if(!asWall) {
     while (attackerDmg > 0) {
       defenderItem[2]--;
       attackerDmg -= defenderAcc.acc_raw_hp;
       defenderAcc.acc_units -= 1;
-
+  
       if (defenderItem[2] <= 0) {
         breakLoop = true;
         defender.value = defender.value?.filter(
@@ -297,16 +303,16 @@ const onNextRound = () => {
         attackerDmg = 0;
       }
     }
-
+  
     if (!breakLoop) defender.value[defenderIndex] = defenderItem;
-
+  
     const attDefender = battle.getTotalDamage(
       defender.value as UnitBattleContext,
       true,
     );
     if (attDefender <= 0) {
       isFinished.value = true;
-
+  
       if (BATTLE.base.playerSide === "attacker" && BATTLE.base.winBonus) {
         if (
           PLAYER.activeCity.cityhall.stone.acc + BATTLE.base.winBonus.stone <=
@@ -329,90 +335,84 @@ const onNextRound = () => {
         )
           PLAYER.activeCity.cityhall.sulfur.acc += BATTLE.base.winBonus.sulfur;
         if (
-          PLAYER.activeCity.cityhall.crystal.acc +
-            BATTLE.base.winBonus.crystal <=
+          PLAYER.activeCity.cityhall.crystal.acc + BATTLE.base.winBonus.crystal <=
           PLAYER.activeCity.cityhall.crystal.maxAcc
         )
-          PLAYER.activeCity.cityhall.crystal.acc +=
-            BATTLE.base.winBonus.crystal;
+          PLAYER.activeCity.cityhall.crystal.acc += BATTLE.base.winBonus.crystal;
       }
-
+  
       if (BATTLE.base.isViking) PLAYER.data.island.vikingLevel++;
-
+  
       winner.value = "attacker";
-
+  
       return;
     }
+  }
 
-    if (!attacker.value) return;
+  if (!attacker.value) return;
 
-    const lineAttack = battle.getLineSequence(attacker.value);
-    const attackItem = attacker.value.find((item) => item[1] === lineAttack);
-    if (!attackItem) return;
-    const attackIndex = attacker.value.indexOf(attackItem);
+  const lineAttack = battle.getLineSequence(attacker.value);
+  const attackItem = attacker.value.find((item) => item[1] === lineAttack);
+  if (!attackItem) return;
+  const attackIndex = attacker.value.indexOf(attackItem);
 
-    const attackerAcc = battle.acceptDamage(attackItem);
+  const attackerAcc = battle.acceptDamage(attackItem);
 
-    breakLoop = false;
-    while (defenderDmg > 0) {
-      attackItem[2]--;
-      defenderDmg -= attackerAcc.acc_raw_hp;
-      attackerAcc.acc_units -= 1;
+  breakLoop = false;
+  while (defenderDmg > 0) {
+    attackItem[2]--;
+    defenderDmg -= attackerAcc.acc_raw_hp;
+    attackerAcc.acc_units -= 1;
 
-      if (attackItem[2] <= 0) {
-        breakLoop = true;
-        attacker.value = attacker.value?.filter(
-          (item) => item[0] !== defenderItem[0],
-        );
-        defenderDmg = 0;
-      }
+    if (attackItem[2] <= 0) {
+      breakLoop = true;
+      attacker.value = attacker.value?.filter(
+        (item) => item[0] !== defenderItem[0],
+      );
+      defenderDmg = 0;
+    }
+  }
+
+  if (!breakLoop) defender.value[attackIndex] = attackItem;
+
+  const attAttack = battle.getTotalDamage(
+    attacker.value as UnitBattleContext,
+    true,
+  );
+  if (attAttack <= 0) {
+    isFinished.value = true;
+
+    if (BATTLE.base.playerSide === "defender" && BATTLE.base.winBonus) {
+      if (
+        PLAYER.activeCity.cityhall.stone.acc + BATTLE.base.winBonus.stone <=
+        PLAYER.activeCity.cityhall.stone.maxAcc
+      )
+        PLAYER.activeCity.cityhall.stone.acc += BATTLE.base.winBonus.stone;
+      if (
+        PLAYER.activeCity.cityhall.wine.acc + BATTLE.base.winBonus.wine <=
+        PLAYER.activeCity.cityhall.wine.maxAcc
+      )
+        PLAYER.activeCity.cityhall.wine.acc += BATTLE.base.winBonus.wine;
+      if (
+        PLAYER.activeCity.cityhall.wood.acc + BATTLE.base.winBonus.wood <=
+        PLAYER.activeCity.cityhall.wood.maxAcc
+      )
+        PLAYER.activeCity.cityhall.wood.acc += BATTLE.base.winBonus.wood;
+      if (
+        PLAYER.activeCity.cityhall.sulfur.acc + BATTLE.base.winBonus.sulfur <=
+        PLAYER.activeCity.cityhall.sulfur.maxAcc
+      )
+        PLAYER.activeCity.cityhall.sulfur.acc += BATTLE.base.winBonus.sulfur;
+      if (
+        PLAYER.activeCity.cityhall.crystal.acc + BATTLE.base.winBonus.crystal <=
+        PLAYER.activeCity.cityhall.crystal.maxAcc
+      )
+        PLAYER.activeCity.cityhall.crystal.acc += BATTLE.base.winBonus.crystal;
     }
 
-    if (!breakLoop) defender.value[attackIndex] = attackItem;
+    winner.value = "defender";
 
-    const attAttack = battle.getTotalDamage(
-      attacker.value as UnitBattleContext,
-      true,
-    );
-    if (attAttack <= 0) {
-      isFinished.value = true;
-
-      if (BATTLE.base.playerSide === "defender" && BATTLE.base.winBonus) {
-        if (
-          PLAYER.activeCity.cityhall.stone.acc + BATTLE.base.winBonus.stone <=
-          PLAYER.activeCity.cityhall.stone.maxAcc
-        )
-          PLAYER.activeCity.cityhall.stone.acc += BATTLE.base.winBonus.stone;
-        if (
-          PLAYER.activeCity.cityhall.wine.acc + BATTLE.base.winBonus.wine <=
-          PLAYER.activeCity.cityhall.wine.maxAcc
-        )
-          PLAYER.activeCity.cityhall.wine.acc += BATTLE.base.winBonus.wine;
-        if (
-          PLAYER.activeCity.cityhall.wood.acc + BATTLE.base.winBonus.wood <=
-          PLAYER.activeCity.cityhall.wood.maxAcc
-        )
-          PLAYER.activeCity.cityhall.wood.acc += BATTLE.base.winBonus.wood;
-        if (
-          PLAYER.activeCity.cityhall.sulfur.acc + BATTLE.base.winBonus.sulfur <=
-          PLAYER.activeCity.cityhall.sulfur.maxAcc
-        )
-          PLAYER.activeCity.cityhall.sulfur.acc += BATTLE.base.winBonus.sulfur;
-        if (
-          PLAYER.activeCity.cityhall.crystal.acc +
-            BATTLE.base.winBonus.crystal <=
-          PLAYER.activeCity.cityhall.crystal.maxAcc
-        )
-          PLAYER.activeCity.cityhall.crystal.acc +=
-            BATTLE.base.winBonus.crystal;
-      }
-
-      winner.value = "defender";
-
-      return;
-    }
-
-    round.value++;
+    return;
   }
 };
 </script>

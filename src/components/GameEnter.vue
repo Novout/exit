@@ -38,7 +38,12 @@ import { useControllerStore } from "../store/controller";
 import { useEventsStore } from "../store/events";
 import { useBattleStore } from "../store/battle";
 import { useBattle } from "../use/battle";
-import { botDifficult, botGain, vikingDifficult, VikingGain } from "../defines/difficults";
+import {
+  botDifficult,
+  botGain,
+  vikingDifficult,
+  VikingGain,
+} from "../defines/difficults";
 
 const CYCLE = useCycleStore();
 const PLAYER = usePlayerStore();
@@ -298,15 +303,17 @@ const onStart = () => {
           CONTROLLER.travel[index].value--;
 
           if (item.value <= 0 && index === 1) {
-            const isViking = item.id.startsWith('viking')
-            
+            const isViking = item.id.startsWith("viking");
+
             CONTROLLER.travel[index].finish = true;
             CONTROLLER.travel[index].start = false;
 
-            const levelDifficult = isViking ? vikingDifficult(
-              PLAYER.data.island.vikingLevel,
-            ) : botDifficult(1)
-            const levelGain = isViking ? VikingGain(PLAYER.data.island.vikingLevel) : botGain(1)
+            const levelDifficult = isViking
+              ? vikingDifficult(PLAYER.data.island.vikingLevel)
+              : botDifficult(1);
+            const levelGain = isViking
+              ? VikingGain(PLAYER.data.island.vikingLevel)
+              : botGain(1);
 
             EVENTS.list.unshift({
               type: "army",
@@ -315,7 +322,7 @@ const onStart = () => {
 
             BATTLE.base.defender = battle.getUnitsCounter(
               {
-                wall: 0,
+                wall: 3,
                 mech: levelDifficult.mech,
                 viking: isViking ? levelDifficult.soldiers : 0,
                 catapult: levelDifficult.catapult,

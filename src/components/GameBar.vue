@@ -10,7 +10,12 @@
             <IconGold class="w-6 h-6" />
             {{ PLAYER.data.gold.acc }}
           </div>
-          <p class="px-2 rounded-full" :class="[PLAYER.data.gold.set >= 0 ? 'bg-green' : 'bg-red']">{{ PLAYER.data.gold.set }}</p>
+          <p
+            class="px-2 rounded-full"
+            :class="[PLAYER.data.gold.set >= 0 ? 'bg-green' : 'bg-red']"
+          >
+            {{ PLAYER.data.gold.set }}
+          </p>
         </button>
       </div>
       <div class="flex items-center flex-col pl-5">
@@ -36,41 +41,48 @@
           {{ PLAYER.activeCity.cityhall.population.maxAcc }} | Workers:
           {{ workers }}
         </p>
-        <div class="flex px-5 flex-wrap justify-center items-center gap-5 text-sm">
+        <div
+          class="flex px-5 flex-wrap justify-center items-center gap-5 text-sm"
+        >
           <p class="flex items-center">
             <IconWood class="w-6 h-6" />{{
               PLAYER.activeCity.cityhall.wood.acc
             }}
-            / {{ PLAYER.activeCity.cityhall.wood.maxAcc }}
-            / +{{ PLAYER.activeCity.locksmith.workers * 4}}
+            / {{ PLAYER.activeCity.cityhall.wood.maxAcc }} / +{{
+              PLAYER.activeCity.locksmith.workers * 4
+            }}
           </p>
           <p class="flex items-center">
             <IconStone class="w-6 h-6" />{{
               PLAYER.activeCity.cityhall.stone.acc
             }}
-            / {{ PLAYER.activeCity.cityhall.stone.maxAcc }}
-            / +{{ PLAYER.activeCity.bonus.workers * 4}}
+            / {{ PLAYER.activeCity.cityhall.stone.maxAcc }} / +{{
+              PLAYER.activeCity.bonus.workers * 4
+            }}
           </p>
           <p class="flex items-center">
             <IconWine class="w-6 h-6" />{{
               PLAYER.activeCity.cityhall.wine.acc
             }}
-            / {{ PLAYER.activeCity.cityhall.wine.maxAcc }}
-            / +{{ PLAYER.activeCity.bonus.workers * 4}}
+            / {{ PLAYER.activeCity.cityhall.wine.maxAcc }} / +{{
+              PLAYER.activeCity.bonus.workers * 4
+            }}
           </p>
           <p class="flex items-center">
             <IconCrystal class="w-6 h-6" />{{
               PLAYER.activeCity.cityhall.crystal.acc
             }}
-            / {{ PLAYER.activeCity.cityhall.crystal.maxAcc }}
-            / +{{ PLAYER.activeCity.bonus.workers * 4}}
+            / {{ PLAYER.activeCity.cityhall.crystal.maxAcc }} / +{{
+              PLAYER.activeCity.bonus.workers * 4
+            }}
           </p>
           <p class="flex items-center">
             <IconSulfur class="w-6 h-6" />{{
               PLAYER.activeCity.cityhall.sulfur.acc
             }}
-            / {{ PLAYER.activeCity.cityhall.sulfur.maxAcc }}
-            / +{{ PLAYER.activeCity.bonus.workers * 4}}
+            / {{ PLAYER.activeCity.cityhall.sulfur.maxAcc }} / +{{
+              PLAYER.activeCity.bonus.workers * 4
+            }}
           </p>
         </div>
       </div>

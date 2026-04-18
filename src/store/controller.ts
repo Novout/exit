@@ -196,7 +196,7 @@ export const useControllerStore = defineStore("controller", {
         start: false,
         value: 0,
         finish: false,
-      }
+      },
     ],
     points: [
       {

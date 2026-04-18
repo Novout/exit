@@ -18,7 +18,12 @@
         :min="0"
         :max="10"
       />
-      <label class="flex gap-4" for="volume">{{ units.spearman }} / {{ 10 }} Spearmans <div class="flex items-center gap-1"><IconMoney class="w-6 h-6" />1</div></label>
+      <label class="flex gap-4" for="volume"
+        >{{ units.spearman }} / {{ 10 }} Spearmans
+        <div class="flex items-center gap-1">
+          <IconMoney class="w-6 h-6" />1
+        </div></label
+      >
       <input
         :disabled="PLAYER.activeCity.military.level < 2"
         type="range"
@@ -28,7 +33,12 @@
         :min="0"
         :max="10"
       />
-      <label class="flex gap-4" for="volume">{{ units.archer }} / {{ 10 }} Archer <div class="flex items-center gap-1"><IconMoney class="w-6 h-6" />2</div></label>
+      <label class="flex gap-4" for="volume"
+        >{{ units.archer }} / {{ 10 }} Archer
+        <div class="flex items-center gap-1">
+          <IconMoney class="w-6 h-6" />2
+        </div></label
+      >
       <input
         :disabled="PLAYER.activeCity.military.level < 3"
         type="range"
@@ -38,7 +48,12 @@
         :min="0"
         :max="10"
       />
-      <label class="flex gap-4" for="volume">{{ units.hoplita }} / {{ 10 }} Hoplita <div class="flex items-center gap-1"><IconMoney class="w-6 h-6" />4</div></label>
+      <label class="flex gap-4" for="volume"
+        >{{ units.hoplita }} / {{ 10 }} Hoplita
+        <div class="flex items-center gap-1">
+          <IconMoney class="w-6 h-6" />4
+        </div></label
+      >
       <input
         :disabled="PLAYER.activeCity.military.level < 5"
         type="range"
@@ -48,7 +63,12 @@
         :min="0"
         :max="10"
       />
-      <label class="flex gap-4" for="volume">{{ units.catapult }} / {{ 10 }} Catapult <div class="flex items-center gap-1"><IconMoney class="w-6 h-6" />6</div></label>
+      <label class="flex gap-4" for="volume"
+        >{{ units.catapult }} / {{ 10 }} Catapult
+        <div class="flex items-center gap-1">
+          <IconMoney class="w-6 h-6" />6
+        </div></label
+      >
       <input
         :disabled="PLAYER.activeCity.military.level < 4"
         type="range"
@@ -58,7 +78,12 @@
         :min="0"
         :max="10"
       />
-      <label class="flex gap-4" for="volume">{{ units.mech }} / {{ 10 }} Mech <div class="flex items-center gap-1"><IconMoney class="w-6 h-6" />10</div></label>
+      <label class="flex gap-4" for="volume"
+        >{{ units.mech }} / {{ 10 }} Mech
+        <div class="flex items-center gap-1">
+          <IconMoney class="w-6 h-6" />10
+        </div></label
+      >
       <ResourcesBar
         :resources="{
           wood:
