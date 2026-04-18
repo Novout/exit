@@ -22,7 +22,7 @@
                   atk[0] === 'spearman' &&
                   atk[1] !== 'disabled' &&
                   !attacker?.some(
-                    (item) => item[0] === 'hoplita' || item[0] === 'mech',
+                    (item) => (item[0] === 'hoplita' && item[2] !== 0) || (item[0] === 'mech' && item[2] !== 0),
                   )
                 "
               >
@@ -34,7 +34,7 @@
                 v-else-if="
                   atk[0] === 'hoplita' &&
                   atk[1] !== 'disabled' &&
-                  !attacker?.some((item) => item[0] === 'mech')
+                  !attacker?.some((item) => item[0] === 'mech' && item[2] !== 0)
                 "
               >
                 <IconHoplita class="w-5 h-5" />
@@ -95,8 +95,8 @@
                 v-if="
                   atk[0] === 'spearman' &&
                   atk[1] !== 'disabled' &&
-                  !attacker?.some(
-                    (item) => item[0] === 'hoplita' || item[0] === 'mech',
+                  !defender?.some(
+                    (item) => (item[0] === 'hoplita' && item[2] !== 0) || (item[0] === 'mech' && item[2] !== 0),
                   )
                 "
               >
@@ -108,7 +108,7 @@
                 v-else-if="
                   atk[0] === 'hoplita' &&
                   atk[1] !== 'disabled' &&
-                  !attacker?.some((item) => item[0] === 'mech')
+                  !defender?.some((item) => item[0] === 'mech' && item[2] !== 0)
                 "
               >
                 <IconHoplita class="w-5 h-5" />

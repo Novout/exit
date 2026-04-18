@@ -190,6 +190,13 @@ export const useControllerStore = defineStore("controller", {
         value: 0,
         finish: false,
       },
+      {
+        id: "bot_attack_0",
+        message: "War against bot started!",
+        start: false,
+        value: 0,
+        finish: false,
+      }
     ],
     points: [
       {

@@ -49,7 +49,7 @@ export const useBattle = () => {
               ["archer", "back_line", acc.archer, 30],
             ]
           : [
-              ["wall", "wall", acc.wall],
+              ["wall", "wall", acc.wall, 3],
               ["mech", "extra", acc.mech, 7],
               ["hoplita", "front_line", acc.hoplita, 30],
               ["spearman", "front_line", acc.spearman, 30],

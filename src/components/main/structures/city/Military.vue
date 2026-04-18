@@ -178,11 +178,11 @@ const onSet = () => {
     CONTROLLER.units[index]!.start = true;
 
     let value = 0;
-    value += Number(units.spearman) * 5;
-    value += Number(units.archer) * 6;
-    value += Number(units.hoplita) * 10;
-    value += Number(units.catapult) * 16;
-    value += Number(units.mech) * 40;
+    value += Number(units.spearman) * 3;
+    value += Number(units.archer) * 4;
+    value += Number(units.hoplita) * 6;
+    value += Number(units.catapult) * 10;
+    value += Number(units.mech) * 37;
 
     CONTROLLER.units[index]!.value = value;
 

@@ -26,19 +26,12 @@
 import { computed } from "vue";
 import { usePlayerStore } from "../../../../store/player";
 import { vikingDifficult, VikingGain } from "../../../../defines/difficults";
-import { useBattleStore } from "../../../../store/battle";
-import { useBattle } from "../../../../use/battle";
-import { useCycleStore } from "../../../../store/cycle";
 import { useControllerStore } from "../../../../store/controller";
 import { format } from "../../../../utils";
 import type { TravelTime } from "../../../../types";
 
 const PLAYER = usePlayerStore();
 const CONTROLLER = useControllerStore();
-const BATTLE = useBattleStore();
-const CYCLE = useCycleStore();
-
-const battle = useBattle();
 
 const vikingLevelDifficult = computed(() =>
   vikingDifficult(PLAYER.data.island.vikingLevel),
