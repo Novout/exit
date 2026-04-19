@@ -302,7 +302,7 @@ const onStart = () => {
         if (CONTROLLER.travel[index]) {
           CONTROLLER.travel[index].value--;
 
-          if (item.value <= 0 && index === 1) {
+          if (item.value <= 0) {
             const isViking = item.id.startsWith("viking");
 
             CONTROLLER.travel[index].finish = true;
