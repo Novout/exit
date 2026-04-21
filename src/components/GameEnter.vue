@@ -175,7 +175,7 @@ const onStart = () => {
       });
 
       const workers = Number(PLAYER.activeCity.locksmith.workers);
-      const max = Number((workers * 2.5).toFixed());
+      const max = Number((workers * 4).toFixed());
 
       if (
         PLAYER.activeCity.cityhall.wood.maxAcc >
@@ -190,7 +190,7 @@ const onStart = () => {
     if (_bonus < 0) {
       PLAYER.data.cities = PLAYER.data.cities.map((city) => {
         const workers = Number(city.bonus.workers);
-        const max = Number((workers * 2.5).toFixed());
+        const max = Number((workers * 4).toFixed());
 
         if (
           city.cityhall[city.type].maxAcc >
@@ -203,7 +203,7 @@ const onStart = () => {
       });
 
       const workers = Number(PLAYER.activeCity.bonus.workers);
-      const max = Number((workers * 2.5).toFixed());
+      const max = Number((workers * 4).toFixed());
 
       if (
         PLAYER.activeCity.cityhall[PLAYER.activeCity.type].maxAcc >
