@@ -30,7 +30,11 @@
     >
       <IconWood class="w-20 h-20" />
     </div>
-    <div @click="STRUCTURE.viking.modal = true" class="cursor-pointer">
+    <div
+      v-if="cities.some((city) => city.owner === 'main')"
+      @click="STRUCTURE.viking.modal = true"
+      class="cursor-pointer"
+    >
       <IconViking class="w-20 h-20" />
     </div>
     <div
