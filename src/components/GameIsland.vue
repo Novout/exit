@@ -1,10 +1,8 @@
 <template>
-  <div class="overflow-scroll min-h-100vh w-full">
+  <div class="grid grid-cols-4 grid-rows-3 overflow-scroll min-h-100vh w-full">
     <div
-      class="absolute flex flex-col justify-center items-center cursor-pointer"
+      class="justify-center items-center cursor-pointer"
       :style="{
-        left: `${city.x * 70}px`,
-        top: `${city.y * 70 + 220}px`,
         color: `${city.owner === 'main' ? 'green' : 'black'}`,
       }"
       v-for="(city, index) in cities"
@@ -26,20 +24,17 @@
     <div
       v-if="cities.some((city) => city.owner === 'main')"
       @click="STRUCTURE.wood.modal = true"
-      class="absolute left-100 top-100 cursor-pointer"
+      class="cursor-pointer"
     >
       <IconWood class="w-20 h-20" />
     </div>
-    <div
-      @click="STRUCTURE.viking.modal = true"
-      class="absolute left-160 top-150 cursor-pointer"
-    >
+    <div @click="STRUCTURE.viking.modal = true" class="cursor-pointer">
       <IconViking class="w-20 h-20" />
     </div>
     <div
       v-if="cities.some((city) => city.owner === 'main')"
       @click="STRUCTURE.resource.modal = true"
-      class="absolute left-150 top-100 cursor-pointer"
+      class="cursor-pointer"
     >
       <IconStone v-if="PLAYER.data.island.type === 'stone'" class="w-20 h-20" />
       <IconWine

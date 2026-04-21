@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid px-20 py-10 grid-cols-5 grid-rows-7 gap-10 w-full bg-1 h-100vh"
+    class="grid px-5 py-10 grid-cols-5 grid-rows-7 gap-10 w-full bg-1 h-90vh"
   >
     <p></p>
     <GameMainButton @click="STRUCTURE.cityhall.modal = true" class="bg-emerald">
@@ -29,15 +29,18 @@
     </GameMainButton>
     <p></p>
     <p></p>
-    <GameMainButton @click="STRUCTURE.navy.modal = true" class="bg-blue">
-      Shipyard
-    </GameMainButton>
     <GameMainButton @click="STRUCTURE.palace.modal = true" class="bg-purple">
       Palace
     </GameMainButton>
     <p></p>
     <GameMainButton @click="STRUCTURE.wall.modal = true" class="bg-yellow">
       Wall
+    </GameMainButton>
+    <p></p>
+    <p></p>
+    <p></p>
+    <GameMainButton @click="STRUCTURE.navy.modal = true" class="bg-blue">
+      Shipyard
     </GameMainButton>
   </div>
   <Modal>
@@ -68,8 +71,8 @@ const STRUCTURE = useStructureStore();
     180deg,
     rgb(231, 187, 116) 0%,
     rgb(206, 168, 112) 49%,
-    rgba(166, 156, 83, 1) 62%,
-    rgba(91, 125, 144, 1) 70%,
+    rgba(166, 156, 83, 1) 55%,
+    rgba(91, 125, 144, 1) 60%,
     rgba(55, 65, 81, 1) 100%
   );
 }

@@ -1,7 +1,7 @@
 <template>
   <GameEnter v-if="!CYCLE.started" />
   <GameBattle v-else-if="CYCLE.type === 'battle'" />
-  <div v-else>
+  <div class="xl:overflow-y-hidden overflow-y-auto overflow-x-hidden" v-else>
     <GameBar />
     <GameTimers />
     <GameWorld v-if="CYCLE.type === 'world'" />

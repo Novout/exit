@@ -1,6 +1,6 @@
 <template>
   <div
-    class="absolute z-99 p-4 top-40 left-10 text-md font-poppins flex items-center flex-col w-20 bg-gray text-white rounded-lg"
+    class="absolute z-99 p-4 top-40 left-40 text-md font-poppins flex items-center flex-col w-20 bg-gray text-white rounded-lg"
   >
     <p v-if="world.cityActive?.name">{{ world.cityActive!.name }}</p>
     <p>{{ world.cityActive!.owner || "none" }}</p>

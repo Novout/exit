@@ -1,11 +1,10 @@
 <template>
-  <div class="bg-blue overflow-scroll min-h-100vh w-full">
+  <div
+    class="grid grid-cols-4 grid-rows-3 bg-blue overflow-scroll min-h-100vh w-full"
+  >
     <div
       @click="onIsland(island)"
-      class="absolute"
       :style="{
-        left: `${island.x * 50}px`,
-        top: `${island.y * 50 + 200}px`,
         color: `${island.cities.some((city) => city.owner === 'main') ? 'green' : 'black'}`,
       }"
       v-for="island in WORLD.islands"
