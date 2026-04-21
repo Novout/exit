@@ -67,12 +67,6 @@ const onUpgrade = () => {
       const stg = StorageUpgrade(PLAYER.activeCity.storage.level);
 
       if (stg) {
-        PLAYER.activeCity.cityhall.stone.maxAcc = stg.stone;
-        PLAYER.activeCity.cityhall.wood.maxAcc = stg.wood;
-        PLAYER.activeCity.cityhall.sulfur.maxAcc = stg.sulfur;
-        PLAYER.activeCity.cityhall.wine.maxAcc = stg.wine;
-        PLAYER.activeCity.cityhall.crystal.maxAcc = stg.crystal;
-
         next.value = stg;
         actually.value = StorageUpgrade(PLAYER.activeCity.storage.level + 1);
         cost.value = StorageCost(levelTarget);
