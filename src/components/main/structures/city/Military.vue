@@ -25,7 +25,9 @@
         </div></label
       >
       <input
-        :disabled="PLAYER.activeCity.military.level < 2"
+        :disabled="
+          PLAYER.activeCity.military.level < 2 && !CONTROLLER?.points[1]?.finish
+        "
         type="range"
         id="volume"
         name="volume"
@@ -40,7 +42,9 @@
         </div></label
       >
       <input
-        :disabled="PLAYER.activeCity.military.level < 3"
+        :disabled="
+          PLAYER.activeCity.military.level < 3 && !CONTROLLER?.points[4]?.finish
+        "
         type="range"
         id="volume"
         name="volume"
@@ -55,7 +59,9 @@
         </div></label
       >
       <input
-        :disabled="PLAYER.activeCity.military.level < 5"
+        :disabled="
+          PLAYER.activeCity.military.level < 5 && !CONTROLLER?.points[5]?.finish
+        "
         type="range"
         id="volume"
         name="volume"
@@ -70,7 +76,9 @@
         </div></label
       >
       <input
-        :disabled="PLAYER.activeCity.military.level < 4"
+        :disabled="
+          PLAYER.activeCity.military.level < 4 && !CONTROLLER?.points[3]?.finish
+        "
         type="range"
         id="volume"
         name="volume"
