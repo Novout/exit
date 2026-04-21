@@ -95,7 +95,7 @@ const onUpgrade = () => {
       PLAYER.activeCity.cityhall.stone.acc -= upg.stone;
 
       const city = CONTROLLER.constructions.find(
-        (item) => item.id === "tavern",
+        (item) => item.id === `tavern_${PLAYER.activeCity.id}`,
       ) as ConstructionTime;
       const cityIndex = CONTROLLER.constructions.indexOf(city);
 

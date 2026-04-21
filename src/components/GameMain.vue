@@ -3,6 +3,7 @@
   <GameBattle v-else-if="CYCLE.type === 'battle'" />
   <div v-else>
     <GameBar />
+    <GameTimers />
     <GameWorld v-if="CYCLE.type === 'world'" />
     <GameIsland v-if="CYCLE.type === 'island'" />
     <GameCity v-if="CYCLE.type === 'city'" />

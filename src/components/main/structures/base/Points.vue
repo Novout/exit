@@ -98,6 +98,7 @@ const onStart = (item: any) => {
     !target.finish &&
     CONTROLLER.points[index]
   ) {
+    PLAYER.data.science.points -= target.value
     CONTROLLER.points[index].start = true;
   }
 };
