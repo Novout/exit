@@ -64,7 +64,7 @@ const resources = ref(NavyUpgrade(PLAYER.activeCity.shipyard.level + 1));
 const def = computed(
   () =>
     CONTROLLER.constructions.find(
-      (item) => item.id === "navy",
+      (item) => item.id === `navy_${PLAYER.activeCity.id}`,
     ) as ConstructionTime,
 );
 

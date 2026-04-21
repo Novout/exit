@@ -58,7 +58,7 @@ const resources = ref(TavernUpgrade(PLAYER.activeCity.tavern.level + 1));
 const def = computed(
   () =>
     CONTROLLER.constructions.find(
-      (item) => item.id === "tavern",
+      (item) => item.id === `tavern_${PLAYER.activeCity.id}`,
     ) as ConstructionTime,
 );
 

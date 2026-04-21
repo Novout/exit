@@ -154,7 +154,7 @@ const resources = ref(MilitaryUpgrade(PLAYER.activeCity.military.level + 1));
 const def = computed(
   () =>
     CONTROLLER.constructions.find(
-      (item) => item.id === "military",
+      (item) => item.id === `military_${PLAYER.activeCity.id}`,
     ) as ConstructionTime,
 );
 

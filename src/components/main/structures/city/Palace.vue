@@ -34,7 +34,7 @@ const resources = ref(PalaceUpgrade(PLAYER.activeCity.palace.level + 1));
 const def = computed(
   () =>
     CONTROLLER.constructions.find(
-      (item) => item.id === "palace",
+      (item) => item.id === `palace_${PLAYER.activeCity.id}`,
     ) as ConstructionTime,
 );
 

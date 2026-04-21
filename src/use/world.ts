@@ -39,6 +39,7 @@ export const useWorld = () => {
             y,
             owner: undefined,
             type: island.type,
+            island,
           });
         }
 

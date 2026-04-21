@@ -50,7 +50,7 @@ const resources = ref(ScienceUpgrade(PLAYER.activeCity.science.level + 1));
 const def = computed(
   () =>
     CONTROLLER.constructions.find(
-      (item) => item.id === "science",
+      (item) => item.id === `science_${PLAYER.activeCity.id}`,
     ) as ConstructionTime,
 );
 

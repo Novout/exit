@@ -22,7 +22,7 @@
         <select
           id="city-select"
           class="flex items-center flex-col pl-5 p-2 w-40 border-none shadow-xl"
-          v-model="PLAYER.activeCityName"
+          v-model="cityActive"
         >
           <option class="bg-white" :value="PLAYER.activeCity.cityhall.name">
             {{ PLAYER.activeCity.cityhall.name }}
@@ -128,7 +128,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from "vue";
+import { computed, ref, watch } from "vue";
 import { usePlayerStore } from "../store/player";
 import { useCycleStore } from "../store/cycle";
 import { useStructureStore } from "../store/structure";
@@ -137,11 +137,34 @@ const PLAYER = usePlayerStore();
 const CYCLE = useCycleStore();
 const STRUCTURE = useStructureStore();
 
+const cityActive = ref(PLAYER.activeCityName);
+
 const workers = computed(
   () =>
     Number(PLAYER.activeCity.tavern.workers) +
     Number(PLAYER.activeCity.science.workers),
 );
+
+watch(
+  computed(() => PLAYER.activeCity.cityhall.name),
+  (name) => {
+    cityActive.value = name;
+  },
+);
+
+watch(cityActive, (cityName) => {
+  const oldCity = PLAYER.activeCity;
+  PLAYER.data.cities.unshift(oldCity);
+
+  const newCity = PLAYER.data.cities.find(
+    (city) => city.cityhall.name === cityName,
+  );
+  PLAYER.data.cities = PLAYER.data.cities.filter(
+    (city) => city.cityhall.name !== cityName,
+  );
+
+  if (newCity) PLAYER.activeCity = newCity;
+});
 </script>
 
 <style lang="css">

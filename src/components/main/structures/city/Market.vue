@@ -209,7 +209,7 @@ const resources = ref(MarketUpgrade(PLAYER.activeCity.science.level + 1));
 const def = computed(
   () =>
     CONTROLLER.constructions.find(
-      (item) => item.id === "market",
+      (item) => item.id === `market_${PLAYER.activeCity.id}`,
     ) as ConstructionTime,
 );
 

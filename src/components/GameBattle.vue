@@ -287,12 +287,12 @@ const onNextRound = () => {
 
   const defenderAcc = battle.acceptDamage(defenderItem);
 
-  if(!asWall) {
+  if (!asWall) {
     while (attackerDmg > 0) {
       defenderItem[2]--;
       attackerDmg -= defenderAcc.acc_raw_hp;
       defenderAcc.acc_units -= 1;
-  
+
       if (defenderItem[2] <= 0) {
         breakLoop = true;
         defender.value = defender.value?.filter(
@@ -301,16 +301,16 @@ const onNextRound = () => {
         attackerDmg = 0;
       }
     }
-  
+
     if (!breakLoop) defender.value[defenderIndex] = defenderItem;
-  
+
     const attDefender = battle.getTotalDamage(
       defender.value as UnitBattleContext,
       true,
     );
     if (attDefender <= 0) {
       isFinished.value = true;
-  
+
       if (BATTLE.base.playerSide === "attacker" && BATTLE.base.winBonus) {
         if (
           PLAYER.activeCity.cityhall.stone.acc + BATTLE.base.winBonus.stone <=
@@ -333,16 +333,18 @@ const onNextRound = () => {
         )
           PLAYER.activeCity.cityhall.sulfur.acc += BATTLE.base.winBonus.sulfur;
         if (
-          PLAYER.activeCity.cityhall.crystal.acc + BATTLE.base.winBonus.crystal <=
+          PLAYER.activeCity.cityhall.crystal.acc +
+            BATTLE.base.winBonus.crystal <=
           PLAYER.activeCity.cityhall.crystal.maxAcc
         )
-          PLAYER.activeCity.cityhall.crystal.acc += BATTLE.base.winBonus.crystal;
+          PLAYER.activeCity.cityhall.crystal.acc +=
+            BATTLE.base.winBonus.crystal;
       }
-  
+
       if (BATTLE.base.isViking) PLAYER.data.island.vikingLevel++;
-  
+
       winner.value = "attacker";
-  
+
       return;
     }
   }

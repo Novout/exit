@@ -34,7 +34,7 @@ const resources = ref(WallUpgrade(PLAYER.activeCity.wall.level + 1));
 const def = computed(
   () =>
     CONTROLLER.constructions.find(
-      (item) => item.id === "wall",
+      (item) => item.id === `wall_${PLAYER.activeCity.id}`,
     ) as ConstructionTime,
 );
 

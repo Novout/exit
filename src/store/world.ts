@@ -11,5 +11,6 @@ export const useWolrdStore = defineStore("world", {
       vikingLevel: 1;
       cities: IslandCity[];
     }[],
+    islandActive: undefined as IslandCity | undefined,
   }),
 });

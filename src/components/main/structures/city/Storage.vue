@@ -36,7 +36,7 @@ const cost = ref(StorageCost(PLAYER.activeCity.storage.level + 1));
 const def = computed(
   () =>
     CONTROLLER.constructions.find(
-      (item) => item.id === "storage",
+      (item) => item.id === `storage_${PLAYER.activeCity.id}`,
     ) as ConstructionTime,
 );
 

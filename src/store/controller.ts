@@ -5,7 +5,7 @@ export const useControllerStore = defineStore("controller", {
   state: () => ({
     constructions: [
       {
-        id: "cityhall",
+        id: "cityhall_0",
         message: "Upgrade cityhall",
         level: {
           2: 38,
@@ -18,7 +18,7 @@ export const useControllerStore = defineStore("controller", {
         activeLevel: 2,
       },
       {
-        id: "market",
+        id: "market_0",
         message: "Upgrade market",
         level: {
           2: 22,
@@ -31,7 +31,7 @@ export const useControllerStore = defineStore("controller", {
         activeLevel: 2,
       },
       {
-        id: "military",
+        id: "military_0",
         message: "Upgrade military",
         level: {
           2: 38,
@@ -44,7 +44,7 @@ export const useControllerStore = defineStore("controller", {
         activeLevel: 2,
       },
       {
-        id: "navy",
+        id: "navy_0",
         message: "Upgrade navy",
         level: {
           2: 38,
@@ -57,7 +57,7 @@ export const useControllerStore = defineStore("controller", {
         activeLevel: 2,
       },
       {
-        id: "palace",
+        id: "palace_0",
         message: "Upgrade palace",
         level: {
           2: 38,
@@ -70,7 +70,7 @@ export const useControllerStore = defineStore("controller", {
         activeLevel: 2,
       },
       {
-        id: "science",
+        id: "science_0",
         message: "Upgrade science",
         level: {
           2: 38,
@@ -83,7 +83,7 @@ export const useControllerStore = defineStore("controller", {
         activeLevel: 2,
       },
       {
-        id: "storage",
+        id: "storage_0",
         message: "Upgrade storage",
         level: {
           2: 38,
@@ -96,7 +96,7 @@ export const useControllerStore = defineStore("controller", {
         activeLevel: 2,
       },
       {
-        id: "tavern",
+        id: "tavern_0",
         message: "Upgrade tavern",
         level: {
           2: 38,
@@ -109,7 +109,7 @@ export const useControllerStore = defineStore("controller", {
         activeLevel: 2,
       },
       {
-        id: "wall",
+        id: "wall_0",
         message: "Upgrade wall",
         level: {
           2: 38,
@@ -185,14 +185,21 @@ export const useControllerStore = defineStore("controller", {
     travel: [
       {
         id: "viking_0",
-        message: "War against vikings started!",
+        message: "War against vikings finished!",
         start: false,
         value: 0,
         finish: false,
       },
       {
         id: "bot_attack_0",
-        message: "War against bot started!",
+        message: "War against bot finished!",
+        start: false,
+        value: 0,
+        finish: false,
+      },
+      {
+        id: "colonize_0",
+        message: "Colonize finished!",
         start: false,
         value: 0,
         finish: false,

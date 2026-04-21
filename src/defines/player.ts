@@ -2,6 +2,7 @@ import type { City } from "../types";
 
 export const getNewPlayerData = () => {
   return {
+    colonizePoints: 0,
     gold: {
       acc: 100,
       set: 0,

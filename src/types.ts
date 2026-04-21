@@ -1,5 +1,6 @@
 export interface Player {
   notifies: number;
+  colonizePoints: number;
   actions: {
     market: {
       activeBuyAction: boolean;
@@ -34,6 +35,7 @@ export interface IslandCity {
   owner?: string;
   name?: string;
   type: ResourcesType;
+  island: Island;
 }
 
 export interface City {

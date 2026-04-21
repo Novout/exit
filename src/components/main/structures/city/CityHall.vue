@@ -1,17 +1,20 @@
 <template>
   <StructureModal name="city Hall">
     <div class="flex flex-col gap-2 w-full">
+      <input
+        class="p-2 hover:bg-neutral hover:text-white bg-coolGray rounded-full border-2 border-b-amber border-dashed text-md"
+        v-model="PLAYER.activeCity.cityhall.name"
+      />
       <div class="flex w-full justify-between">
         <p>Level: {{ PLAYER.activeCity.cityhall.level }}</p>
         <p>
           Population: {{ PLAYER.activeCity.cityhall.population.acc }} /
           {{ PLAYER.activeCity.cityhall.population.maxAcc }}
         </p>
-        <p>Tavern Bonus: {{ Number(PLAYER.activeCity.tavern.workers) * 12 }}</p>
+        <p>Tavern Bonus: {{ Number(PLAYER.activeCity.tavern.workers) * 15 }}</p>
       </div>
       <div class="flex w-full items-center justify-between">
         <ResourcesBar :resources="resources" />
-        <p>+30 Pop</p>
         <Button @click="onUpgrade">Upgrade</Button>
       </div>
       <p v-if="cityhall.start && !cityhall.finish">
@@ -40,7 +43,7 @@ const resources = ref(CityhallUpgrade(PLAYER.activeCity.cityhall.level + 1));
 const cityhall = computed(
   () =>
     CONTROLLER.constructions.find(
-      (item) => item.id === "cityhall",
+      (item) => item.id === `cityhall_${PLAYER.activeCity.id}`,
     ) as ConstructionTime,
 );
 

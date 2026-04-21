@@ -302,7 +302,188 @@ const onStart = () => {
         if (CONTROLLER.travel[index]) {
           CONTROLLER.travel[index].value--;
 
-          if (item.value <= 0) {
+          if (item.value <= 0 && index === 2) {
+            CONTROLLER.travel[index].finish = true;
+            CONTROLLER.travel[index].start = false;
+
+            WORLD.islands = WORLD.islands.map((island) => {
+              const city = island.cities.find(
+                (city) => city === WORLD.cityActive,
+              );
+              if (city) {
+                const cityIndex = island.cities.indexOf(city);
+
+                if (city?.owner !== "none" && island.cities[cityIndex]) {
+                  const name = random([
+                    "Heros",
+                    "Istradi",
+                    "Tarno",
+                    "Lerno",
+                    "Acto",
+                    "Hufos",
+                    "Aerol",
+                  ]);
+                  island.cities[cityIndex].owner = "main";
+                  island.cities[cityIndex].name = name;
+                  const newCity = getNewCity();
+                  newCity.cityhall.name = name;
+                  newCity.id = island.cities.length + 1;
+
+                  CONTROLLER.constructions.push(
+                    {
+                      id: `cityhall_${newCity.id}`,
+                      message: "Upgrade cityhall",
+                      level: {
+                        2: 38,
+                        3: 62,
+                        4: 97,
+                        5: 170,
+                      },
+                      start: false,
+                      finish: false,
+                      activeLevel: 2,
+                    },
+                    {
+                      id: `market_${newCity.id}`,
+                      message: "Upgrade market",
+                      level: {
+                        2: 22,
+                        3: 38,
+                        4: 58,
+                        5: 99,
+                      },
+                      start: false,
+                      finish: false,
+                      activeLevel: 2,
+                    },
+                    {
+                      id: `military_${newCity.id}`,
+                      message: "Upgrade military",
+                      level: {
+                        2: 38,
+                        3: 62,
+                        4: 97,
+                        5: 170,
+                      },
+                      start: false,
+                      finish: false,
+                      activeLevel: 2,
+                    },
+                    {
+                      id: `navy_${newCity.id}`,
+                      message: "Upgrade navy",
+                      level: {
+                        2: 38,
+                        3: 62,
+                        4: 97,
+                        5: 170,
+                      },
+                      start: false,
+                      finish: false,
+                      activeLevel: 2,
+                    },
+                    {
+                      id: `palace_${newCity.id}`,
+                      message: "Upgrade palace",
+                      level: {
+                        2: 38,
+                        3: 62,
+                        4: 97,
+                        5: 170,
+                      },
+                      start: false,
+                      finish: false,
+                      activeLevel: 2,
+                    },
+                    {
+                      id: `science_${newCity.id}`,
+                      message: "Upgrade science",
+                      level: {
+                        2: 38,
+                        3: 62,
+                        4: 97,
+                        5: 170,
+                      },
+                      start: false,
+                      finish: false,
+                      activeLevel: 2,
+                    },
+                    {
+                      id: `storage_${newCity.id}`,
+                      message: "Upgrade storage",
+                      level: {
+                        2: 38,
+                        3: 62,
+                        4: 97,
+                        5: 170,
+                      },
+                      start: false,
+                      finish: false,
+                      activeLevel: 2,
+                    },
+                    {
+                      id: `tavern_${newCity.id}`,
+                      message: "Upgrade tavern",
+                      level: {
+                        2: 38,
+                        3: 62,
+                        4: 97,
+                        5: 170,
+                      },
+                      start: false,
+                      finish: false,
+                      activeLevel: 2,
+                    },
+                    {
+                      id: `wall_${newCity.id}`,
+                      message: "Upgrade wall",
+                      level: {
+                        2: 38,
+                        3: 62,
+                        4: 97,
+                        5: 170,
+                      },
+                      start: false,
+                      finish: false,
+                      activeLevel: 2,
+                    },
+                    {
+                      id: `wood_${newCity.id}`,
+                      message: "Upgrade wall",
+                      level: {
+                        2: 38,
+                        3: 62,
+                        4: 97,
+                        5: 170,
+                      },
+                      start: false,
+                      finish: false,
+                      activeLevel: 2,
+                    },
+                    {
+                      id: `bonus${newCity.id}`,
+                      message: "Upgrade wall",
+                      level: {
+                        2: 38,
+                        3: 62,
+                        4: 97,
+                        5: 170,
+                      },
+                      start: false,
+                      finish: false,
+                      activeLevel: 2,
+                    },
+                  );
+
+                  PLAYER.data.cities.push(newCity);
+                }
+              }
+
+              return island;
+            });
+          }
+
+          if (item.value <= 0 && index < 2) {
             const isViking = item.id.startsWith("viking");
 
             CONTROLLER.travel[index].finish = true;
@@ -452,6 +633,7 @@ const onStart = () => {
             } else if (item.id === "navy") {
               PLAYER.activeCity.shipyard.level++;
             } else if (item.id === "palace") {
+              PLAYER.data.colonizePoints++;
               PLAYER.activeCity.palace.level++;
             } else if (item.id === "science") {
               PLAYER.activeCity.science.level++;
