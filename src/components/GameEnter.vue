@@ -32,7 +32,7 @@ import { getNewCity, getNewPlayerData } from "../defines/player";
 import { useWorld } from "../use/world";
 import { random } from "../utils";
 import { useWolrdStore } from "../store/world";
-import type { IslandCity, Resources } from "../types";
+import type { IslandCity, MapSize, Resources } from "../types";
 import { MarketSet } from "../defines/upgrades";
 import { useControllerStore } from "../store/controller";
 import { useEventsStore } from "../store/events";
@@ -65,7 +65,7 @@ const onStart = () => {
 
   CYCLE.started = true;
 
-  world.create();
+  world.create(data.size.toLowerCase() as MapSize);
 
   PLAYER.activeCity = getNewCity();
   PLAYER.activeCity.cityhall.name = data.name;

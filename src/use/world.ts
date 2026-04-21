@@ -1,13 +1,16 @@
 import { useWolrdStore } from "../store/world";
+import type { MapSize } from "../types";
 import { random } from "../utils";
 
 export const useWorld = () => {
   const WORLD = useWolrdStore();
 
-  const create = () => {
-    for (let i = 0; i < 15; i++) {
-      const x = 1 + Math.floor(Math.random() * 25);
-      const y = Math.floor(Math.random() * 10);
+  const create = (size: MapSize) => {
+    const def = size === "large" ? 15 : size === "default" ? 10 : 5;
+
+    for (let i = 0; i < def; i++) {
+      const x = 1 + Math.floor(Math.random() * 20);
+      const y = Math.floor(Math.random() * 8);
 
       const ignore = WORLD.islands.some(
         (island) => island.x === x && island.y === y,
@@ -24,10 +27,10 @@ export const useWorld = () => {
       }
     }
 
-    for (let i = 0; i < 9; i++) {
+    for (let i = 0; i < def; i++) {
       WORLD.islands = WORLD.islands.map((island) => {
-        const x = 1 + Math.floor(Math.random() * 25);
-        const y = Math.floor(Math.random() * 10);
+        const x = 1 + Math.floor(Math.random() * 20);
+        const y = Math.floor(Math.random() * 7);
 
         const ignore = WORLD.islands.some(
           (island) => island.x === x && island.y === y,
