@@ -40,7 +40,12 @@ import { getNewCity, getNewPlayerData } from "../defines/player";
 import { useWorld } from "../use/world";
 import { random } from "../utils";
 import { useWolrdStore } from "../store/world";
-import type { IslandCity, MapSize, Resources, ResourcesItemType } from "../types";
+import type {
+  IslandCity,
+  MapSize,
+  Resources,
+  ResourcesItemType,
+} from "../types";
 import { MarketSet } from "../defines/upgrades";
 import { useControllerStore } from "../store/controller";
 import { useEventsStore } from "../store/events";
@@ -93,7 +98,8 @@ const onStart = () => {
     if (index === 0) {
       city.owner = "main";
       city.name = data.name;
-      PLAYER.activeCity.type = options.type === 'random' ? city.type : options.type
+      PLAYER.activeCity.type =
+        options.type === "random" ? city.type : options.type;
     } else if (index === 1) {
       city.owner = "bot-1";
       city.name = "Bot 1";
@@ -173,7 +179,7 @@ const onStart = () => {
 
       if (
         PLAYER.activeCity.cityhall.wood.maxAcc >
-        PLAYER.activeCity.cityhall.wood.acc
+        PLAYER.activeCity.cityhall.wood.acc + max
       ) {
         PLAYER.activeCity.cityhall.wood.acc += max;
       }
@@ -186,7 +192,10 @@ const onStart = () => {
         const workers = Number(city.bonus.workers);
         const max = Number((workers * 2.5).toFixed());
 
-        if (city.cityhall.wood.maxAcc > city.cityhall.wood.acc + max) {
+        if (
+          city.cityhall[city.type].maxAcc >
+          city.cityhall[city.type].acc + max
+        ) {
           city.cityhall[city.type].acc += max;
         }
 
@@ -198,7 +207,7 @@ const onStart = () => {
 
       if (
         PLAYER.activeCity.cityhall[PLAYER.activeCity.type].maxAcc >
-        PLAYER.activeCity.cityhall[PLAYER.activeCity.type].acc
+        PLAYER.activeCity.cityhall[PLAYER.activeCity.type].acc + max
       ) {
         PLAYER.activeCity.cityhall[PLAYER.activeCity.type].acc += max;
       }
@@ -637,7 +646,7 @@ const onStart = () => {
           if (item.level[activeLevel] <= 0) {
             CONTROLLER.constructions[index].finish = true;
             CONTROLLER.constructions[index].start = false;
-            CONTROLLER.constructions[index].activeLevel++
+            CONTROLLER.constructions[index].activeLevel++;
 
             if (item.id === "cityhall") {
               PLAYER.activeCity.cityhall.level++;
