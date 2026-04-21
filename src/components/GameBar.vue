@@ -57,7 +57,7 @@
               PLAYER.activeCity.cityhall.stone.acc
             }}
             / {{ PLAYER.activeCity.cityhall.stone.maxAcc }} / +{{
-              PLAYER.activeCity.bonus.workers * 4
+              PLAYER.activeCity.type === 'stone' ? PLAYER.activeCity.bonus.workers * 4 : 0
             }}
           </p>
           <p class="flex items-center">
@@ -65,7 +65,7 @@
               PLAYER.activeCity.cityhall.wine.acc
             }}
             / {{ PLAYER.activeCity.cityhall.wine.maxAcc }} / +{{
-              PLAYER.activeCity.bonus.workers * 4
+              PLAYER.activeCity.type === 'wine' ? PLAYER.activeCity.bonus.workers * 4 : 0
             }}
           </p>
           <p class="flex items-center">
@@ -73,7 +73,7 @@
               PLAYER.activeCity.cityhall.crystal.acc
             }}
             / {{ PLAYER.activeCity.cityhall.crystal.maxAcc }} / +{{
-              PLAYER.activeCity.bonus.workers * 4
+              PLAYER.activeCity.type === 'crystal' ? PLAYER.activeCity.bonus.workers * 4 : 0
             }}
           </p>
           <p class="flex items-center">
@@ -81,7 +81,7 @@
               PLAYER.activeCity.cityhall.sulfur.acc
             }}
             / {{ PLAYER.activeCity.cityhall.sulfur.maxAcc }} / +{{
-              PLAYER.activeCity.bonus.workers * 4
+              PLAYER.activeCity.type === 'sulfur' ? PLAYER.activeCity.bonus.workers * 4 : 0
             }}
           </p>
         </div>
