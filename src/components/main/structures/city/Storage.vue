@@ -64,12 +64,12 @@ const onUpgrade = () => {
       CONTROLLER.constructions[cityIndex]!.finish = false;
       CONTROLLER.constructions[cityIndex]!.start = true;
 
-      const stg = StorageUpgrade(PLAYER.activeCity.storage.level);
+      const stg = StorageUpgrade(levelTarget + 1);
 
       if (stg) {
         next.value = stg;
-        actually.value = StorageUpgrade(PLAYER.activeCity.storage.level + 1);
-        cost.value = StorageCost(levelTarget);
+        actually.value = StorageUpgrade(levelTarget);
+        cost.value = StorageCost(levelTarget + 1);
       }
     }
   }

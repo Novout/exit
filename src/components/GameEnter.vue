@@ -648,7 +648,7 @@ const onStart = () => {
             CONTROLLER.constructions[index].start = false;
             CONTROLLER.constructions[index].activeLevel++;
 
-            const [name, id] = item.id.split("_");
+            const [_, id] = item.id.split("_");
 
             const inCityArray = PLAYER.data.cities.find(
               (city) => city.id === Number(id),
