@@ -1,12 +1,15 @@
 import { useWolrdStore } from "../store/world";
-import type { MapSize } from "../types";
+import type { MapSize, ResourcesItemType } from "../types";
 import { random } from "../utils";
 
 export const useWorld = () => {
   const WORLD = useWolrdStore();
 
-  const create = (size: MapSize) => {
-    const def = size === "large" ? 15 : size === "default" ? 10 : 5;
+  const create = (item: {
+    size: MapSize;
+    type: Omit<ResourcesItemType, "wood">;
+  }) => {
+    const def = item.size === "large" ? 15 : item.size === "default" ? 10 : 5;
 
     for (let i = 0; i < def; i++) {
       const x = 1 + Math.floor(Math.random() * 20);
@@ -20,7 +23,10 @@ export const useWorld = () => {
         WORLD.islands.push({
           x,
           y,
-          type: random(["wood", "stone", "sulfur", "crystal", "wine"]),
+          type:
+            item.type === "random"
+              ? random(["stone", "sulfur", "crystal", "wine"])
+              : item.type,
           vikingLevel: 1,
           cities: [],
         });

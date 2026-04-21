@@ -203,5 +203,6 @@ export interface Battle {
 }
 
 export type ResourcesType = "wood" | "sulfur" | "crystal" | "wine" | "stone";
+export type ResourcesItemType = ResourcesType | "random";
 
 export type MapSize = "default" | "small" | "large";

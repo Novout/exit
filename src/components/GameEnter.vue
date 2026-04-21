@@ -4,18 +4,26 @@
     class="flex bg-cover font-poppins flex-col gap-5 items-center justify-center w-full h-100vh"
   >
     <div
-      class="flex flex-col rounded-lg w-120 bg-dark text-white p-5 h-80 items-center justify-between"
+      class="flex flex-col gap-3 rounded-lg w-120 bg-dark text-white p-5 h-100 items-center justify-between"
     >
       <p class="font-bold font-poppins text-lg">Name of Capital</p>
       <input class="p-2" v-model="data.name" type="text" />
       <p>Map Size</p>
-      <select class="p-2 font-poppins text-lg" name="size" v-model="data.size">
+      <select class="p-2 font-poppins text-md" name="size" v-model="data.size">
         <option>Small</option>
         <option>Default</option>
         <option>Large</option>
       </select>
+      <p>Island Type</p>
+      <select class="p-2 font-poppins text-md" name="size" v-model="data.type">
+        <option>Random</option>
+        <option>Stone</option>
+        <option>Wine</option>
+        <option>Sulfur</option>
+        <option>Crystal</option>
+      </select>
       <button
-        class="w-40 p-2 font-poppins cursor-pointer b-2 border-bluegray"
+        class="w-40 p-3 font-poppins cursor-pointer b-2 border-bluegray"
         @click="onStart"
       >
         Create
@@ -32,7 +40,12 @@ import { getNewCity, getNewPlayerData } from "../defines/player";
 import { useWorld } from "../use/world";
 import { random } from "../utils";
 import { useWolrdStore } from "../store/world";
-import type { IslandCity, MapSize, Resources } from "../types";
+import type {
+  IslandCity,
+  MapSize,
+  Resources,
+  ResourcesItemType,
+} from "../types";
 import { MarketSet } from "../defines/upgrades";
 import { useControllerStore } from "../store/controller";
 import { useEventsStore } from "../store/events";
@@ -58,6 +71,7 @@ const battle = useBattle();
 const data = reactive({
   name: "",
   size: "Default",
+  type: "Random",
 });
 
 const onStart = () => {
@@ -65,7 +79,10 @@ const onStart = () => {
 
   CYCLE.started = true;
 
-  world.create(data.size.toLowerCase() as MapSize);
+  world.create({
+    size: data.size.toLowerCase() as MapSize,
+    type: data.type.toLowerCase() as ResourcesItemType,
+  });
 
   PLAYER.activeCity = getNewCity();
   PLAYER.activeCity.cityhall.name = data.name;
