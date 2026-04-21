@@ -112,7 +112,7 @@
         <IconEvents class="h-10 w-10 md:w-13 md:h-13 2xl:h-18 2xl:w-18" />
         <p
           v-if="PLAYER.data.notifies > 0"
-          class="absolute top-23 text-md rounded-full bg-red-4 text-white p-1 w-4"
+          class="absolute flex items-center justify-center px-2 top-23 text-md rounded-full bg-red-4 text-white p-1 w-4"
         >
           {{ PLAYER.data.notifies }}
         </p>
@@ -122,6 +122,12 @@
       </button>
       <button @click="STRUCTURE.points.modal = true" class="p-2">
         <IconScience class="h-10 w-10 md:w-13 md:h-13 2xl:h-18 2xl:w-18" />
+        <p
+          v-if="PLAYER.data.notifies > 0"
+          class="absolute flex items-center justify-center px-2 top-23 text-md rounded-full bg-blue-4 text-white p-1 w-4"
+        >
+          {{ PLAYER.data.science.points }}
+        </p>
       </button>
     </div>
   </div>
