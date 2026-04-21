@@ -134,25 +134,32 @@ export const MilitaryUpgrade = (level: number): Resources | undefined => {
 
 export const StorageCost = (level: number): Resources | undefined => {
   return {
+    1: {
+      stone: 0,
+      wine: 0,
+      sulfur: 0,
+      wood: 200,
+      crystal: 0,
+    },
     2: {
       stone: 0,
       wine: 0,
       sulfur: 0,
-      wood: 260,
+      wood: 340,
       crystal: 0,
     },
     3: {
       stone: 0,
       wine: 0,
       sulfur: 0,
-      wood: 410,
+      wood: 500,
       crystal: 0,
     },
     4: {
       stone: 50,
       wine: 0,
       sulfur: 0,
-      wood: 560,
+      wood: 620,
       crystal: 0,
     },
     5: {
@@ -475,24 +482,24 @@ export const PalaceUpgrade = (level: number): Resources | undefined => {
   return {
     1: {
       stone: 210,
-      wine: 210,
-      sulfur: 210,
+      wine: 100,
+      sulfur: 100,
       wood: 560,
-      crystal: 210,
+      crystal: 100,
     },
     2: {
-      stone: 505,
-      wine: 505,
-      sulfur: 505,
-      wood: 1200,
-      crystal: 505,
+      stone: 270,
+      wine: 270,
+      sulfur: 270,
+      wood: 560,
+      crystal: 270,
     },
     3: {
-      stone: 800,
-      wine: 800,
-      sulfur: 800,
-      wood: 1760,
-      crystal: 800,
+      stone: 380,
+      wine: 380,
+      sulfur: 380,
+      wood: 780,
+      crystal: 380,
     },
   }[level];
 };

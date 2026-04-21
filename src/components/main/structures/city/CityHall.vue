@@ -64,7 +64,6 @@ const onUpgrade = () => {
     const dmgStone = upg.stone;
 
     if (
-      !cityhall.value.start &&
       PLAYER.activeCity.cityhall.wood.acc >= dmgWood &&
       PLAYER.activeCity.cityhall.stone.acc >= dmgStone
     ) {

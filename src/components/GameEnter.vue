@@ -46,7 +46,7 @@ import type {
   Resources,
   ResourcesItemType,
 } from "../types";
-import { MarketSet } from "../defines/upgrades";
+import { MarketSet, StorageUpgrade } from "../defines/upgrades";
 import { useControllerStore } from "../store/controller";
 import { useEventsStore } from "../store/events";
 import { useBattleStore } from "../store/battle";
@@ -358,10 +358,10 @@ const onStart = () => {
                       id: `cityhall_${newCity.id}`,
                       message: "Upgrade cityhall",
                       level: {
-                        2: 38,
-                        3: 62,
-                        4: 97,
-                        5: 170,
+                        2: 18,
+                        3: 37,
+                        4: 56,
+                        5: 86,
                       },
                       start: false,
                       finish: false,
@@ -384,10 +384,10 @@ const onStart = () => {
                       id: `military_${newCity.id}`,
                       message: "Upgrade military",
                       level: {
-                        2: 38,
-                        3: 62,
-                        4: 97,
-                        5: 170,
+                        2: 18,
+                        3: 37,
+                        4: 56,
+                        5: 86,
                       },
                       start: false,
                       finish: false,
@@ -397,10 +397,10 @@ const onStart = () => {
                       id: `navy_${newCity.id}`,
                       message: "Upgrade navy",
                       level: {
-                        2: 38,
-                        3: 62,
-                        4: 97,
-                        5: 170,
+                        2: 18,
+                        3: 37,
+                        4: 56,
+                        5: 86,
                       },
                       start: false,
                       finish: false,
@@ -410,10 +410,10 @@ const onStart = () => {
                       id: `palace_${newCity.id}`,
                       message: "Upgrade palace",
                       level: {
-                        2: 38,
-                        3: 62,
-                        4: 97,
-                        5: 170,
+                        2: 18,
+                        3: 37,
+                        4: 56,
+                        5: 86,
                       },
                       start: false,
                       finish: false,
@@ -423,10 +423,10 @@ const onStart = () => {
                       id: `science_${newCity.id}`,
                       message: "Upgrade science",
                       level: {
-                        2: 38,
-                        3: 62,
-                        4: 97,
-                        5: 170,
+                        2: 18,
+                        3: 37,
+                        4: 56,
+                        5: 86,
                       },
                       start: false,
                       finish: false,
@@ -436,10 +436,10 @@ const onStart = () => {
                       id: `storage_${newCity.id}`,
                       message: "Upgrade storage",
                       level: {
-                        2: 38,
-                        3: 62,
-                        4: 97,
-                        5: 170,
+                        2: 18,
+                        3: 37,
+                        4: 56,
+                        5: 86,
                       },
                       start: false,
                       finish: false,
@@ -449,10 +449,10 @@ const onStart = () => {
                       id: `tavern_${newCity.id}`,
                       message: "Upgrade tavern",
                       level: {
-                        2: 38,
-                        3: 62,
-                        4: 97,
-                        5: 170,
+                        2: 18,
+                        3: 37,
+                        4: 56,
+                        5: 86,
                       },
                       start: false,
                       finish: false,
@@ -462,10 +462,10 @@ const onStart = () => {
                       id: `wall_${newCity.id}`,
                       message: "Upgrade wall",
                       level: {
-                        2: 38,
-                        3: 62,
-                        4: 97,
-                        5: 170,
+                        2: 18,
+                        3: 37,
+                        4: 56,
+                        5: 86,
                       },
                       start: false,
                       finish: false,
@@ -475,10 +475,10 @@ const onStart = () => {
                       id: `wood_${newCity.id}`,
                       message: "Upgrade wall",
                       level: {
-                        2: 38,
-                        3: 62,
-                        4: 97,
-                        5: 170,
+                        2: 18,
+                        3: 37,
+                        4: 56,
+                        5: 86,
                       },
                       start: false,
                       finish: false,
@@ -488,10 +488,10 @@ const onStart = () => {
                       id: `bonus_${newCity.id}`,
                       message: "Upgrade wall",
                       level: {
-                        2: 38,
-                        3: 62,
-                        4: 97,
-                        5: 170,
+                        2: 18,
+                        3: 37,
+                        4: 56,
+                        5: 86,
                       },
                       start: false,
                       finish: false,
@@ -648,30 +648,103 @@ const onStart = () => {
             CONTROLLER.constructions[index].start = false;
             CONTROLLER.constructions[index].activeLevel++;
 
-            if (item.id === "cityhall") {
-              PLAYER.activeCity.cityhall.level++;
-              PLAYER.activeCity.cityhall.population.maxAcc += 30;
-            } else if (item.id === "market") {
-              PLAYER.activeCity.market.level++;
-            } else if (item.id === "military") {
-              PLAYER.activeCity.military.level++;
-            } else if (item.id === "navy") {
-              PLAYER.activeCity.shipyard.level++;
-            } else if (item.id === "palace") {
+            const [name, id] = item.id.split("_");
+
+            const inCityArray = PLAYER.data.cities.find(
+              (city) => city.id === Number(id),
+            );
+            const inCityArrayIndex = inCityArray
+              ? PLAYER.data.cities.indexOf(inCityArray)
+              : undefined;
+
+            if (item.id === `cityhall_${id}`) {
+              if (inCityArray && inCityArrayIndex !== undefined) {
+                PLAYER.data.cities[inCityArrayIndex].cityhall.level++;
+                PLAYER.data.cities[
+                  inCityArrayIndex
+                ].cityhall.population.maxAcc += 30;
+              } else {
+                PLAYER.activeCity.cityhall.level++;
+                PLAYER.activeCity.cityhall.population.maxAcc += 30;
+              }
+            } else if (item.id === `market_${id}`) {
+              if (inCityArray && inCityArrayIndex !== undefined) {
+                PLAYER.data.cities[inCityArrayIndex].market.level++;
+              } else {
+                PLAYER.activeCity.market.level++;
+              }
+            } else if (item.id === `military_${id}`) {
+              if (inCityArray && inCityArrayIndex !== undefined) {
+                PLAYER.data.cities[inCityArrayIndex].military.level++;
+              } else {
+                PLAYER.activeCity.military.level++;
+              }
+            } else if (item.id === `navy_${id}`) {
+              if (inCityArray && inCityArrayIndex !== undefined) {
+                PLAYER.data.cities[inCityArrayIndex].shipyard.level++;
+              } else {
+                PLAYER.activeCity.shipyard.level++;
+              }
+            } else if (item.id === `palace_${id}`) {
+              if (inCityArray && inCityArrayIndex !== undefined) {
+                PLAYER.data.cities[inCityArrayIndex].palace.level++;
+              } else {
+                PLAYER.activeCity.palace.level++;
+              }
               PLAYER.data.colonizePoints++;
-              PLAYER.activeCity.palace.level++;
-            } else if (item.id === "science") {
-              PLAYER.activeCity.science.level++;
-            } else if (item.id === "storage") {
-              PLAYER.activeCity.storage.level++;
-            } else if (item.id === "tavern") {
-              PLAYER.activeCity.tavern.level++;
-            } else if (item.id === "wall") {
-              PLAYER.activeCity.wall.level++;
-            } else if (item.id === "wood_0") {
-              PLAYER.activeCity.locksmith.level++;
-            } else if (item.id === "bonus_0") {
-              PLAYER.activeCity.bonus.level++;
+            } else if (item.id === `science_${id}`) {
+              if (inCityArray && inCityArrayIndex !== undefined) {
+                PLAYER.data.cities[inCityArrayIndex].science.level++;
+              } else {
+                PLAYER.activeCity.science.level++;
+              }
+            } else if (item.id === `storage_${id}`) {
+              const stg = StorageUpgrade(PLAYER.activeCity.storage.level + 1);
+
+              if (stg && inCityArray && inCityArrayIndex !== undefined) {
+                PLAYER.data.cities[inCityArrayIndex].storage.level++;
+                PLAYER.data.cities[inCityArrayIndex].cityhall.stone.maxAcc =
+                  stg.stone;
+                PLAYER.data.cities[inCityArrayIndex].cityhall.wood.maxAcc =
+                  stg.wood;
+                PLAYER.data.cities[inCityArrayIndex].cityhall.sulfur.maxAcc =
+                  stg.sulfur;
+                PLAYER.data.cities[inCityArrayIndex].cityhall.wine.maxAcc =
+                  stg.wine;
+                PLAYER.data.cities[inCityArrayIndex].cityhall.crystal.maxAcc =
+                  stg.crystal;
+              } else if (stg) {
+                PLAYER.activeCity.storage.level++;
+                PLAYER.activeCity.cityhall.stone.maxAcc = stg.stone;
+                PLAYER.activeCity.cityhall.wood.maxAcc = stg.wood;
+                PLAYER.activeCity.cityhall.sulfur.maxAcc = stg.sulfur;
+                PLAYER.activeCity.cityhall.wine.maxAcc = stg.wine;
+                PLAYER.activeCity.cityhall.crystal.maxAcc = stg.crystal;
+              }
+            } else if (item.id === `tavern_${id}`) {
+              if (inCityArray && inCityArrayIndex !== undefined) {
+                PLAYER.data.cities[inCityArrayIndex].tavern.level++;
+              } else {
+                PLAYER.activeCity.tavern.level++;
+              }
+            } else if (item.id === `wall_${id}`) {
+              if (inCityArray && inCityArrayIndex !== undefined) {
+                PLAYER.data.cities[inCityArrayIndex].wall.level++;
+              } else {
+                PLAYER.activeCity.wall.level++;
+              }
+            } else if (item.id === `wood_${id}`) {
+              if (inCityArray && inCityArrayIndex !== undefined) {
+                PLAYER.data.cities[inCityArrayIndex].locksmith.level++;
+              } else {
+                PLAYER.activeCity.locksmith.level++;
+              }
+            } else if (item.id === `bonus_${id}`) {
+              if (inCityArray && inCityArrayIndex !== undefined) {
+                PLAYER.data.cities[inCityArrayIndex].bonus.level++;
+              } else {
+                PLAYER.activeCity.bonus.level++;
+              }
             }
 
             EVENTS.list.unshift({

@@ -74,8 +74,8 @@ const onUpgrade = () => {
         PLAYER.activeCity.cityhall.crystal.maxAcc = stg.crystal;
 
         next.value = stg;
-        actually.value = StorageUpgrade(PLAYER.activeCity.storage.level);
-        cost.value = StorageCost(PLAYER.activeCity.storage.level);
+        actually.value = StorageUpgrade(PLAYER.activeCity.storage.level + 1);
+        cost.value = StorageCost(levelTarget);
       }
     }
   }
