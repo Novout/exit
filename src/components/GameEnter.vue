@@ -44,7 +44,7 @@
           name="bot"
           v-model="data.bots"
           :min="0"
-          :max="16"
+          :max="8"
         />
         <p>{{ data.bots }}</p>
       </div>
