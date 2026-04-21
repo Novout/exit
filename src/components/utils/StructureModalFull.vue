@@ -1,7 +1,7 @@
 <template>
   <section
     ref="main"
-    class="p-3 font-poppins absolute rounded-md bg-gray text-white left-0 flex flex-col w-300 h-180 overflow-x-hidden overflow-y-auto"
+    class="p-3 font-poppins absolute rounded-md bg-gray text-white -left-40 flex flex-col w-200 h-120 overflow-x-hidden overflow-y-auto"
   >
     <div class="flex w-full items-center justify-between">
       <p>
