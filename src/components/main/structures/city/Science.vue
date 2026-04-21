@@ -13,7 +13,7 @@
         />
         <label for="volume">{{ set }} / {{ max }} Workers</label>
         <p
-          class="p-1"
+          class="p-2 rounded-full"
           :class="[PLAYER.data.gold.set >= 0 ? 'bg-yellow' : 'bg-red']"
         >
           Gold {{ PLAYER.data.gold.set }}

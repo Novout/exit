@@ -1,5 +1,7 @@
 <template>
-  <div class="grid grid-cols-4 grid-rows-3 overflow-scroll min-h-100vh w-full">
+  <div
+    class="grid grid-cols-5 grid-rows-3 bg-bar overflow-scroll min-h-100vh w-full"
+  >
     <div
       class="justify-center items-center cursor-pointer"
       :style="{
@@ -81,3 +83,9 @@ onMounted(() => {
   if (island) cities.value = island?.cities;
 });
 </script>
+
+<style lang="css">
+.bg-bar {
+  background: rgb(231, 187, 116);
+}
+</style>

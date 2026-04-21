@@ -3,6 +3,9 @@
     class="grid px-5 py-10 grid-cols-5 grid-rows-7 gap-10 w-full bg-1 h-90vh"
   >
     <p></p>
+    <GameMainButton @click="STRUCTURE.wall.modal = true" class="bg-yellow">
+      Wall
+    </GameMainButton>
     <GameMainButton @click="STRUCTURE.cityhall.modal = true" class="bg-emerald">
       City Hall
     </GameMainButton>
@@ -33,9 +36,6 @@
       Palace
     </GameMainButton>
     <p></p>
-    <GameMainButton @click="STRUCTURE.wall.modal = true" class="bg-yellow">
-      Wall
-    </GameMainButton>
     <p></p>
     <p></p>
     <p></p>
