@@ -2,7 +2,7 @@
   <StructureModal name="city Hall">
     <div class="flex flex-col gap-2 w-full">
       <input
-        class="p-2 hover:bg-neutral hover:text-white bg-coolGray rounded-full border-2 border-b-amber border-dashed text-md"
+        class="p-2 text-lg hover:bg-neutral shadow-lg hover:text-white bg-coolGray rounded-full border-2 border-b-amber text-md"
         v-model="PLAYER.activeCity.cityhall.name"
       />
       <div class="flex w-full justify-between">
