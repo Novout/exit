@@ -11,6 +11,10 @@
       v-for="island in WORLD.islands"
     >
       <IconIsland class="h-20 w-20 cursor-pointer" />
+      <IconStone v-if="island.type === 'stone'" class="w-7 h-7" />
+      <IconWine v-else-if="island.type === 'wine'" class="w-7 h-7" />
+      <IconCrystal v-else-if="island.type === 'crystal'" class="w-7 h-7" />
+      <IconSulfur v-else-if="island.type === 'sulfur'" class="w-7 h-7" />
     </div>
   </div>
 </template>

@@ -23,10 +23,7 @@ export const useWorld = () => {
         WORLD.islands.push({
           x,
           y,
-          type:
-            item.type === "random"
-              ? random(["stone", "sulfur", "crystal", "wine"])
-              : item.type,
+          type: random(["stone", "sulfur", "crystal", "wine"]),
           vikingLevel: 1,
           cities: [],
         });
