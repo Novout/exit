@@ -11,7 +11,7 @@
           Population: {{ PLAYER.activeCity.cityhall.population.acc }} /
           {{ PLAYER.activeCity.cityhall.population.maxAcc }}
         </p>
-        <p>Tavern Bonus: {{ Number(PLAYER.activeCity.tavern.workers) * 15 }}</p>
+        <p class="bg-yellow p-2 rounded-full">Happy: {{ (Number((PLAYER.activeCity.tavern.workers * 12).toFixed()) + 50) - PLAYER.activeCity.cityhall.population.acc }}</p>
       </div>
       <div class="flex w-full items-center justify-between">
         <ResourcesBar :resources="resources" />
