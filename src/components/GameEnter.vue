@@ -6,22 +6,48 @@
     <div
       class="flex flex-col gap-3 rounded-lg w-120 bg-dark text-white p-5 h-100 items-center justify-between"
     >
-      <p class="font-bold font-poppins text-lg">Name of Capital</p>
-      <input class="p-2" v-model="data.name" type="text" />
-      <p>Map Size</p>
-      <select class="p-2 font-poppins text-md" name="size" v-model="data.size">
-        <option>Small</option>
-        <option>Default</option>
-        <option>Large</option>
-      </select>
-      <p>Island Type</p>
-      <select class="p-2 font-poppins text-md" name="size" v-model="data.type">
-        <option>Random</option>
-        <option>Stone</option>
-        <option>Wine</option>
-        <option>Sulfur</option>
-        <option>Crystal</option>
-      </select>
+      <div class="flex gap-2 items-center">
+        <p class="font-bold font-poppins text-lg">Name of Capital</p>
+        <input class="p-2 w-40 h-2" v-model="data.name" type="text" />
+      </div>
+      <div class="flex gap-2">
+        <p>Map Size</p>
+        <select
+          class="p-2 font-poppins text-md"
+          name="size"
+          v-model="data.size"
+        >
+          <option>Small</option>
+          <option>Default</option>
+          <option>Large</option>
+        </select>
+      </div>
+      <div class="flex gap-2">
+        <p>Island Type</p>
+        <select
+          class="p-2 font-poppins text-md"
+          name="size"
+          v-model="data.type"
+        >
+          <option>Random</option>
+          <option>Stone</option>
+          <option>Wine</option>
+          <option>Sulfur</option>
+          <option>Crystal</option>
+        </select>
+      </div>
+      <div class="flex gap-2">
+        <p>Bots</p>
+        <input
+          type="range"
+          id="bot"
+          name="bot"
+          v-model="data.bots"
+          :min="0"
+          :max="16"
+        />
+        <p>{{ data.bots }}</p>
+      </div>
       <button
         class="w-40 p-3 font-poppins cursor-pointer b-2 border-bluegray"
         @click="onStart"
@@ -38,7 +64,7 @@ import { useCycleStore } from "../store/cycle";
 import { usePlayerStore } from "../store/player";
 import { getNewCity, getNewPlayerData } from "../defines/player";
 import { useWorld } from "../use/world";
-import { random } from "../utils";
+import { random, shuffle } from "../utils";
 import { useWolrdStore } from "../store/world";
 import type {
   IslandCity,
@@ -72,6 +98,7 @@ const data = reactive({
   name: "",
   size: "Default",
   type: "Random",
+  bots: 3,
 });
 
 const onStart = () => {
@@ -82,6 +109,7 @@ const onStart = () => {
   const options = {
     size: data.size.toLowerCase() as MapSize,
     type: data.type.toLowerCase() as ResourcesItemType,
+    bots: Number(data.bots),
   };
 
   world.create(options);
@@ -95,20 +123,43 @@ const onStart = () => {
   PLAYER.data.island = island;
 
   island.cities = island.cities.map((city: IslandCity, index: number) => {
+    const load = Math.floor(Math.random() * 5);
+
     if (index === 0) {
       city.owner = "main";
       city.name = data.name;
       PLAYER.activeCity.type =
         options.type === "random" ? island.type : options.type;
-    } else if (index === 1) {
-      city.owner = "bot-1";
-      city.name = "Bot 1";
+    } else if ((!city.owner || city.owner === "none") && index === load) {
+      city.owner = `bot-${options.bots}`;
+      city.name = `Bot ${options.bots}`;
+      options.bots--;
     }
 
     city.type = island.type;
 
     return city;
   });
+
+  WORLD.islands = WORLD.islands.map((island) => {
+    island.cities = island.cities.map((city, index) => {
+      if (options.bots <= 0) return city;
+
+      if (options.bots === index) {
+        city.owner = `bot-${options.bots}`;
+        city.name = `Bot ${options.bots}`;
+        options.bots--;
+      }
+
+      return city;
+    });
+
+    island.cities = shuffle(island.cities);
+
+    return island;
+  });
+
+  WORLD.islands = shuffle(WORLD.islands);
 
   PLAYER.data = {
     notifies: 0,

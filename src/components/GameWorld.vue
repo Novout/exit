@@ -5,7 +5,7 @@
     <div
       @click="onIsland(island)"
       :style="{
-        color: `${island.cities.some((city) => city.owner === 'main') ? 'green' : 'black'}`,
+        color: `${island.cities.some((city) => city.owner === 'main') ? 'green' : island.cities.some((city) => city.owner?.startsWith('bot')) ? 'red' : 'black'}`,
       }"
       v-for="island in WORLD.islands"
     >

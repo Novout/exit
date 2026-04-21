@@ -189,8 +189,8 @@ const onSet = () => {
     Number(units.mech * 180);
   const sulfur =
     Number(units.spearman) * 0 +
-    Number(units.archer) * 0 +
-    Number(units.catapult) * 60 +
+    Number(units.archer) * 20 +
+    Number(units.catapult) * 70 +
     Number(units.hoplita) * 50 +
     Number(units.mech * 250);
   const crystal =

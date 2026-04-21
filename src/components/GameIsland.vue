@@ -3,7 +3,7 @@
     class="grid grid-cols-5 grid-rows-3 bg-bar overflow-scroll min-h-100vh w-full"
   >
     <div
-      class="justify-center items-center cursor-pointer"
+      class="justify-center cursor-pointer"
       :style="{
         color: `${city.owner === 'main' ? 'green' : 'black'}`,
       }"

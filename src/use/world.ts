@@ -8,6 +8,7 @@ export const useWorld = () => {
   const create = (item: {
     size: MapSize;
     type: Omit<ResourcesItemType, "wood">;
+    bots: number;
   }) => {
     const def = item.size === "large" ? 15 : item.size === "default" ? 10 : 5;
 
