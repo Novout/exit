@@ -40,7 +40,7 @@ import { getNewCity, getNewPlayerData } from "../defines/player";
 import { useWorld } from "../use/world";
 import { random } from "../utils";
 import { useWolrdStore } from "../store/world";
-import type { IslandCity, MapSize, Resources, ResourcesType } from "../types";
+import type { IslandCity, MapSize, Resources, ResourcesItemType } from "../types";
 import { MarketSet } from "../defines/upgrades";
 import { useControllerStore } from "../store/controller";
 import { useEventsStore } from "../store/events";
@@ -76,7 +76,7 @@ const onStart = () => {
 
   const options = {
     size: data.size.toLowerCase() as MapSize,
-    type: data.type.toLowerCase() as ResourcesType,
+    type: data.type.toLowerCase() as ResourcesItemType,
   };
 
   world.create(options);
@@ -93,7 +93,7 @@ const onStart = () => {
     if (index === 0) {
       city.owner = "main";
       city.name = data.name;
-      PLAYER.activeCity.type = options.type;
+      PLAYER.activeCity.type = options.type === 'random' ? city.type : options.type
     } else if (index === 1) {
       city.owner = "bot-1";
       city.name = "Bot 1";
