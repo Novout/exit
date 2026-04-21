@@ -476,7 +476,7 @@ const onStart = () => {
                       activeLevel: 2,
                     },
                     {
-                      id: `bonus${newCity.id}`,
+                      id: `bonus_${newCity.id}`,
                       message: "Upgrade wall",
                       level: {
                         2: 38,
@@ -637,6 +637,7 @@ const onStart = () => {
           if (item.level[activeLevel] <= 0) {
             CONTROLLER.constructions[index].finish = true;
             CONTROLLER.constructions[index].start = false;
+            CONTROLLER.constructions[index].activeLevel++
 
             if (item.id === "cityhall") {
               PLAYER.activeCity.cityhall.level++;
