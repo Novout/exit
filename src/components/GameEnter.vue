@@ -91,7 +91,7 @@ const onStart = () => {
   PLAYER.activeCityName = data.name;
 
   const island = random(WORLD.islands);
-  island.type = options.type;
+  if (options.type !== "random") island.type = options.type;
   PLAYER.data.island = island;
 
   island.cities = island.cities.map((city: IslandCity, index: number) => {
@@ -99,7 +99,7 @@ const onStart = () => {
       city.owner = "main";
       city.name = data.name;
       PLAYER.activeCity.type =
-        options.type === "random" ? city.type : options.type;
+        options.type === "random" ? island.type : options.type;
     } else if (index === 1) {
       city.owner = "bot-1";
       city.name = "Bot 1";

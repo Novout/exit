@@ -32,8 +32,8 @@
       <IconViking class="w-20 h-20" />
     </div>
     <div
-      v-if="cities.some((city) => city.owner === 'main')"
       @click="STRUCTURE.resource.modal = true"
+      v-if="cities.some((city) => city.owner === 'main')"
       class="cursor-pointer"
     >
       <IconStone v-if="PLAYER.data.island.type === 'stone'" class="w-20 h-20" />
