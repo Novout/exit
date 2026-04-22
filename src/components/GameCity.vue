@@ -1,8 +1,7 @@
 <template>
   <div
-    class="grid px-5 py-10 grid-cols-5 grid-rows-7 gap-10 w-full bg-1 h-90vh"
+    class="grid px-5 pt-10 lg:pt-30 grid-cols-2 md:grid-cols-5 grid-rows-7 gap-10 w-full bg-1 h-90vh"
   >
-    <p></p>
     <GameMainButton @click="STRUCTURE.wall.modal = true" class="bg-yellow">
       Wall
     </GameMainButton>
@@ -15,30 +14,18 @@
     <GameMainButton @click="STRUCTURE.market.modal = true" class="bg-amber">
       Market
     </GameMainButton>
-    <p></p>
-    <p></p>
-    <p></p>
     <GameMainButton @click="STRUCTURE.military.modal = true" class="bg-red">
       Military
     </GameMainButton>
-    <p></p>
-    <p></p>
-    <p></p>
     <GameMainButton @click="STRUCTURE.science.modal = true" class="bg-lime">
       Science
     </GameMainButton>
     <GameMainButton @click="STRUCTURE.tavern.modal = true" class="bg-pink">
       Tavern
     </GameMainButton>
-    <p></p>
-    <p></p>
     <GameMainButton @click="STRUCTURE.palace.modal = true" class="bg-purple">
       Palace
     </GameMainButton>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
     <GameMainButton @click="STRUCTURE.navy.modal = true" class="bg-blue">
       Shipyard
     </GameMainButton>
