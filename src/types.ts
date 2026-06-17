@@ -193,6 +193,17 @@ export type UnitBattleType =
 export type UnitBattleSet = [UnitsType, UnitBattleType, number, number];
 export type UnitBattleContext = UnitBattleSet[];
 
+export interface WarRecord {
+  id: number;
+  round: number;
+  winner: "attacker" | "defender";
+  playerSide: "attacker" | "defender";
+  isViking: boolean;
+  winBonus?: Resources;
+  attackerUnits: { type: string; initial: number; final: number }[];
+  defenderUnits: { type: string; initial: number; final: number }[];
+}
+
 export interface Battle {
   attacker?: UnitBattleContext;
   defender?: UnitBattleContext;

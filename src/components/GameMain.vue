@@ -7,11 +7,14 @@
     <GameWorld v-if="CYCLE.type === 'world'" />
     <GameIsland v-if="CYCLE.type === 'island'" />
     <GameCity v-if="CYCLE.type === 'city'" />
+    <MilitaryBase v-if="STRUCTURE.military_base.modal" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useCycleStore } from "../store/cycle";
+import { useStructureStore } from "../store/structure";
 
 const CYCLE = useCycleStore();
+const STRUCTURE = useStructureStore();
 </script>

@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import type { Battle, Resources } from "../types";
+import type { Battle, Resources, WarRecord } from "../types";
 
 export const useBattleStore = defineStore("battle", {
   state: () => ({
@@ -30,5 +30,6 @@ export const useBattleStore = defineStore("battle", {
       } as Resources,
       isViking: false,
     } as Battle,
+    wars: [] as WarRecord[],
   }),
 });

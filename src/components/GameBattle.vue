@@ -237,10 +237,38 @@ const winner = ref<"attacker" | "defender" | null>(null);
 const attacker = ref<UnitBattleContext>();
 const defender = ref<UnitBattleContext>();
 
+let initialAttacker: { type: string; initial: number; final: number }[] = [];
+let initialDefender: { type: string; initial: number; final: number }[] = [];
+
 onMounted(() => {
   attacker.value = BATTLE.base.attacker?.reverse() || [];
   defender.value = BATTLE.base.defender || [];
+
+  initialAttacker = (attacker.value ?? []).map((u) => ({ type: u[0] as string, initial: u[2] as number, final: u[2] as number }));
+  initialDefender = (defender.value ?? []).map((u) => ({ type: u[0] as string, initial: u[2] as number, final: u[2] as number }));
 });
+
+const recordWar = (w: "attacker" | "defender") => {
+  const finalAttacker = initialAttacker.map((u) => ({
+    ...u,
+    final: (attacker.value?.find((a) => a[0] === u.type)?.[2] as number) ?? 0,
+  }));
+  const finalDefender = initialDefender.map((u) => ({
+    ...u,
+    final: (defender.value?.find((d) => d[0] === u.type)?.[2] as number) ?? 0,
+  }));
+
+  BATTLE.wars.unshift({
+    id: BATTLE.wars.length + 1,
+    round: round.value,
+    winner: w,
+    playerSide: BATTLE.base.playerSide ?? "attacker",
+    isViking: BATTLE.base.isViking ?? false,
+    winBonus: BATTLE.base.winBonus,
+    attackerUnits: finalAttacker,
+    defenderUnits: finalDefender,
+  });
+};
 
 const getStacks = (atk: any[]) => {
   return battle.splitUnitsByStack(atk[2], atk[3]);
@@ -344,6 +372,7 @@ const onNextRound = () => {
       if (BATTLE.base.isViking) PLAYER.data.island.vikingLevel++;
 
       winner.value = "attacker";
+      recordWar("attacker");
 
       return;
     }
@@ -411,6 +440,7 @@ const onNextRound = () => {
     }
 
     winner.value = "defender";
+    recordWar("defender");
 
     return;
   }

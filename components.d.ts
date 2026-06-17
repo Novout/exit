@@ -61,6 +61,7 @@ declare module 'vue' {
     IslandWood: typeof import('./src/components/main/structures/island/IslandWood.vue')['default']
     Market: typeof import('./src/components/main/structures/city/Market.vue')['default']
     Military: typeof import('./src/components/main/structures/city/Military.vue')['default']
+    MilitaryBase: typeof import('./src/components/main/structures/base/MilitaryBase.vue')['default']
     Modal: typeof import('./src/components/utils/Modal.vue')['default']
     ModalFull: typeof import('./src/components/utils/ModalFull.vue')['default']
     Navy: typeof import('./src/components/main/structures/city/Navy.vue')['default']
