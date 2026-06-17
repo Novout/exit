@@ -206,3 +206,36 @@ export type ResourcesType = "wood" | "sulfur" | "crystal" | "wine" | "stone";
 export type ResourcesItemType = ResourcesType | "random";
 
 export type MapSize = "default" | "small" | "large";
+
+export type BotArchetype =
+  | "militarist"
+  | "economist"
+  | "colonizer"
+  | "balanced";
+export type BotState =
+  | "expanding"
+  | "fortifying"
+  | "attacking"
+  | "recovering";
+
+export interface BotWeights {
+  build_military: number;
+  build_economy: number;
+  colonize: number;
+  attack: number;
+  research: number;
+}
+
+export interface Bot {
+  id: string;
+  name: string;
+  archetype: BotArchetype;
+  state: BotState;
+  weights: BotWeights;
+  city: City;
+  islandX: number;
+  islandY: number;
+  attacksReceived: { from: string; tick: number }[];
+  unitLossRatio: number;
+  stateTicks: number;
+}

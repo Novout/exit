@@ -78,11 +78,11 @@ import { useEventsStore } from "../store/events";
 import { useBattleStore } from "../store/battle";
 import { useBattle } from "../use/battle";
 import {
-  botDifficult,
   botGain,
   vikingDifficult,
   VikingGain,
 } from "../defines/difficults";
+import { useBotAI } from "../use/ia";
 
 const CYCLE = useCycleStore();
 const PLAYER = usePlayerStore();
@@ -93,6 +93,7 @@ const BATTLE = useBattleStore();
 
 const world = useWorld();
 const battle = useBattle();
+const botAI = useBotAI();
 
 const data = reactive({
   name: "",
@@ -161,6 +162,8 @@ const onStart = () => {
 
   WORLD.islands = shuffle(WORLD.islands);
 
+  botAI.init(WORLD.islands);
+
   PLAYER.data = {
     notifies: 0,
     boats: 0,
@@ -184,6 +187,7 @@ const onStart = () => {
   let _wood = 5;
   let _bonus = 5;
   let _market = 60;
+  let _botTick = 30;
 
   setInterval(() => {
     _population--;
@@ -192,6 +196,12 @@ const onStart = () => {
     _wood--;
     _bonus--;
     _market--;
+    _botTick--;
+
+    if (_botTick < 0) {
+      botAI.advance();
+      _botTick = 30;
+    }
 
     if (_market < 0) {
       const buy = random(MarketSet());
@@ -564,9 +574,6 @@ const onStart = () => {
             CONTROLLER.travel[index].finish = true;
             CONTROLLER.travel[index].start = false;
 
-            const levelDifficult = isViking
-              ? vikingDifficult(PLAYER.data.island.vikingLevel)
-              : botDifficult(1);
             const levelGain = isViking
               ? VikingGain(PLAYER.data.island.vikingLevel)
               : botGain(1);
@@ -576,16 +583,26 @@ const onStart = () => {
               message: item.message,
             });
 
+            let defenderAcc;
+            if (isViking) {
+              const vikingStats = vikingDifficult(PLAYER.data.island.vikingLevel);
+              defenderAcc = {
+                wall: 0,
+                mech: vikingStats.mech,
+                viking: vikingStats.soldiers,
+                catapult: vikingStats.catapult,
+                archer: vikingStats.long,
+                hoplita: vikingStats.hoplita,
+                spearman: vikingStats.spearman,
+              };
+            } else {
+              const botOwner = WORLD.cityActive?.owner ?? "";
+              botAI.registerAttack(botOwner);
+              defenderAcc = botAI.getBotArmy(botOwner);
+            }
+
             BATTLE.base.defender = battle.getUnitsCounter(
-              {
-                wall: 3,
-                mech: levelDifficult.mech,
-                viking: isViking ? levelDifficult.soldiers : 0,
-                catapult: levelDifficult.catapult,
-                archer: isViking ? levelDifficult.long : levelDifficult.archer,
-                hoplita: levelDifficult.hoplita,
-                spearman: levelDifficult.spearman,
-              },
+              defenderAcc,
               "defender",
               isViking,
             );
