@@ -9,6 +9,7 @@ export default defineConfig({
       provider: "google",
       fonts: {
         poppins: "Poppins",
+        cinzel: "Cinzel:400,700",
       },
     }),
   ],

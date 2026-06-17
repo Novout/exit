@@ -1,71 +1,67 @@
 <template>
-  <div
-    :style="{ backgroundImage: `url('/background.png')` }"
-    class="flex bg-cover font-poppins flex-col gap-5 items-center justify-center w-full h-100vh"
-  >
-    <div
-      class="flex flex-col gap-3 rounded-lg w-120 bg-dark text-white p-5 h-100 items-center justify-between"
-    >
-      <div class="flex gap-2 items-center">
-        <p class="font-bold font-poppins text-lg">Name of Capital</p>
-        <input class="p-2 w-40 h-2" v-model="data.name" type="text" />
+  <div class="enter-bg" :style="{ backgroundImage: `url('/background.png')` }">
+    <div class="stone-card">
+      <div class="corner tl" />
+      <div class="corner tr" />
+      <div class="corner bl" />
+      <div class="corner br" />
+
+      <header class="card-header">
+        <div class="header-rule" />
+        <h1 class="game-title">Exit</h1>
+        <div class="header-rule" />
+      </header>
+
+      <div class="field">
+        <label class="field-label">Capital Name</label>
+        <input class="med-input" v-model="data.name" type="text" placeholder="Name your city..." />
       </div>
-      <div class="flex gap-2">
-        <p>Map Size</p>
-        <select
-          class="p-2 font-poppins text-md"
-          name="size"
-          v-model="data.size"
-        >
-          <option>Small</option>
-          <option>Default</option>
-          <option>Large</option>
-        </select>
+
+      <div class="field-row">
+        <div class="field">
+          <label class="field-label">Map Size</label>
+          <select class="med-select" name="size" v-model="data.size">
+            <option>Small</option>
+            <option>Default</option>
+            <option>Large</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-label">Island Type</label>
+          <select class="med-select" name="type" v-model="data.type">
+            <option>Random</option>
+            <option>Stone</option>
+            <option>Wine</option>
+            <option>Sulfur</option>
+            <option>Crystal</option>
+          </select>
+        </div>
       </div>
-      <div class="flex gap-2">
-        <p>Island Type</p>
-        <select
-          class="p-2 font-poppins text-md"
-          name="size"
-          v-model="data.type"
-        >
-          <option>Random</option>
-          <option>Stone</option>
-          <option>Wine</option>
-          <option>Sulfur</option>
-          <option>Crystal</option>
-        </select>
+
+      <div class="field">
+        <label class="field-label">Difficulty</label>
+        <div class="diff-group">
+          <button
+            v-for="d in ['Easy', 'Medium', 'Hard']"
+            :key="d"
+            class="diff-btn"
+            :class="{ active: data.difficulty === d }"
+            @click="data.difficulty = d"
+          >{{ d }}</button>
+        </div>
       </div>
-      <div class="flex gap-2">
-        <p>Difficulty</p>
-        <select
-          class="p-2 font-poppins text-md"
-          name="difficulty"
-          v-model="data.difficulty"
-        >
-          <option>Easy</option>
-          <option>Medium</option>
-          <option>Hard</option>
-        </select>
+
+      <div class="field">
+        <div class="bots-header">
+          <label class="field-label">Opponents</label>
+          <span class="bots-count">{{ data.bots }}</span>
+        </div>
+        <input class="med-range" type="range" v-model="data.bots" :min="0" :max="8" />
       </div>
-      <div class="flex gap-2">
-        <p>Bots</p>
-        <input
-          type="range"
-          id="bot"
-          name="bot"
-          v-model="data.bots"
-          :min="0"
-          :max="8"
-        />
-        <p>{{ data.bots }}</p>
-      </div>
-      <button
-        class="w-40 p-3 font-poppins cursor-pointer b-2 border-bluegray"
-        @click="onStart"
-      >
-        Create
-      </button>
+
+      <div class="divider" />
+
+      <button class="start-btn" @click="onStart">Begin Campaign</button>
     </div>
   </div>
 </template>
@@ -842,3 +838,186 @@ const onStart = () => {
   }, 1000);
 };
 </script>
+
+<style scoped>
+.enter-bg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+}
+
+.stone-card {
+  position: relative;
+  width: 420px;
+  background: #1c1208;
+  border: 2px solid #7a5c1e;
+  outline: 1px solid #3d2d0a;
+  outline-offset: 4px;
+  padding: 2rem 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: #c9a227;
+  border-style: solid;
+}
+.corner.tl { top: -6px; left: -6px; border-width: 2px 0 0 2px; }
+.corner.tr { top: -6px; right: -6px; border-width: 2px 2px 0 0; }
+.corner.bl { bottom: -6px; left: -6px; border-width: 0 0 2px 2px; }
+.corner.br { bottom: -6px; right: -6px; border-width: 0 2px 2px 0; }
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 0.25rem;
+}
+
+.header-rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #7a5c1e);
+}
+.header-rule:last-child {
+  background: linear-gradient(to left, transparent, #7a5c1e);
+}
+
+.game-title {
+  font-family: "Cinzel", serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #c9a227;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.field-label {
+  font-family: "Cinzel", serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9a7a35;
+}
+
+.med-input,
+.med-select {
+  background: #0f0a03;
+  border: 1px solid #5a4010;
+  color: #e2c97e;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.88rem;
+  padding: 0.45rem 0.7rem;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.med-input:focus,
+.med-select:focus {
+  border-color: #c9a227;
+}
+.med-input::placeholder {
+  color: #4a3a18;
+}
+.med-select option {
+  background: #0f0a03;
+}
+
+.diff-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.diff-btn {
+  font-family: "Cinzel", serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.45rem 0;
+  background: #0f0a03;
+  border: 1px solid #5a4010;
+  color: #9a7a35;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+.diff-btn:hover {
+  border-color: #9a7a35;
+  color: #c9a227;
+}
+.diff-btn.active {
+  background: #2a1a06;
+  border-color: #c9a227;
+  color: #c9a227;
+}
+
+.bots-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.bots-count {
+  font-family: "Cinzel", serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #c9a227;
+}
+
+.med-range {
+  width: 100%;
+  accent-color: #c9a227;
+  cursor: pointer;
+}
+
+.divider {
+  height: 1px;
+  background: #3d2d0a;
+  margin: 0 -0.5rem;
+}
+
+.start-btn {
+  font-family: "Cinzel", serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #c9a227;
+  background: #0f0a03;
+  border: 1px solid #7a5c1e;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+  width: 100%;
+}
+.start-btn:hover {
+  background: #1e1006;
+  border-color: #c9a227;
+}
+.start-btn:active {
+  transform: scale(0.99);
+}
+</style>
