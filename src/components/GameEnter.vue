@@ -853,9 +853,9 @@ const onStart = () => {
 .stone-card {
   position: relative;
   width: 420px;
-  background: #1c1208;
-  border: 2px solid #7a5c1e;
-  outline: 1px solid #3d2d0a;
+  background: #1e1e1e;
+  border: 2px solid #555;
+  outline: 1px solid #333;
   outline-offset: 4px;
   padding: 2rem 2.5rem 2rem;
   display: flex;
@@ -867,7 +867,7 @@ const onStart = () => {
   position: absolute;
   width: 14px;
   height: 14px;
-  border-color: #c9a227;
+  border-color: #d0d0d0;
   border-style: solid;
 }
 .corner.tl { top: -6px; left: -6px; border-width: 2px 0 0 2px; }
@@ -885,17 +885,17 @@ const onStart = () => {
 .header-rule {
   flex: 1;
   height: 1px;
-  background: linear-gradient(to right, transparent, #7a5c1e);
+  background: linear-gradient(to right, transparent, #555);
 }
 .header-rule:last-child {
-  background: linear-gradient(to left, transparent, #7a5c1e);
+  background: linear-gradient(to left, transparent, #555);
 }
 
 .game-title {
   font-family: "Cinzel", serif;
   font-size: 1.8rem;
   font-weight: 700;
-  color: #c9a227;
+  color: #e8e8e8;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   margin: 0;
@@ -919,14 +919,14 @@ const onStart = () => {
   font-size: 0.68rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #9a7a35;
+  color: #888;
 }
 
 .med-input,
 .med-select {
-  background: #0f0a03;
-  border: 1px solid #5a4010;
-  color: #e2c97e;
+  background: #111;
+  border: 1px solid #3a3a3a;
+  color: #d8d8d8;
   font-family: "Poppins", sans-serif;
   font-size: 0.88rem;
   padding: 0.45rem 0.7rem;
@@ -937,13 +937,13 @@ const onStart = () => {
 }
 .med-input:focus,
 .med-select:focus {
-  border-color: #c9a227;
+  border-color: #aaa;
 }
 .med-input::placeholder {
-  color: #4a3a18;
+  color: #444;
 }
 .med-select option {
-  background: #0f0a03;
+  background: #111;
 }
 
 .diff-group {
@@ -958,20 +958,20 @@ const onStart = () => {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   padding: 0.45rem 0;
-  background: #0f0a03;
-  border: 1px solid #5a4010;
-  color: #9a7a35;
+  background: #111;
+  border: 1px solid #3a3a3a;
+  color: #777;
   cursor: pointer;
   transition: border-color 0.15s, color 0.15s, background 0.15s;
 }
 .diff-btn:hover {
-  border-color: #9a7a35;
-  color: #c9a227;
+  border-color: #777;
+  color: #ccc;
 }
 .diff-btn.active {
-  background: #2a1a06;
-  border-color: #c9a227;
-  color: #c9a227;
+  background: #2a2a2a;
+  border-color: #d0d0d0;
+  color: #e8e8e8;
 }
 
 .bots-header {
@@ -984,18 +984,18 @@ const onStart = () => {
   font-family: "Cinzel", serif;
   font-size: 0.85rem;
   font-weight: 700;
-  color: #c9a227;
+  color: #d0d0d0;
 }
 
 .med-range {
   width: 100%;
-  accent-color: #c9a227;
+  accent-color: #aaa;
   cursor: pointer;
 }
 
 .divider {
   height: 1px;
-  background: #3d2d0a;
+  background: #333;
   margin: 0 -0.5rem;
 }
 
@@ -1005,17 +1005,17 @@ const onStart = () => {
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #c9a227;
-  background: #0f0a03;
-  border: 1px solid #7a5c1e;
+  color: #e8e8e8;
+  background: #111;
+  border: 1px solid #555;
   padding: 0.75rem;
   cursor: pointer;
   transition: background 0.15s, border-color 0.15s;
   width: 100%;
 }
 .start-btn:hover {
-  background: #1e1006;
-  border-color: #c9a227;
+  background: #2a2a2a;
+  border-color: #d0d0d0;
 }
 .start-btn:active {
   transform: scale(0.99);
