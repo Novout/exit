@@ -19,6 +19,7 @@ declare module 'vue' {
     GameBar: typeof import('./src/components/GameBar.vue')['default']
     GameBattle: typeof import('./src/components/GameBattle.vue')['default']
     GameCity: typeof import('./src/components/GameCity.vue')['default']
+    GameCityBackground: typeof import('./src/components/GameCityBackground.vue')['default']
     GameEnter: typeof import('./src/components/GameEnter.vue')['default']
     GameIsland: typeof import('./src/components/GameIsland.vue')['default']
     GameMain: typeof import('./src/components/GameMain.vue')['default']
