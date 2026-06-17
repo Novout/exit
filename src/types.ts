@@ -207,6 +207,8 @@ export type ResourcesItemType = ResourcesType | "random";
 
 export type MapSize = "default" | "small" | "large";
 
+export type BotDifficulty = "easy" | "medium" | "hard";
+
 export type BotArchetype =
   | "militarist"
   | "economist"

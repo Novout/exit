@@ -37,6 +37,18 @@
         </select>
       </div>
       <div class="flex gap-2">
+        <p>Difficulty</p>
+        <select
+          class="p-2 font-poppins text-md"
+          name="difficulty"
+          v-model="data.difficulty"
+        >
+          <option>Easy</option>
+          <option>Medium</option>
+          <option>Hard</option>
+        </select>
+      </div>
+      <div class="flex gap-2">
         <p>Bots</p>
         <input
           type="range"
@@ -100,6 +112,7 @@ const data = reactive({
   size: "Default",
   type: "Random",
   bots: 3,
+  difficulty: "Medium",
 });
 
 const onStart = () => {
@@ -162,7 +175,7 @@ const onStart = () => {
 
   WORLD.islands = shuffle(WORLD.islands);
 
-  botAI.init(WORLD.islands);
+  botAI.init(WORLD.islands, data.difficulty.toLowerCase() as "easy" | "medium" | "hard");
 
   PLAYER.data = {
     notifies: 0,
@@ -187,7 +200,9 @@ const onStart = () => {
   let _wood = 5;
   let _bonus = 5;
   let _market = 60;
-  let _botTick = 30;
+  const BOT_TICK_INTERVAL =
+    data.difficulty === "Easy" ? 60 : data.difficulty === "Hard" ? 15 : 30;
+  let _botTick = BOT_TICK_INTERVAL;
 
   setInterval(() => {
     _population--;
@@ -200,7 +215,7 @@ const onStart = () => {
 
     if (_botTick < 0) {
       botAI.advance();
-      _botTick = 30;
+      _botTick = BOT_TICK_INTERVAL;
     }
 
     if (_market < 0) {

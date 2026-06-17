@@ -5,17 +5,30 @@ import { random } from "../utils";
 import type {
   Bot,
   BotArchetype,
+  BotDifficulty,
   BotState,
   City,
   UnitBattleAcc,
 } from "../types";
+
+const DIFFICULTY_AGGRESSIVENESS: Record<BotDifficulty, number> = {
+  easy: 0.5,
+  medium: 1.0,
+  hard: 1.4,
+};
+
+const DIFFICULTY_STARTING_RESOURCES: Record<BotDifficulty, { wood: number; stone: number; military: number }> = {
+  easy:   { wood: 150, stone:  75, military: 1 },
+  medium: { wood: 300, stone: 150, military: 1 },
+  hard:   { wood: 600, stone: 350, military: 2 },
+};
 
 type BotAction = "build_military" | "build_economy" | "recruit_units" | "recover";
 
 export const useBotAI = () => {
   const IA = useIAStore();
 
-  // 1. Aggressiveness curve — passive early game, escalates over time
+  // 1. Aggressiveness curve — passive early game, escalates over time; scaled by difficulty
   const aggressiveness = (tick: number, archetype: BotArchetype): number => {
     const phase =
       tick < 200 ? "passive" : tick < 600 ? "active" : "aggressive";
@@ -30,7 +43,8 @@ export const useBotAI = () => {
       active: 1.0,
       aggressive: 1.4,
     };
-    return Math.min(1, base[archetype] * multiplier[phase]);
+    const difficultyScale = DIFFICULTY_AGGRESSIVENESS[IA.difficulty];
+    return Math.min(1, base[archetype] * multiplier[phase] * difficultyScale);
   };
 
   // 2. Threat score — combines military delta, proximity, and attack history
@@ -135,6 +149,9 @@ export const useBotAI = () => {
   };
 
   const applyAction = (bot: Bot, action: BotAction): void => {
+    // Easy bots have a 40% chance to idle each tick — they progress slower
+    if (IA.difficulty === "easy" && Math.random() < 0.4) return;
+
     const MAX_LEVEL = 5;
 
     switch (action) {
@@ -195,9 +212,13 @@ export const useBotAI = () => {
       y: number;
       cities: { owner?: string; name?: string }[];
     }[],
+    difficulty: BotDifficulty = "medium",
   ): void => {
     IA.bots = [];
     IA.tick = 0;
+    IA.difficulty = difficulty;
+
+    const res = DIFFICULTY_STARTING_RESOURCES[difficulty];
 
     islands.forEach((island) => {
       island.cities.forEach((city) => {
@@ -205,8 +226,9 @@ export const useBotAI = () => {
 
         const archetype = random(ARCHETYPES) as BotArchetype;
         const botCity = getNewCity();
-        botCity.cityhall.wood.acc = 300;
-        botCity.cityhall.stone.acc = 150;
+        botCity.cityhall.wood.acc = res.wood;
+        botCity.cityhall.stone.acc = res.stone;
+        botCity.military.level = res.military;
 
         IA.bots.push({
           id: city.owner,
