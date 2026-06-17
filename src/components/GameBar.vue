@@ -242,7 +242,7 @@ watch(cityActive, (cityName) => {
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  font-size: 0.85rem;
+  font-size: 1rem;
   color: #aaa;
 }
 
