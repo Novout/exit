@@ -1,5 +1,5 @@
 <template>
-  <StructureModalFull name="points">
+  <StructureModalFull name="events">
     <div class="flex flex-col gap-3 w-full">
       <div
         class="px-4 py-1"
