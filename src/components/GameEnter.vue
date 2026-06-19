@@ -212,6 +212,20 @@ const onStart = () => {
     if (_botTick < 0) {
       botAI.advance();
       _botTick = BOT_TICK_INTERVAL;
+
+      const invasion = botAI.consumePendingInvasion(PLAYER.activeCity);
+      if (invasion && !CONTROLLER.travel[2].start) {
+        CONTROLLER.travel[2].id = `bot_invasion_${invasion.botId}`;
+        CONTROLLER.travel[2].value = 30;
+        CONTROLLER.travel[2].start = true;
+        CONTROLLER.travel[2].finish = false;
+
+        EVENTS.list.unshift({
+          type: "army",
+          message: `${invasion.botId} is marching towards your city!`,
+        });
+        PLAYER.data.notifies++;
+      }
     }
 
     if (_market < 0) {
@@ -657,6 +671,42 @@ const onStart = () => {
             CYCLE.type = "battle";
 
             PLAYER.data.notifies++;
+          }
+
+          if (item.value <= 0 && index === 2 && item.id.startsWith("bot_invasion_")) {
+            CONTROLLER.travel[2].finish = true;
+            CONTROLLER.travel[2].start = false;
+
+            const botId = item.id.replace("bot_invasion_", "");
+            const attackerAcc = botAI.getBotArmy(botId, PLAYER.activeCity);
+
+            BATTLE.base.attacker = battle.getUnitsCounter(attackerAcc, "attacker", false);
+
+            const city = PLAYER.activeCity;
+            const defSet = { mech: 0, archer: 0, catapult: 0, hoplita: 0, spearman: 0 };
+            city?.soldiers.forEach((soldier) => {
+              if (soldier.type === "spearman") defSet.spearman = soldier.units;
+              if (soldier.type === "archer") defSet.archer = soldier.units;
+              if (soldier.type === "hoplita") defSet.hoplita = soldier.units;
+              if (soldier.type === "catapult") defSet.catapult = soldier.units;
+              if (soldier.type === "mech") defSet.mech = soldier.units;
+            });
+
+            BATTLE.base.defender = battle.getUnitsCounter(
+              { ...defSet, wall: city?.wall.level ?? 1, viking: 0 },
+              "defender",
+              false,
+            );
+
+            BATTLE.base.winBonus = { ...botGain(1) } as Resources;
+            BATTLE.base.city = city;
+            BATTLE.base.playerSide = "defender";
+            BATTLE.base.isViking = false;
+
+            EVENTS.list.unshift({ type: "army", message: item.message });
+            PLAYER.data.notifies++;
+
+            CYCLE.type = "battle";
           }
         }
       }

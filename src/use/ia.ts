@@ -191,6 +191,19 @@ export const useBotAI = () => {
     }
   };
 
+  // Evaluate if this bot should launch an invasion against the player
+  const canInvadePlayer = (bot: Bot, tick: number): boolean => {
+    if (bot.state !== "attacking") return false;
+    if (IA.pendingBotAttack !== null) return false;
+
+    const agg = aggressiveness(tick, bot.archetype);
+    const totalUnits = bot.city.soldiers.reduce((sum, s) => sum + s.units, 0);
+    const hasArmy = totalUnits >= 10;
+    const roll = Math.random();
+
+    return hasArmy && roll < agg * bot.weights.attack * 0.15;
+  };
+
   // Full tick for one bot
   const botTick = (bot: Bot): void => {
     const newState = resolveFSMTransition(bot);
@@ -203,6 +216,10 @@ export const useBotAI = () => {
 
     const action = pickAction(bot, IA.tick);
     applyAction(bot, action);
+
+    if (canInvadePlayer(bot, IA.tick)) {
+      IA.pendingBotAttack = bot.id;
+    }
   };
 
   // Initialize bots from the world state after world.create()
@@ -260,6 +277,15 @@ export const useBotAI = () => {
     bot.attacksReceived.push({ from: "player", tick: IA.tick });
   };
 
+  // Consume the pending invasion and return the attacker army
+  const consumePendingInvasion = (targetCity?: City): { botId: string; army: UnitBattleAcc } | null => {
+    const botId = IA.pendingBotAttack;
+    if (!botId) return null;
+    IA.pendingBotAttack = null;
+    const army = getBotArmy(botId, targetCity);
+    return { botId, army };
+  };
+
   // Returns the bot's actual live army for battle resolution
   const getBotArmy = (ownerId: string, targetCity?: City): UnitBattleAcc => {
     const bot = IA.bots.find((b) => b.id === ownerId);
@@ -278,5 +304,6 @@ export const useBotAI = () => {
     adaptiveArmy,
     getBotArmy,
     registerAttack,
+    consumePendingInvasion,
   };
 };

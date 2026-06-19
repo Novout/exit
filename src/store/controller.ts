@@ -198,6 +198,13 @@ export const useControllerStore = defineStore("controller", {
         finish: false,
       },
       {
+        id: "bot_invasion_0",
+        message: "Enemy forces are attacking your city!",
+        start: false,
+        value: 0,
+        finish: false,
+      },
+      {
         id: "colonize_0",
         message: "Colonize finished!",
         start: false,

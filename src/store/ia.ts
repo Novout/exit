@@ -6,5 +6,6 @@ export const useIAStore = defineStore("ia", {
     bots: [] as Bot[],
     tick: 0,
     difficulty: "medium" as BotDifficulty,
+    pendingBotAttack: null as string | null,
   }),
 });

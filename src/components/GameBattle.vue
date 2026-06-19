@@ -369,6 +369,30 @@ const onNextRound = () => {
             BATTLE.base.winBonus.crystal;
       }
 
+      // Bot won the invasion — deduct resources from player
+      if (BATTLE.base.playerSide === "defender" && BATTLE.base.winBonus) {
+        PLAYER.activeCity.cityhall.stone.acc = Math.max(
+          0,
+          PLAYER.activeCity.cityhall.stone.acc - BATTLE.base.winBonus.stone,
+        );
+        PLAYER.activeCity.cityhall.wine.acc = Math.max(
+          0,
+          PLAYER.activeCity.cityhall.wine.acc - BATTLE.base.winBonus.wine,
+        );
+        PLAYER.activeCity.cityhall.wood.acc = Math.max(
+          0,
+          PLAYER.activeCity.cityhall.wood.acc - BATTLE.base.winBonus.wood,
+        );
+        PLAYER.activeCity.cityhall.sulfur.acc = Math.max(
+          0,
+          PLAYER.activeCity.cityhall.sulfur.acc - BATTLE.base.winBonus.sulfur,
+        );
+        PLAYER.activeCity.cityhall.crystal.acc = Math.max(
+          0,
+          PLAYER.activeCity.cityhall.crystal.acc - BATTLE.base.winBonus.crystal,
+        );
+      }
+
       if (BATTLE.base.isViking) PLAYER.data.island.vikingLevel++;
 
       winner.value = "attacker";
