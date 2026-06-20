@@ -222,6 +222,7 @@ import { useBattleStore } from "../store/battle";
 import { getBattleValues } from "../defines/battle";
 import { useCycleStore } from "../store/cycle";
 import { usePlayerStore } from "../store/player";
+import { useBotAI } from "../use/ia";
 
 const BATTLE = useBattleStore();
 const CYCLE = useCycleStore();
@@ -229,6 +230,7 @@ const PLAYER = usePlayerStore();
 
 const battle = useBattle();
 const defines = getBattleValues();
+const botAI = useBotAI();
 
 const round = ref(0);
 const isFinished = ref(false);
@@ -237,6 +239,27 @@ const winner = ref<"attacker" | "defender" | null>(null);
 const clearLoserTroops = (loser: "attacker" | "defender") => {
   if (loser !== BATTLE.base.playerSide) return;
   PLAYER.activeCity.soldiers = PLAYER.activeCity.soldiers.map((s) => ({ ...s, units: 0 }));
+};
+
+// Reflect battle result back into the bot's persistent army
+const applyBotOutcome = (botSide: "attacker" | "defender", botWon: boolean) => {
+  const botId = BATTLE.base.botId;
+  if (!botId || BATTLE.base.isViking) return;
+  const survivors = botWon
+    ? (botSide === "attacker" ? attacker.value : defender.value)
+    : null;
+  if (!survivors) {
+    botAI.clearBotArmy(botId);
+    return;
+  }
+  const acc = {
+    wall: 0, mech: 0, catapult: 0, archer: 0, hoplita: 0, spearman: 0,
+  };
+  survivors.forEach((u) => {
+    const key = u[0] as keyof typeof acc;
+    if (key in acc) acc[key] = u[2] as number;
+  });
+  botAI.applyBotLosses(botId, acc);
 };
 
 const attacker = ref<UnitBattleContext>();
@@ -402,6 +425,11 @@ const onNextRound = () => {
 
       winner.value = "attacker";
       clearLoserTroops("defender");
+      // attacker wins: bot is defender if playerSide=attacker (bot lost), or bot is attacker if playerSide=defender (bot won)
+      applyBotOutcome(
+        BATTLE.base.playerSide === "attacker" ? "defender" : "attacker",
+        BATTLE.base.playerSide === "defender",
+      );
       recordWar("attacker");
 
       return;
@@ -471,6 +499,11 @@ const onNextRound = () => {
 
     winner.value = "defender";
     clearLoserTroops("attacker");
+    // defender wins: bot is attacker if playerSide=attacker (bot lost), or bot is defender if playerSide=defender (bot won)
+    applyBotOutcome(
+      BATTLE.base.playerSide === "attacker" ? "attacker" : "defender",
+      BATTLE.base.playerSide === "defender",
+    );
     recordWar("defender");
 
     return;

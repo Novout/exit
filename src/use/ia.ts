@@ -286,6 +286,30 @@ export const useBotAI = () => {
     return { botId, army };
   };
 
+  // Apply survivor counts back to the bot after a battle — keeps troop state persistent
+  const applyBotLosses = (botId: string, survivors: UnitBattleAcc): void => {
+    const bot = IA.bots.find((b) => b.id === botId);
+    if (!bot) return;
+    bot.city.soldiers = bot.city.soldiers.map((s) => {
+      const key = s.type as keyof UnitBattleAcc;
+      if (key in survivors) return { ...s, units: Math.max(0, survivors[key] as number) };
+      return s;
+    });
+    const total = bot.city.soldiers.reduce((acc, s) => acc + s.units, 0);
+    const original = Object.values(survivors).reduce((a, b) => a + b, 0);
+    if (original > 0) bot.unitLossRatio = Math.min(1, 1 - total / original);
+  };
+
+  // Zero out a bot's entire army (after total defeat)
+  const clearBotArmy = (botId: string): void => {
+    const bot = IA.bots.find((b) => b.id === botId);
+    if (!bot) return;
+    bot.city.soldiers = bot.city.soldiers.map((s) => ({ ...s, units: 0 }));
+    bot.unitLossRatio = 1;
+    bot.state = "recovering";
+    bot.stateTicks = 0;
+  };
+
   // Returns the bot's actual live army for battle resolution
   const getBotArmy = (ownerId: string, targetCity?: City): UnitBattleAcc => {
     const bot = IA.bots.find((b) => b.id === ownerId);
@@ -305,5 +329,7 @@ export const useBotAI = () => {
     getBotArmy,
     registerAttack,
     consumePendingInvasion,
+    applyBotLosses,
+    clearBotArmy,
   };
 };

@@ -667,6 +667,7 @@ const onStart = () => {
             BATTLE.base.city = undefined;
             BATTLE.base.playerSide = "attacker";
             BATTLE.base.isViking = isViking;
+            BATTLE.base.botId = isViking ? undefined : (WORLD.cityActive?.owner ?? undefined);
 
             CYCLE.type = "battle";
 
@@ -702,6 +703,7 @@ const onStart = () => {
             BATTLE.base.city = city;
             BATTLE.base.playerSide = "defender";
             BATTLE.base.isViking = false;
+            BATTLE.base.botId = botId;
 
             EVENTS.list.unshift({ type: "army", message: item.message });
             PLAYER.data.notifies++;
@@ -736,6 +738,7 @@ const onStart = () => {
             BATTLE.base.city = undefined;
             BATTLE.base.playerSide = "attacker";
             BATTLE.base.isViking = false;
+            BATTLE.base.botId = botOwner || undefined;
 
             EVENTS.list.unshift({ type: "army", message: item.message });
             PLAYER.data.notifies++;

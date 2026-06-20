@@ -225,6 +225,7 @@ export interface Battle {
   winBonus?: Resources;
   isViking?: boolean;
   isNaval?: boolean;
+  botId?: string;
 }
 
 export type ResourcesType = "wood" | "sulfur" | "crystal" | "wine" | "stone";
