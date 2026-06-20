@@ -1,5 +1,9 @@
 <template>
-  <div class="island-panel">
+  <div
+    class="island-panel"
+    :style="{ top: pos.y + 'px', left: pos.x + 'px' }"
+    @mousedown="onDragStart"
+  >
     <!-- Header -->
     <div class="panel-header">
       <span class="panel-title">{{ world.cityActive?.name || "Unknown" }}</span>
@@ -69,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, reactive } from "vue";
 import { useControllerStore } from "../../../../store/controller";
 import { useWolrdStore } from "../../../../store/world";
 import { format } from "../../../../utils";
@@ -78,6 +82,26 @@ import { usePlayerStore } from "../../../../store/player";
 const CONTROLLER = useControllerStore();
 const PLAYER = usePlayerStore();
 const world = useWolrdStore();
+
+const pos = reactive({ x: 160, y: 160 });
+
+const onDragStart = (e: MouseEvent) => {
+  const startX = e.clientX - pos.x;
+  const startY = e.clientY - pos.y;
+
+  const onMove = (ev: MouseEvent) => {
+    pos.x = ev.clientX - startX;
+    pos.y = ev.clientY - startY;
+  };
+
+  const onUp = () => {
+    window.removeEventListener("mousemove", onMove);
+    window.removeEventListener("mouseup", onUp);
+  };
+
+  window.addEventListener("mousemove", onMove);
+  window.addEventListener("mouseup", onUp);
+};
 
 const hasNavalFleet = computed(() =>
   PLAYER.activeCity.navySoldiers.some((s) => s.units > 0),
@@ -112,9 +136,9 @@ const onColonize = () => {
 .island-panel {
   position: absolute;
   z-index: 99;
-  top: 10rem;
-  left: 10rem;
   width: 200px;
+  cursor: grab;
+  user-select: none;
   background: #1e1e1e;
   border: 1px solid #3a3a3a;
   font-family: "Poppins", sans-serif;
