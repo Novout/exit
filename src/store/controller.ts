@@ -227,6 +227,13 @@ export const useControllerStore = defineStore("controller", {
         value: 0,
         finish: false,
       },
+      {
+        id: "naval_attack_0",
+        message: "Naval battle finished!",
+        start: false,
+        value: 0,
+        finish: false,
+      },
     ],
     points: [
       {

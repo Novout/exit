@@ -412,7 +412,7 @@ const onStart = () => {
         if (CONTROLLER.travel[index]) {
           CONTROLLER.travel[index].value--;
 
-          if (item.value <= 0 && index === 2) {
+          if (item.value <= 0 && index === 3) {
             CONTROLLER.travel[index].finish = true;
             CONTROLLER.travel[index].start = false;
 
@@ -707,6 +707,40 @@ const onStart = () => {
             PLAYER.data.notifies++;
 
             CYCLE.type = "battle";
+          }
+
+          if (item.value <= 0 && index === 4) {
+            CONTROLLER.travel[4].finish = true;
+            CONTROLLER.travel[4].start = false;
+
+            const playerFleet = PLAYER.activeCity.navySoldiers;
+            const playerAcc = {
+              galley:  playerFleet.find((s) => s.type === "galley")?.units  ?? 0,
+              trireme: playerFleet.find((s) => s.type === "trireme")?.units ?? 0,
+              warship: playerFleet.find((s) => s.type === "warship")?.units ?? 0,
+            };
+
+            const botOwner = WORLD.cityActive?.owner ?? "";
+            const botArmy  = botAI.getBotArmy(botOwner);
+            const totalBot = Object.values(botArmy).reduce((a, b) => a + b, 0);
+            const botScale = Math.max(1, Math.round(totalBot / 10));
+            const enemyFleet = {
+              galley:  Math.min(10, botScale * 3),
+              trireme: Math.min(10, botScale),
+              warship: Math.min(5,  Math.floor(botScale / 2)),
+            };
+
+            BATTLE.base.attacker = battle.getNavalUnitsCounter(playerAcc);
+            BATTLE.base.defender = battle.getNavalUnitsCounter(enemyFleet);
+            BATTLE.base.winBonus = { ...botGain(1) } as Resources;
+            BATTLE.base.city = undefined;
+            BATTLE.base.playerSide = "attacker";
+            BATTLE.base.isViking = false;
+
+            EVENTS.list.unshift({ type: "army", message: item.message });
+            PLAYER.data.notifies++;
+
+            CYCLE.type = "naval_battle";
           }
         }
       }
