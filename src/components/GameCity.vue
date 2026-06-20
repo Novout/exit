@@ -3,106 +3,106 @@
     <svg class="city-bg" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
       <defs>
         <linearGradient id="sky-grad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#c8a84b"/>
-          <stop offset="100%" stop-color="#e8d08a"/>
+          <stop offset="0%" stop-color="#b0b8c4"/>
+          <stop offset="100%" stop-color="#d4dce4"/>
         </linearGradient>
         <linearGradient id="ground-grad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#b8964a"/>
-          <stop offset="100%" stop-color="#9a7a35"/>
+          <stop offset="0%" stop-color="#7a8490"/>
+          <stop offset="100%" stop-color="#606870"/>
         </linearGradient>
       </defs>
 
       <!-- Sky -->
       <rect width="1200" height="600" fill="url(#sky-grad)"/>
 
-      <!-- Stars -->
-      <g fill="#d4a830">
-        <circle cx="80"  cy="40"  r="1.2"/><circle cx="210" cy="25"  r="1"/><circle cx="340" cy="55"  r="1.5"/>
-        <circle cx="480" cy="18"  r="1"/><circle cx="600" cy="38"  r="1.2"/><circle cx="720" cy="12"  r="1"/>
-        <circle cx="870" cy="48"  r="1.5"/><circle cx="1020" cy="22" r="1"/><circle cx="1130" cy="50" r="1.2"/>
-        <circle cx="160" cy="80"  r="1"/><circle cx="430" cy="90"  r="1.2"/><circle cx="760" cy="70"  r="1"/>
-        <circle cx="950" cy="85"  r="1.5"/><circle cx="1080" cy="75" r="1"/>
+      <!-- Clouds -->
+      <g fill="#e8eef4" opacity="0.7">
+        <ellipse cx="120"  cy="55" rx="55" ry="18"/>
+        <ellipse cx="340"  cy="38" rx="70" ry="16"/>
+        <ellipse cx="680"  cy="60" rx="60" ry="15"/>
+        <ellipse cx="950"  cy="42" rx="80" ry="18"/>
+        <ellipse cx="1130" cy="65" rx="50" ry="13"/>
       </g>
 
       <!-- Moon -->
-      <circle cx="1050" cy="75" r="38" fill="#f5e090"/>
-      <circle cx="1038" cy="65" r="32" fill="#e8d08a"/>
+      <circle cx="1050" cy="75" r="38" fill="#f0f4f8"/>
+      <circle cx="1038" cy="65" r="32" fill="#d4dce4"/>
 
       <!-- Far hills -->
-      <polygon points="0,420 120,290 260,380 400,260 540,350 680,270 820,320 960,260 1100,310 1200,280 1200,420" fill="#b89040"/>
+      <polygon points="0,420 120,290 260,380 400,260 540,350 680,270 820,320 960,260 1100,310 1200,280 1200,420" fill="#8a9298"/>
 
       <!-- Back towers left -->
-      <rect x="30"  y="280" width="45" height="140" fill="#c4973d"/>
-      <rect x="25"  y="265" width="55" height="20"  fill="#c4973d"/>
-      <g fill="#c4973d">
+      <rect x="30"  y="280" width="45" height="140" fill="#8c9298"/>
+      <rect x="25"  y="265" width="55" height="20"  fill="#8c9298"/>
+      <g fill="#8c9298">
         <rect x="25"  y="252" width="10" height="15"/>
         <rect x="40"  y="252" width="10" height="15"/>
         <rect x="55"  y="252" width="10" height="15"/>
         <rect x="70"  y="252" width="10" height="15"/>
       </g>
-      <rect x="20"  y="305" width="6"  height="8" fill="#a07828"/>
-      <rect x="52"  y="305" width="6"  height="8" fill="#a07828"/>
+      <rect x="20"  y="305" width="6"  height="8" fill="#4a5058"/>
+      <rect x="52"  y="305" width="6"  height="8" fill="#4a5058"/>
 
-      <rect x="100" y="310" width="38" height="110" fill="#c4973d"/>
-      <rect x="96"  y="297" width="46" height="17"  fill="#c4973d"/>
-      <g fill="#c4973d">
+      <rect x="100" y="310" width="38" height="110" fill="#8c9298"/>
+      <rect x="96"  y="297" width="46" height="17"  fill="#8c9298"/>
+      <g fill="#8c9298">
         <rect x="96"  y="285" width="9" height="13"/>
         <rect x="110" y="285" width="9" height="13"/>
         <rect x="124" y="285" width="9" height="13"/>
       </g>
 
       <!-- Back towers right -->
-      <rect x="1090" y="290" width="42" height="130" fill="#c4973d"/>
-      <rect x="1085" y="276" width="52" height="18"  fill="#c4973d"/>
-      <g fill="#c4973d">
+      <rect x="1090" y="290" width="42" height="130" fill="#8c9298"/>
+      <rect x="1085" y="276" width="52" height="18"  fill="#8c9298"/>
+      <g fill="#8c9298">
         <rect x="1085" y="263" width="9"  height="14"/>
         <rect x="1099" y="263" width="9"  height="14"/>
         <rect x="1113" y="263" width="9"  height="14"/>
         <rect x="1127" y="263" width="9"  height="14"/>
       </g>
-      <rect x="1103" y="310" width="6" height="8" fill="#a07828"/>
+      <rect x="1103" y="310" width="6" height="8" fill="#4a5058"/>
 
-      <rect x="1020" y="315" width="35" height="105" fill="#c4973d"/>
-      <rect x="1016" y="303" width="43" height="15"  fill="#c4973d"/>
-      <g fill="#c4973d">
+      <rect x="1020" y="315" width="35" height="105" fill="#8c9298"/>
+      <rect x="1016" y="303" width="43" height="15"  fill="#8c9298"/>
+      <g fill="#8c9298">
         <rect x="1016" y="291" width="8" height="13"/>
         <rect x="1029" y="291" width="8" height="13"/>
         <rect x="1042" y="291" width="8" height="13"/>
       </g>
 
       <!-- Mid buildings left -->
-      <rect x="155" y="310" width="90"  height="110" fill="#d4a840"/>
-      <rect x="175" y="295" width="50"  height="18"  fill="#d4a840"/>
-      <rect x="168" y="282" width="64"  height="16"  fill="#d4a840"/>
-      <g fill="#d4a840">
+      <rect x="155" y="310" width="90"  height="110" fill="#9aa0a8"/>
+      <rect x="175" y="295" width="50"  height="18"  fill="#9aa0a8"/>
+      <rect x="168" y="282" width="64"  height="16"  fill="#9aa0a8"/>
+      <g fill="#9aa0a8">
         <rect x="168" y="268" width="11" height="15"/>
         <rect x="184" y="268" width="11" height="15"/>
         <rect x="200" y="268" width="11" height="15"/>
         <rect x="216" y="268" width="11" height="15"/>
       </g>
-      <rect x="168" y="325" width="8"  height="11" fill="#a07828"/>
-      <rect x="194" y="325" width="8"  height="11" fill="#a07828"/>
-      <rect x="218" y="340" width="8"  height="11" fill="#a07828"/>
+      <rect x="168" y="325" width="8"  height="11" fill="#4a5058"/>
+      <rect x="194" y="325" width="8"  height="11" fill="#4a5058"/>
+      <rect x="218" y="340" width="8"  height="11" fill="#4a5058"/>
 
       <!-- Mid buildings right -->
-      <rect x="960"  y="305" width="85"  height="115" fill="#d4a840"/>
-      <rect x="978"  y="290" width="50"  height="18"  fill="#d4a840"/>
-      <rect x="970"  y="277" width="65"  height="15"  fill="#d4a840"/>
-      <g fill="#d4a840">
+      <rect x="960"  y="305" width="85"  height="115" fill="#9aa0a8"/>
+      <rect x="978"  y="290" width="50"  height="18"  fill="#9aa0a8"/>
+      <rect x="970"  y="277" width="65"  height="15"  fill="#9aa0a8"/>
+      <g fill="#9aa0a8">
         <rect x="970"  y="263" width="11" height="15"/>
         <rect x="986"  y="263" width="11" height="15"/>
         <rect x="1002" y="263" width="11" height="15"/>
         <rect x="1018" y="263" width="11" height="15"/>
       </g>
-      <rect x="978"  y="318" width="8" height="11" fill="#a07828"/>
-      <rect x="1002" y="318" width="8" height="11" fill="#a07828"/>
+      <rect x="978"  y="318" width="8" height="11" fill="#4a5058"/>
+      <rect x="1002" y="318" width="8" height="11" fill="#4a5058"/>
 
       <!-- Main castle body -->
-      <rect x="380" y="270" width="440" height="150" fill="#c8962e"/>
+      <rect x="380" y="270" width="440" height="150" fill="#9098a0"/>
 
       <!-- Castle battlements top -->
-      <rect x="375" y="254" width="450" height="20" fill="#c8962e"/>
-      <g fill="#c8962e">
+      <rect x="375" y="254" width="450" height="20" fill="#9098a0"/>
+      <g fill="#9098a0">
         <rect x="375" y="238" width="18" height="18"/>
         <rect x="401" y="238" width="18" height="18"/>
         <rect x="427" y="238" width="18" height="18"/>
@@ -124,39 +124,39 @@
       </g>
 
       <!-- Left main tower -->
-      <rect x="355" y="190" width="90" height="230" fill="#bf8c28"/>
-      <rect x="349" y="173" width="102" height="22" fill="#bf8c28"/>
-      <g fill="#bf8c28">
+      <rect x="355" y="190" width="90" height="230" fill="#7e868e"/>
+      <rect x="349" y="173" width="102" height="22" fill="#7e868e"/>
+      <g fill="#7e868e">
         <rect x="349" y="156" width="16" height="18"/>
         <rect x="370" y="156" width="16" height="18"/>
         <rect x="391" y="156" width="16" height="18"/>
         <rect x="412" y="156" width="16" height="18"/>
         <rect x="433" y="156" width="16" height="18"/>
       </g>
-      <rect x="374" y="215" width="12" height="16" fill="#8a6010"/>
-      <rect x="398" y="215" width="12" height="16" fill="#8a6010"/>
-      <rect x="374" y="250" width="12" height="16" fill="#8a6010"/>
-      <rect x="398" y="250" width="12" height="16" fill="#8a6010"/>
+      <rect x="374" y="215" width="12" height="16" fill="#4a5058"/>
+      <rect x="398" y="215" width="12" height="16" fill="#4a5058"/>
+      <rect x="374" y="250" width="12" height="16" fill="#4a5058"/>
+      <rect x="398" y="250" width="12" height="16" fill="#4a5058"/>
 
       <!-- Right main tower -->
-      <rect x="755" y="195" width="90" height="225" fill="#bf8c28"/>
-      <rect x="749" y="178" width="102" height="22" fill="#bf8c28"/>
-      <g fill="#bf8c28">
+      <rect x="755" y="195" width="90" height="225" fill="#7e868e"/>
+      <rect x="749" y="178" width="102" height="22" fill="#7e868e"/>
+      <g fill="#7e868e">
         <rect x="749" y="160" width="16" height="19"/>
         <rect x="770" y="160" width="16" height="19"/>
         <rect x="791" y="160" width="16" height="19"/>
         <rect x="812" y="160" width="16" height="19"/>
         <rect x="833" y="160" width="16" height="19"/>
       </g>
-      <rect x="770" y="220" width="12" height="16" fill="#8a6010"/>
-      <rect x="794" y="220" width="12" height="16" fill="#8a6010"/>
-      <rect x="770" y="255" width="12" height="16" fill="#8a6010"/>
-      <rect x="794" y="255" width="12" height="16" fill="#8a6010"/>
+      <rect x="770" y="220" width="12" height="16" fill="#4a5058"/>
+      <rect x="794" y="220" width="12" height="16" fill="#4a5058"/>
+      <rect x="770" y="255" width="12" height="16" fill="#4a5058"/>
+      <rect x="794" y="255" width="12" height="16" fill="#4a5058"/>
 
       <!-- Central keep -->
-      <rect x="510" y="150" width="180" height="270" fill="#d4a030"/>
-      <rect x="504" y="130" width="192" height="24" fill="#d4a030"/>
-      <g fill="#d4a030">
+      <rect x="510" y="150" width="180" height="270" fill="#a0a8b0"/>
+      <rect x="504" y="130" width="192" height="24" fill="#a0a8b0"/>
+      <g fill="#a0a8b0">
         <rect x="504" y="110" width="20" height="22"/>
         <rect x="530" y="110" width="20" height="22"/>
         <rect x="556" y="110" width="20" height="22"/>
@@ -166,28 +166,28 @@
         <rect x="660" y="110" width="20" height="22"/>
       </g>
       <!-- Keep windows -->
-      <rect x="538" y="175" width="14" height="22" fill="#8a6010"/>
-      <rect x="573" y="175" width="14" height="22" fill="#8a6010"/>
-      <rect x="608" y="175" width="14" height="22" fill="#8a6010"/>
-      <rect x="643" y="175" width="14" height="22" fill="#8a6010"/>
-      <rect x="538" y="220" width="14" height="22" fill="#8a6010"/>
-      <rect x="573" y="220" width="14" height="22" fill="#8a6010"/>
-      <rect x="608" y="220" width="14" height="22" fill="#8a6010"/>
-      <rect x="643" y="220" width="14" height="22" fill="#8a6010"/>
+      <rect x="538" y="175" width="14" height="22" fill="#4a5058"/>
+      <rect x="573" y="175" width="14" height="22" fill="#4a5058"/>
+      <rect x="608" y="175" width="14" height="22" fill="#4a5058"/>
+      <rect x="643" y="175" width="14" height="22" fill="#4a5058"/>
+      <rect x="538" y="220" width="14" height="22" fill="#4a5058"/>
+      <rect x="573" y="220" width="14" height="22" fill="#4a5058"/>
+      <rect x="608" y="220" width="14" height="22" fill="#4a5058"/>
+      <rect x="643" y="220" width="14" height="22" fill="#4a5058"/>
       <!-- Keep gate arch -->
-      <rect x="570" y="315" width="60" height="105" fill="#8a6010"/>
-      <ellipse cx="600" cy="315" rx="30" ry="18" fill="#8a6010"/>
+      <rect x="570" y="315" width="60" height="105" fill="#4a5058"/>
+      <ellipse cx="600" cy="315" rx="30" ry="18" fill="#4a5058"/>
 
       <!-- Castle windows in body -->
-      <rect x="415" y="290" width="12" height="18" fill="#8a6010"/>
-      <rect x="445" y="290" width="12" height="18" fill="#8a6010"/>
-      <rect x="740" y="290" width="12" height="18" fill="#8a6010"/>
-      <rect x="770" y="290" width="12" height="18" fill="#8a6010"/>
+      <rect x="415" y="290" width="12" height="18" fill="#4a5058"/>
+      <rect x="445" y="290" width="12" height="18" fill="#4a5058"/>
+      <rect x="740" y="290" width="12" height="18" fill="#4a5058"/>
+      <rect x="770" y="290" width="12" height="18" fill="#4a5058"/>
 
       <!-- Front city wall -->
-      <rect x="0" y="380" width="1200" height="80" fill="#c8962e"/>
-      <rect x="0" y="363" width="1200" height="20" fill="#c8962e"/>
-      <g fill="#c8962e">
+      <rect x="0" y="380" width="1200" height="80" fill="#9098a0"/>
+      <rect x="0" y="363" width="1200" height="20" fill="#9098a0"/>
+      <g fill="#9098a0">
         <rect x="0"    y="347" width="20" height="17"/>
         <rect x="26"   y="347" width="20" height="17"/>
         <rect x="52"   y="347" width="20" height="17"/>
@@ -226,10 +226,10 @@
       </g>
 
       <!-- Gate opening in front wall -->
-      <rect x="450" y="347" width="300" height="113" fill="#8a6010"/>
-      <ellipse cx="600" cy="347" rx="150" ry="40" fill="#8a6010"/>
+      <rect x="450" y="347" width="300" height="113" fill="#4a5058"/>
+      <ellipse cx="600" cy="347" rx="150" ry="40" fill="#4a5058"/>
       <!-- Gate portcullis bars -->
-      <g stroke="#c8962e" stroke-width="6" opacity="0.6">
+      <g stroke="#9098a0" stroke-width="6" opacity="0.6">
         <line x1="480" y1="347" x2="480" y2="460"/>
         <line x1="510" y1="347" x2="510" y2="460"/>
         <line x1="540" y1="347" x2="540" y2="460"/>
@@ -248,7 +248,7 @@
       <rect x="0" y="460" width="1200" height="140" fill="url(#ground-grad)"/>
 
       <!-- Ground stone lines -->
-      <g stroke="#a07828" stroke-width="1" opacity="0.5">
+      <g stroke="#4a5058" stroke-width="1" opacity="0.4">
         <line x1="0" y1="480" x2="1200" y2="480"/>
         <line x1="0" y1="500" x2="1200" y2="500"/>
         <line x1="0" y1="520" x2="1200" y2="520"/>
@@ -263,7 +263,7 @@
       </g>
 
       <!-- Fog layer at ground -->
-      <rect x="0" y="440" width="1200" height="30" fill="#e8d08a" opacity="0.4"/>
+      <rect x="0" y="440" width="1200" height="30" fill="#d4dce4" opacity="0.35"/>
     </svg>
 
   <div
@@ -325,7 +325,7 @@ const STRUCTURE = useStructureStore();
   width: 100%;
   height: 90vh;
   overflow: hidden;
-  background: #c8a84b;
+  background: #b0b8c4;
 }
 
 .city-bg {
