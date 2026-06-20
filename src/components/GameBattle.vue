@@ -234,6 +234,11 @@ const round = ref(0);
 const isFinished = ref(false);
 const winner = ref<"attacker" | "defender" | null>(null);
 
+const clearLoserTroops = (loser: "attacker" | "defender") => {
+  if (loser !== BATTLE.base.playerSide) return;
+  PLAYER.activeCity.soldiers = PLAYER.activeCity.soldiers.map((s) => ({ ...s, units: 0 }));
+};
+
 const attacker = ref<UnitBattleContext>();
 const defender = ref<UnitBattleContext>();
 
@@ -396,6 +401,7 @@ const onNextRound = () => {
       if (BATTLE.base.isViking) PLAYER.data.island.vikingLevel++;
 
       winner.value = "attacker";
+      clearLoserTroops("defender");
       recordWar("attacker");
 
       return;
@@ -464,6 +470,7 @@ const onNextRound = () => {
     }
 
     winner.value = "defender";
+    clearLoserTroops("attacker");
     recordWar("defender");
 
     return;

@@ -113,6 +113,11 @@ const round       = ref(0);
 const isFinished  = ref(false);
 const winner      = ref<"attacker" | "defender" | null>(null);
 
+const clearLoserFleet = (loser: "attacker" | "defender") => {
+  if (loser !== BATTLE.base.playerSide) return;
+  PLAYER.activeCity.navySoldiers = PLAYER.activeCity.navySoldiers.map((s) => ({ ...s, units: 0 }));
+};
+
 const attacker = ref<UnitBattleContext>();
 const defender = ref<UnitBattleContext>();
 
@@ -195,6 +200,7 @@ const onNextRound = () => {
   if (battle.getTotalDamage(defender.value, true) <= 0) {
     isFinished.value = true;
     winner.value = "attacker";
+    clearLoserFleet("defender");
     applyBonus("attacker");
     recordWar("attacker");
     return;
@@ -224,6 +230,7 @@ const onNextRound = () => {
   if (battle.getTotalDamage(attacker.value, true) <= 0) {
     isFinished.value = true;
     winner.value = "defender";
+    clearLoserFleet("attacker");
     applyBonus("defender");
     recordWar("defender");
     return;
