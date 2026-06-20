@@ -51,11 +51,11 @@ onClickOutside(section, closeAll);
 
 <style scoped>
 .structure-modal {
-  position: absolute;
+  position: fixed;
   top: 80px;
   left: 20px;
-  width: 480px;
-  max-height: 560px;
+  width: min(480px, calc(100vw - 40px));
+  max-height: min(560px, calc(100vh - 100px));
   background: #1e1e1e;
   border: 1px solid #3a3a3a;
   display: flex;
@@ -63,6 +63,16 @@ onClickOutside(section, closeAll);
   font-family: "Poppins", sans-serif;
   z-index: 100;
   overflow: hidden;
+}
+
+@media (max-width: 520px) {
+  .structure-modal {
+    top: 60px;
+    left: 10px;
+    right: 10px;
+    width: auto;
+    max-height: calc(100vh - 80px);
+  }
 }
 
 .modal-header {
