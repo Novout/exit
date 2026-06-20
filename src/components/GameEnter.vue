@@ -376,7 +376,7 @@ const onStart = () => {
           city.cityhall.population.acc < city.cityhall.population.maxAcc;
 
         if (isValidMaxExternal && isValidHappyInActive) {
-          if (city.cityhall.name === PLAYER.activeCity.cityhall.name)
+          if (city.id === PLAYER.activeCity.id)
             return city;
 
           city.cityhall.population.acc++;
@@ -879,7 +879,11 @@ const onStart = () => {
                 PLAYER.activeCity.science.level++;
               }
             } else if (item.id === `storage_${id}`) {
-              const stg = StorageUpgrade(PLAYER.activeCity.storage.level + 1);
+              const targetStorageLevel =
+                inCityArray && inCityArrayIndex !== undefined
+                  ? PLAYER.data.cities[inCityArrayIndex].storage.level
+                  : PLAYER.activeCity.storage.level;
+              const stg = StorageUpgrade(targetStorageLevel + 1);
 
               if (stg && inCityArray && inCityArrayIndex !== undefined) {
                 PLAYER.data.cities[inCityArrayIndex].storage.level++;
