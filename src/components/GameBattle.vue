@@ -303,13 +303,14 @@ const getStacks = (atk: any[]) => {
 };
 
 const onNextRound = () => {
-  let attackerDmg = battle.getTotalDamage(attacker.value as UnitBattleContext);
+  const asWall = battle.asType(defender.value as UnitBattleContext, "wall");
+  const defenderHasWall = !!asWall && (asWall[2] as number) > 0;
+
+  let attackerDmg = battle.getTotalDamage(attacker.value as UnitBattleContext, false, defenderHasWall);
   let defenderDmg = battle.getTotalDamage(
     defender.value as UnitBattleContext,
     true,
   );
-
-  const asWall = battle.asType(defender.value as UnitBattleContext, "wall");
   const wallLevel = BATTLE.base.city?.wall.level || 1;
 
   if (asWall) {

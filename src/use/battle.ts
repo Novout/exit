@@ -147,18 +147,11 @@ export const useBattle = () => {
       }
 
       if (value[0] === "catapult" && !isOnlyArcherActive) {
+        const wallMultiplier = defenderWall ? 3 : 1;
         if (value[2] < 10) {
-          _acc = defines.catapult().attack * value[2];
+          _acc = defines.catapult().attack * value[2] * wallMultiplier;
         } else {
-          _acc = defines.catapult().attack * 10;
-        }
-      }
-
-      if (value[0] === "catapult" && !isDefender && defenderWall) {
-        if (value[2] < 10) {
-          _acc = defines.catapult().attack * value[2] * 3;
-        } else {
-          _acc = defines.catapult().attack * 10 * 3;
+          _acc = defines.catapult().attack * 10 * wallMultiplier;
         }
       }
 
