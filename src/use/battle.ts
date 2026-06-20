@@ -1,5 +1,6 @@
 import { getBattleValues } from "../defines/battle";
 import type {
+  NavalUnitBattleAcc,
   UnitBattleAcc,
   UnitBattleContext,
   UnitBattleSet,
@@ -58,6 +59,14 @@ export const useBattle = () => {
             ];
 
     return units as UnitBattleContext;
+  };
+
+  const getNavalUnitsCounter = (acc: NavalUnitBattleAcc): UnitBattleContext => {
+    return [
+      ["warship", "destruction_line", acc.warship, 5],
+      ["trireme", "front_line", acc.trireme, 10],
+      ["galley", "front_line", acc.galley, 10],
+    ] as UnitBattleContext;
   };
 
   const getLineSequence = (
@@ -169,6 +178,18 @@ export const useBattle = () => {
         }
       }
 
+      if (value[0] === "galley") {
+        _acc = defines.galley().attack * Math.min(value[2], 10);
+      }
+
+      if (value[0] === "trireme") {
+        _acc = defines.trireme().attack * Math.min(value[2], 10);
+      }
+
+      if (value[0] === "warship") {
+        _acc = defines.warship().attack * Math.min(value[2], 5);
+      }
+
       return acc + _acc;
     }, 0);
   };
@@ -254,11 +275,30 @@ export const useBattle = () => {
       }
     }
 
+    if (item[0] === "galley") {
+      acc_units = Math.min(item[2], 10);
+      acc_hp = defines.galley().hp * acc_units;
+      acc_raw_hp = defines.galley().hp;
+    }
+
+    if (item[0] === "trireme") {
+      acc_units = Math.min(item[2], 10);
+      acc_hp = defines.trireme().hp * acc_units;
+      acc_raw_hp = defines.trireme().hp;
+    }
+
+    if (item[0] === "warship") {
+      acc_units = Math.min(item[2], 5);
+      acc_hp = defines.warship().hp * acc_units;
+      acc_raw_hp = defines.warship().hp;
+    }
+
     return { acc_units, acc_hp, acc_raw_hp };
   };
 
   return {
     getUnitsCounter,
+    getNavalUnitsCounter,
     splitUnitsByStack,
     getLineSequence,
     asType,

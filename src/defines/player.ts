@@ -17,6 +17,11 @@ export const getNewCity = (): City => {
   return {
     navy: [],
     id: 0,
+    navySoldiers: [
+      { type: "galley",  units: 0 },
+      { type: "trireme", units: 0 },
+      { type: "warship", units: 0 },
+    ],
     soldiers: [
       {
         type: "spearman",

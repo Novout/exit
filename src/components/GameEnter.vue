@@ -753,6 +753,20 @@ const onStart = () => {
               },
             );
 
+            if (CONTROLLER.units[index]?.id === "naval_soldiers_0") {
+              PLAYER.activeCity.navySoldiers = PLAYER.activeCity.navySoldiers.map(
+                (ship) => {
+                  if (ship.type === "galley")
+                    ship.units += CONTROLLER.units[index]?.values.galley || 0;
+                  if (ship.type === "trireme")
+                    ship.units += CONTROLLER.units[index]?.values.trireme || 0;
+                  if (ship.type === "warship")
+                    ship.units += CONTROLLER.units[index]?.values.warship || 0;
+                  return ship;
+                },
+              );
+            }
+
             EVENTS.list.unshift({
               type: "army",
               message: item.message,

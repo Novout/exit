@@ -75,5 +75,37 @@ export const getBattleValues = () => {
     };
   };
 
-  return { wall, spearman, archer, catapult, hoplita, mech, viking };
+  const galley = (): UnitBattleDefine => {
+    return {
+      id: "galley",
+      hp: 90,
+      attack: 35,
+      units: 0,
+      maxUnits: 10,
+    };
+  };
+
+  const trireme = (): UnitBattleDefine => {
+    return {
+      id: "trireme",
+      priority: true,
+      hp: 220,
+      attack: 95,
+      units: 0,
+      maxUnits: 10,
+    };
+  };
+
+  const warship = (): UnitBattleDefine => {
+    return {
+      id: "warship",
+      range: true,
+      hp: 480,
+      attack: 180,
+      units: 0,
+      maxUnits: 5,
+    };
+  };
+
+  return { wall, spearman, archer, catapult, hoplita, mech, viking, galley, trireme, warship };
 };

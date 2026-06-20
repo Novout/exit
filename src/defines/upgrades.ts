@@ -99,6 +99,25 @@ export const NavyUpgrade = (level: number): Resources | undefined => {
   }[level];
 };
 
+export const NavalUnitCost = (
+  type: "galley" | "trireme" | "warship",
+  count: number,
+): Resources => {
+  const perUnit: Record<"galley" | "trireme" | "warship", Resources> = {
+    galley:  { wood:  80, sulfur: 20,  stone:  0, wine: 0, crystal:  0 },
+    trireme: { wood: 200, sulfur: 60,  stone: 30, wine: 0, crystal:  0 },
+    warship: { wood: 400, sulfur: 120, stone: 80, wine: 0, crystal: 40 },
+  };
+  const base = perUnit[type];
+  return {
+    wood:    base.wood    * count,
+    sulfur:  base.sulfur  * count,
+    stone:   base.stone   * count,
+    wine:    base.wine    * count,
+    crystal: base.crystal * count,
+  };
+};
+
 export const MilitaryUpgrade = (level: number): Resources | undefined => {
   return {
     2: {

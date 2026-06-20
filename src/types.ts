@@ -45,6 +45,10 @@ export interface City {
     units: number;
     type: UnitsType;
   }[];
+  navySoldiers: {
+    units: number;
+    type: "galley" | "trireme" | "warship";
+  }[];
   type: ResourcesType;
   locksmith: {
     level: number;
@@ -182,7 +186,16 @@ export type UnitsType =
   | "hoplita"
   | "catapult"
   | "mech"
+  | "galley"
+  | "trireme"
+  | "warship"
   | "disabled";
+
+export interface NavalUnitBattleAcc {
+  galley: number;
+  trireme: number;
+  warship: number;
+}
 export type UnitBattleType =
   | "extra"
   | "destruction_line"
@@ -211,6 +224,7 @@ export interface Battle {
   city?: City;
   winBonus?: Resources;
   isViking?: boolean;
+  isNaval?: boolean;
 }
 
 export type ResourcesType = "wood" | "sulfur" | "crystal" | "wine" | "stone";

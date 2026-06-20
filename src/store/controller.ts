@@ -181,6 +181,22 @@ export const useControllerStore = defineStore("controller", {
           crystal: 0,
         },
       },
+      {
+        id: "naval_soldiers_0",
+        message: "Your naval fleet is ready!",
+        start: false,
+        finish: false,
+        value: 0,
+        values: {
+          galley: 0,
+          trireme: 0,
+          warship: 0,
+          wood: 0,
+          sulfur: 0,
+          stone: 0,
+          crystal: 0,
+        },
+      },
     ],
     travel: [
       {
